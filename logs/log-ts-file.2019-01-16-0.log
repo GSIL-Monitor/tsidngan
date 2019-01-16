@@ -1,0 +1,713 @@
+2019-01-16 10:49:09.169 [main] DEBUG org.apache.cxf.common.logging.LogUtils - Using org.apache.cxf.common.logging.Slf4jLogger for logging.
+2019-01-16 10:49:09.394 [main] DEBUG o.apache.cxf.endpoint.dynamic.DynamicClientFactory - Creating client from WSDL https://tepos.jxlife.com.cn/ter/services/ThdpartyInterface?wsdl
+2019-01-16 10:49:09.505 [main] DEBUG org.apache.cxf.resource.DefaultResourceManager - resolving resource <org.apache.cxf.wsdl11.WSDLManagerImpl/bus> type <interface org.apache.cxf.Bus>
+2019-01-16 10:49:09.507 [main] DEBUG org.apache.cxf.resource.DefaultResourceManager - resolving resource <null> type <interface org.apache.cxf.Bus>
+2019-01-16 10:49:09.699 [main] DEBUG org.apache.cxf.transport.http.HTTPConduit - Conduit '{http://cxf.apache.org}TransportURIResolver.http-conduit' has been (re)configured for plain http.
+2019-01-16 10:49:09.700 [main] DEBUG org.apache.cxf.transport.http.HTTPConduit - No Trust Decider configured for Conduit '{http://cxf.apache.org}TransportURIResolver.http-conduit'
+2019-01-16 10:49:09.701 [main] DEBUG org.apache.cxf.transport.http.HTTPConduit - No Auth Supplier configured for Conduit '{http://cxf.apache.org}TransportURIResolver.http-conduit'
+2019-01-16 10:49:09.701 [main] DEBUG org.apache.cxf.transport.http.HTTPConduit - Conduit '{http://cxf.apache.org}TransportURIResolver.http-conduit' has been configured for plain http.
+2019-01-16 10:49:09.702 [main] DEBUG org.apache.cxf.transport.http.HTTPConduit - registering incoming observer: org.apache.cxf.transport.TransportURIResolver$1@62163b39
+2019-01-16 10:49:10.016 [main] DEBUG org.apache.cxf.transport.https.SSLUtils - The location of the key store has not been set via a system parameter or through configuration so the default value of C:\Users\ALEE/.keystore will be used.
+2019-01-16 10:49:10.017 [main] DEBUG org.apache.cxf.transport.https.SSLUtils - The key store password has not been set via a system property or through configuration, reading data from the keystore will fail.
+2019-01-16 10:49:10.017 [main] DEBUG org.apache.cxf.transport.https.SSLUtils - The key password has not been set via a system property or through configuration, reading data from the keystore will fail.
+2019-01-16 10:49:10.017 [main] DEBUG org.apache.cxf.transport.https.SSLUtils - No default keystore C:\Users\ALEE/.keystore
+2019-01-16 10:49:10.020 [main] DEBUG o.a.cxf.transport.https.HttpsURLConnectionFactory - The cipher suites have been set to [TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384, TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384, TLS_RSA_WITH_AES_256_CBC_SHA256, TLS_ECDH_ECDSA_WITH_AES_256_CBC_SHA384, TLS_ECDH_RSA_WITH_AES_256_CBC_SHA384, TLS_DHE_RSA_WITH_AES_256_CBC_SHA256, TLS_DHE_DSS_WITH_AES_256_CBC_SHA256, TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA, TLS_RSA_WITH_AES_256_CBC_SHA, TLS_ECDH_ECDSA_WITH_AES_256_CBC_SHA, TLS_ECDH_RSA_WITH_AES_256_CBC_SHA, TLS_DHE_RSA_WITH_AES_256_CBC_SHA, TLS_DHE_DSS_WITH_AES_256_CBC_SHA, TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256, TLS_RSA_WITH_AES_128_CBC_SHA256, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA256, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA256, TLS_DHE_RSA_WITH_AES_128_CBC_SHA256, TLS_DHE_DSS_WITH_AES_128_CBC_SHA256, TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_RSA_WITH_AES_128_CBC_SHA, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_DSS_WITH_AES_128_CBC_SHA, TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384, TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256, TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384, TLS_RSA_WITH_AES_256_GCM_SHA384, TLS_ECDH_ECDSA_WITH_AES_256_GCM_SHA384, TLS_ECDH_RSA_WITH_AES_256_GCM_SHA384, TLS_DHE_RSA_WITH_AES_256_GCM_SHA384, TLS_DHE_DSS_WITH_AES_256_GCM_SHA384, TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256, TLS_RSA_WITH_AES_128_GCM_SHA256, TLS_ECDH_ECDSA_WITH_AES_128_GCM_SHA256, TLS_ECDH_RSA_WITH_AES_128_GCM_SHA256, TLS_DHE_RSA_WITH_AES_128_GCM_SHA256, TLS_DHE_DSS_WITH_AES_128_GCM_SHA256, TLS_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA, TLS_EMPTY_RENEGOTIATION_INFO_SCSV].  
+2019-01-16 10:49:10.047 [main] DEBUG org.apache.cxf.transport.http.Headers - Accept: */*
+2019-01-16 10:49:10.048 [main] DEBUG org.apache.cxf.transport.http.HTTPConduit - No Trust Decider for Conduit '{http://cxf.apache.org}TransportURIResolver.http-conduit'. An affirmative Trust Decision is assumed.
+2019-01-16 10:49:10.631 [main] DEBUG org.apache.cxf.wsdl11.WSDLServiceBuilder - Operation {http://outwardservice.lis.sinosoft.com}checkRequest cannot be unwrapped, input message must reference global element declaration with same localname as operation
+2019-01-16 10:49:10.631 [main] DEBUG org.apache.cxf.wsdl11.WSDLServiceBuilder - Operation {http://outwardservice.lis.sinosoft.com}policyRequest cannot be unwrapped, input message must reference global element declaration with same localname as operation
+2019-01-16 10:49:10.632 [main] DEBUG org.apache.cxf.wsdl11.WSDLServiceBuilder - Operation {http://outwardservice.lis.sinosoft.com}UnderwritingRequestttt cannot be unwrapped, input message must reference global element declaration with same localname as operation
+2019-01-16 10:49:10.633 [main] DEBUG org.apache.cxf.wsdl11.WSDLServiceBuilder - Operation {http://outwardservice.lis.sinosoft.com}addInvoiceInfPush cannot be unwrapped, input message must reference global element declaration with same localname as operation
+2019-01-16 10:49:10.633 [main] DEBUG org.apache.cxf.wsdl11.WSDLServiceBuilder - Operation {http://outwardservice.lis.sinosoft.com}underwritingRequest cannot be unwrapped, input message must reference global element declaration with same localname as operation
+2019-01-16 10:49:10.633 [main] DEBUG org.apache.cxf.wsdl11.WSDLServiceBuilder - Operation {http://outwardservice.lis.sinosoft.com}cancelRequest cannot be unwrapped, input message must reference global element declaration with same localname as operation
+2019-01-16 10:49:10.633 [main] DEBUG org.apache.cxf.wsdl11.WSDLServiceBuilder - Operation {http://outwardservice.lis.sinosoft.com}printRequest cannot be unwrapped, input message must reference global element declaration with same localname as operation
+2019-01-16 10:49:10.633 [main] DEBUG org.apache.cxf.wsdl11.WSDLServiceBuilder - Operation {http://outwardservice.lis.sinosoft.com}callbackCyx cannot be unwrapped, input message must reference global element declaration with same localname as operation
+2019-01-16 10:49:10.634 [main] DEBUG org.apache.cxf.wsdl11.WSDLServiceBuilder - Operation {http://outwardservice.lis.sinosoft.com}synPlan cannot be unwrapped, input message must reference global element declaration with same localname as operation
+2019-01-16 10:49:10.634 [main] DEBUG org.apache.cxf.wsdl11.WSDLServiceBuilder - Operation {http://outwardservice.lis.sinosoft.com}callbackCertify cannot be unwrapped, input message must reference global element declaration with same localname as operation
+2019-01-16 10:49:10.634 [main] DEBUG org.apache.cxf.wsdl11.WSDLServiceBuilder - Operation {http://outwardservice.lis.sinosoft.com}synCertify cannot be unwrapped, input message must reference global element declaration with same localname as operation
+2019-01-16 10:49:10.634 [main] DEBUG org.apache.cxf.wsdl11.WSDLServiceBuilder - Operation {http://outwardservice.lis.sinosoft.com}main cannot be unwrapped, input message must reference global element declaration with same localname as operation
+2019-01-16 11:34:58.714 [main] DEBUG org.apache.cxf.common.logging.LogUtils - Using org.apache.cxf.common.logging.Slf4jLogger for logging.
+2019-01-16 11:34:58.881 [main] DEBUG o.apache.cxf.endpoint.dynamic.DynamicClientFactory - Creating client from WSDL https://tepos.jxlife.com.cn/ter/services/ThdpartyInterface?wsdl
+2019-01-16 11:34:58.942 [main] DEBUG org.apache.cxf.resource.DefaultResourceManager - resolving resource <org.apache.cxf.wsdl11.WSDLManagerImpl/bus> type <interface org.apache.cxf.Bus>
+2019-01-16 11:34:58.943 [main] DEBUG org.apache.cxf.resource.DefaultResourceManager - resolving resource <null> type <interface org.apache.cxf.Bus>
+2019-01-16 11:34:59.083 [main] DEBUG org.apache.cxf.transport.http.HTTPConduit - Conduit '{http://cxf.apache.org}TransportURIResolver.http-conduit' has been (re)configured for plain http.
+2019-01-16 11:34:59.083 [main] DEBUG org.apache.cxf.transport.http.HTTPConduit - No Trust Decider configured for Conduit '{http://cxf.apache.org}TransportURIResolver.http-conduit'
+2019-01-16 11:34:59.084 [main] DEBUG org.apache.cxf.transport.http.HTTPConduit - No Auth Supplier configured for Conduit '{http://cxf.apache.org}TransportURIResolver.http-conduit'
+2019-01-16 11:34:59.084 [main] DEBUG org.apache.cxf.transport.http.HTTPConduit - Conduit '{http://cxf.apache.org}TransportURIResolver.http-conduit' has been configured for plain http.
+2019-01-16 11:34:59.084 [main] DEBUG org.apache.cxf.transport.http.HTTPConduit - registering incoming observer: org.apache.cxf.transport.TransportURIResolver$1@62163b39
+2019-01-16 11:34:59.334 [main] DEBUG org.apache.cxf.transport.https.SSLUtils - The location of the key store has not been set via a system parameter or through configuration so the default value of C:\Users\ALEE/.keystore will be used.
+2019-01-16 11:34:59.335 [main] DEBUG org.apache.cxf.transport.https.SSLUtils - The key store password has not been set via a system property or through configuration, reading data from the keystore will fail.
+2019-01-16 11:34:59.335 [main] DEBUG org.apache.cxf.transport.https.SSLUtils - The key password has not been set via a system property or through configuration, reading data from the keystore will fail.
+2019-01-16 11:34:59.336 [main] DEBUG org.apache.cxf.transport.https.SSLUtils - No default keystore C:\Users\ALEE/.keystore
+2019-01-16 11:34:59.338 [main] DEBUG o.a.cxf.transport.https.HttpsURLConnectionFactory - The cipher suites have been set to [TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384, TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384, TLS_RSA_WITH_AES_256_CBC_SHA256, TLS_ECDH_ECDSA_WITH_AES_256_CBC_SHA384, TLS_ECDH_RSA_WITH_AES_256_CBC_SHA384, TLS_DHE_RSA_WITH_AES_256_CBC_SHA256, TLS_DHE_DSS_WITH_AES_256_CBC_SHA256, TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA, TLS_RSA_WITH_AES_256_CBC_SHA, TLS_ECDH_ECDSA_WITH_AES_256_CBC_SHA, TLS_ECDH_RSA_WITH_AES_256_CBC_SHA, TLS_DHE_RSA_WITH_AES_256_CBC_SHA, TLS_DHE_DSS_WITH_AES_256_CBC_SHA, TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256, TLS_RSA_WITH_AES_128_CBC_SHA256, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA256, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA256, TLS_DHE_RSA_WITH_AES_128_CBC_SHA256, TLS_DHE_DSS_WITH_AES_128_CBC_SHA256, TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_RSA_WITH_AES_128_CBC_SHA, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_DSS_WITH_AES_128_CBC_SHA, TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384, TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256, TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384, TLS_RSA_WITH_AES_256_GCM_SHA384, TLS_ECDH_ECDSA_WITH_AES_256_GCM_SHA384, TLS_ECDH_RSA_WITH_AES_256_GCM_SHA384, TLS_DHE_RSA_WITH_AES_256_GCM_SHA384, TLS_DHE_DSS_WITH_AES_256_GCM_SHA384, TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256, TLS_RSA_WITH_AES_128_GCM_SHA256, TLS_ECDH_ECDSA_WITH_AES_128_GCM_SHA256, TLS_ECDH_RSA_WITH_AES_128_GCM_SHA256, TLS_DHE_RSA_WITH_AES_128_GCM_SHA256, TLS_DHE_DSS_WITH_AES_128_GCM_SHA256, TLS_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA, TLS_EMPTY_RENEGOTIATION_INFO_SCSV].  
+2019-01-16 11:34:59.361 [main] DEBUG org.apache.cxf.transport.http.Headers - Accept: */*
+2019-01-16 11:34:59.362 [main] DEBUG org.apache.cxf.transport.http.HTTPConduit - No Trust Decider for Conduit '{http://cxf.apache.org}TransportURIResolver.http-conduit'. An affirmative Trust Decision is assumed.
+2019-01-16 11:34:59.797 [main] DEBUG org.apache.cxf.wsdl11.WSDLServiceBuilder - Operation {http://outwardservice.lis.sinosoft.com}checkRequest cannot be unwrapped, input message must reference global element declaration with same localname as operation
+2019-01-16 11:34:59.797 [main] DEBUG org.apache.cxf.wsdl11.WSDLServiceBuilder - Operation {http://outwardservice.lis.sinosoft.com}policyRequest cannot be unwrapped, input message must reference global element declaration with same localname as operation
+2019-01-16 11:34:59.797 [main] DEBUG org.apache.cxf.wsdl11.WSDLServiceBuilder - Operation {http://outwardservice.lis.sinosoft.com}UnderwritingRequestttt cannot be unwrapped, input message must reference global element declaration with same localname as operation
+2019-01-16 11:34:59.798 [main] DEBUG org.apache.cxf.wsdl11.WSDLServiceBuilder - Operation {http://outwardservice.lis.sinosoft.com}addInvoiceInfPush cannot be unwrapped, input message must reference global element declaration with same localname as operation
+2019-01-16 11:34:59.798 [main] DEBUG org.apache.cxf.wsdl11.WSDLServiceBuilder - Operation {http://outwardservice.lis.sinosoft.com}underwritingRequest cannot be unwrapped, input message must reference global element declaration with same localname as operation
+2019-01-16 11:34:59.798 [main] DEBUG org.apache.cxf.wsdl11.WSDLServiceBuilder - Operation {http://outwardservice.lis.sinosoft.com}cancelRequest cannot be unwrapped, input message must reference global element declaration with same localname as operation
+2019-01-16 11:34:59.798 [main] DEBUG org.apache.cxf.wsdl11.WSDLServiceBuilder - Operation {http://outwardservice.lis.sinosoft.com}printRequest cannot be unwrapped, input message must reference global element declaration with same localname as operation
+2019-01-16 11:34:59.798 [main] DEBUG org.apache.cxf.wsdl11.WSDLServiceBuilder - Operation {http://outwardservice.lis.sinosoft.com}callbackCyx cannot be unwrapped, input message must reference global element declaration with same localname as operation
+2019-01-16 11:34:59.798 [main] DEBUG org.apache.cxf.wsdl11.WSDLServiceBuilder - Operation {http://outwardservice.lis.sinosoft.com}synPlan cannot be unwrapped, input message must reference global element declaration with same localname as operation
+2019-01-16 11:34:59.798 [main] DEBUG org.apache.cxf.wsdl11.WSDLServiceBuilder - Operation {http://outwardservice.lis.sinosoft.com}callbackCertify cannot be unwrapped, input message must reference global element declaration with same localname as operation
+2019-01-16 11:34:59.799 [main] DEBUG org.apache.cxf.wsdl11.WSDLServiceBuilder - Operation {http://outwardservice.lis.sinosoft.com}synCertify cannot be unwrapped, input message must reference global element declaration with same localname as operation
+2019-01-16 11:34:59.799 [main] DEBUG org.apache.cxf.wsdl11.WSDLServiceBuilder - Operation {http://outwardservice.lis.sinosoft.com}main cannot be unwrapped, input message must reference global element declaration with same localname as operation
+2019-01-16 11:44:17.991 [main] DEBUG o.a.commons.discovery.resource.DiscoverResources - find: resourceName='commons-logging.properties'
+2019-01-16 11:44:17.999 [main] DEBUG o.a.commons.discovery.resource.DiscoverResources - getNextResources: search using ClassLoader 'sun.misc.Launcher$AppClassLoader@18b4aac2'
+2019-01-16 11:44:18.000 [main] DEBUG org.apache.commons.discovery.jdk.JDK12Hooks - Could not find resource: commons-logging.properties
+2019-01-16 11:44:18.000 [main] DEBUG o.a.commons.discovery.resource.DiscoverResources - find: resourceName='org/apache/commons/logging/commons-logging.properties'
+2019-01-16 11:44:18.000 [main] DEBUG o.a.commons.discovery.resource.DiscoverResources - getNextResources: search using ClassLoader 'sun.misc.Launcher$AppClassLoader@18b4aac2'
+2019-01-16 11:44:18.000 [main] DEBUG org.apache.commons.discovery.jdk.JDK12Hooks - Could not find resource: org/apache/commons/logging/commons-logging.properties
+2019-01-16 11:44:18.004 [main] DEBUG o.a.c.discovery.resource.names.DiscoverNamesInFile - find: serviceName = 'META-INF/services/org.apache.commons.logging.LogFactory'
+2019-01-16 11:44:18.004 [main] DEBUG o.a.commons.discovery.resource.DiscoverResources - find: resourceName='META-INF/services/org.apache.commons.logging.LogFactory'
+2019-01-16 11:44:18.007 [main] DEBUG o.a.commons.discovery.resource.DiscoverResources - getNextResources: search using ClassLoader 'sun.misc.Launcher$AppClassLoader@18b4aac2'
+2019-01-16 11:44:18.008 [main] DEBUG o.a.commons.discovery.resource.DiscoverResources - getNextResource: next URL='jar:file:/D:/maven-repo/org/slf4j/jcl-over-slf4j/1.7.25/jcl-over-slf4j-1.7.25.jar!/META-INF/services/org.apache.commons.logging.LogFactory'
+2019-01-16 11:44:18.009 [main] DEBUG o.a.c.discovery.resource.names.DiscoverNamesInFile - getNextClassResource: next class='org.apache.commons.logging.impl.SLF4JLogFactory'
+2019-01-16 11:44:18.009 [main] DEBUG o.a.c.discovery.resource.classes.DiscoverClasses - find: className='org.apache.commons.logging.impl.SLF4JLogFactory'
+2019-01-16 11:44:18.009 [main] DEBUG o.a.c.discovery.resource.classes.DiscoverClasses - getNextClass: next URL='jar:file:/D:/maven-repo/org/slf4j/jcl-over-slf4j/1.7.25/jcl-over-slf4j-1.7.25.jar!/org/apache/commons/logging/impl/SLF4JLogFactory.class'
+2019-01-16 11:44:18.011 [main] DEBUG org.apache.commons.discovery.ResourceClass - loadClass: Loading class 'org.apache.commons.logging.impl.SLF4JLogFactory' with sun.misc.Launcher$AppClassLoader@18b4aac2
+2019-01-16 11:44:18.018 [main] DEBUG o.a.c.discovery.resource.names.NameDiscoverers - find: resourceName='org.apache.axis.EngineConfigurationFactory'
+2019-01-16 11:44:18.019 [main] DEBUG o.a.c.d.r.n.DiscoverNamesInAlternateManagedProperties - find: resourceName='org.apache.axis.EngineConfigurationFactory', lookup property 'axis.EngineConfigFactory'
+2019-01-16 11:44:18.019 [main] DEBUG o.a.c.d.r.names.DiscoverNamesInManagedProperties - find: resourceName = 'org.apache.axis.EngineConfigurationFactory'
+2019-01-16 11:44:18.020 [main] DEBUG o.a.c.discovery.resource.names.DiscoverNamesInFile - find: serviceName = 'META-INF/services/org.apache.axis.EngineConfigurationFactory'
+2019-01-16 11:44:18.020 [main] DEBUG o.a.commons.discovery.resource.DiscoverResources - find: resourceName='META-INF/services/org.apache.axis.EngineConfigurationFactory'
+2019-01-16 11:44:18.020 [main] DEBUG o.a.commons.discovery.resource.DiscoverResources - getNextResources: search using ClassLoader 'sun.misc.Launcher$AppClassLoader@18b4aac2'
+2019-01-16 11:44:18.020 [main] DEBUG org.apache.commons.discovery.jdk.JDK12Hooks - Could not find resource: META-INF/services/org.apache.axis.EngineConfigurationFactory
+2019-01-16 11:44:18.020 [main] DEBUG o.a.c.discovery.resource.names.DiscoverMappedNames - find: resourceName='org.apache.axis.EngineConfigurationFactory', mapping to constants
+2019-01-16 11:44:18.021 [main] DEBUG o.a.c.discovery.resource.classes.DiscoverClasses - find: className='org.apache.axis.configuration.EngineConfigurationFactoryServlet'
+2019-01-16 11:44:18.021 [main] DEBUG o.a.c.discovery.resource.classes.DiscoverClasses - getNextClass: next URL='jar:file:/D:/maven-repo/org/apache/axis/axis/1.4/axis-1.4.jar!/org/apache/axis/configuration/EngineConfigurationFactoryServlet.class'
+2019-01-16 11:44:18.021 [main] DEBUG org.apache.commons.discovery.ResourceClass - loadClass: Loading class 'org.apache.axis.configuration.EngineConfigurationFactoryServlet' with sun.misc.Launcher$AppClassLoader@18b4aac2
+2019-01-16 11:44:18.025 [main] DEBUG o.a.c.discovery.resource.classes.DiscoverClasses - find: className='org.apache.axis.configuration.EngineConfigurationFactoryDefault'
+2019-01-16 11:44:18.025 [main] DEBUG o.a.c.discovery.resource.classes.DiscoverClasses - getNextClass: next URL='jar:file:/D:/maven-repo/org/apache/axis/axis/1.4/axis-1.4.jar!/org/apache/axis/configuration/EngineConfigurationFactoryDefault.class'
+2019-01-16 11:44:18.025 [main] DEBUG org.apache.commons.discovery.ResourceClass - loadClass: Loading class 'org.apache.axis.configuration.EngineConfigurationFactoryDefault' with sun.misc.Launcher$AppClassLoader@18b4aac2
+2019-01-16 11:44:18.028 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - getBundle(org.apache.axis,org.apache.axis.i18n,resource,null,...)
+2019-01-16 11:44:18.042 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - loadBundle: Ignoring MissingResourceException: Can't find bundle for base name org.apache.axis.resource, locale zh_CN
+2019-01-16 11:44:18.044 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - Created org.apache.axis.i18n.resource, linked to parent null
+2019-01-16 11:44:18.046 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - getBundle(org.apache.axis,org.apache.axis.utils,resource,null,...)
+2019-01-16 11:44:18.050 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - loadBundle: Ignoring MissingResourceException: Can't find bundle for base name org.apache.axis.utils.resource, locale zh_CN
+2019-01-16 11:44:18.050 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - loadBundle: Ignoring MissingResourceException: Can't find bundle for base name org.apache.axis.resource, locale zh_CN
+2019-01-16 11:44:18.050 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - Root package not found, cross link to org.apache.axis.i18n.resource
+2019-01-16 11:44:18.050 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - Root package not found, cross link to org.apache.axis.i18n.resource
+2019-01-16 11:44:18.050 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(engineFactory)
+2019-01-16 11:44:18.051 [main] DEBUG o.a.a.c.EngineConfigurationFactoryFinder - Got EngineFactory: org.apache.axis.configuration.EngineConfigurationFactoryDefault
+2019-01-16 11:44:18.054 [main] DEBUG org.apache.axis.AxisEngine - Enter: AxisEngine::init
+2019-01-16 11:44:18.181 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(attachEnabled)
+2019-01-16 11:44:18.181 [main] DEBUG org.apache.axis.utils.JavaUtils - Attachment support is enabled?  false
+2019-01-16 11:44:18.182 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(attachDisabled)
+2019-01-16 11:44:18.182 [main] WARN  org.apache.axis.utils.JavaUtils - Unable to find required classes (javax.activation.DataHandler and javax.mail.internet.MimeMultipart). Attachment support is disabled.
+2019-01-16 11:44:18.188 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(oddDigits00)
+2019-01-16 11:44:18.188 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(badChars01)
+2019-01-16 11:44:18.274 [main] DEBUG org.apache.axis.AxisEngine - Exit: AxisEngine::init
+2019-01-16 11:44:18.397 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(transport00)
+2019-01-16 11:44:18.397 [main] DEBUG org.apache.axis.client.Call - Transport is org.apache.axis.transport.http.HTTPTransport@409c54f
+2019-01-16 11:44:18.397 [main] DEBUG org.apache.axis.client.Call - Enter: Call::invoke(ns, meth, args)
+2019-01-16 11:44:18.402 [main] DEBUG org.apache.axis.client.Call - operation=null
+2019-01-16 11:44:18.411 [main] DEBUG org.apache.axis.client.Call - Enter: Call::invoke(RPCElement)
+2019-01-16 11:44:18.418 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(attachEnabled)
+2019-01-16 11:44:18.419 [main] DEBUG org.apache.axis.Message - Attachment support is enabled?  false
+2019-01-16 11:44:18.423 [main] DEBUG org.apache.axis.SOAPPart - Enter: SOAPPart ctor(FORM_SOAPENVELOPE)
+2019-01-16 11:44:18.423 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(setMsgForm)
+2019-01-16 11:44:18.423 [main] DEBUG org.apache.axis.SOAPPart - Setting current message form to: FORM_SOAPENVELOPE (currentMessage is now org.apache.axis.message.SOAPEnvelope)
+2019-01-16 11:44:18.423 [main] DEBUG org.apache.axis.SOAPPart - Exit: SOAPPart ctor()
+2019-01-16 11:44:18.423 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(addBody00)
+2019-01-16 11:44:18.423 [main] DEBUG org.apache.axis.message.SOAPBody - Adding body element to message...
+2019-01-16 11:44:18.424 [main] DEBUG org.apache.axis.client.Call - Enter: Call::invoke()
+2019-01-16 11:44:18.424 [main] DEBUG org.apache.axis.SOAPPart - Enter: SOAPPart::getAsSOAPEnvelope()
+2019-01-16 11:44:18.424 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(currForm)
+2019-01-16 11:44:18.424 [main] DEBUG org.apache.axis.SOAPPart - current form is FORM_SOAPENVELOPE
+2019-01-16 11:44:18.424 [main] DEBUG org.apache.axis.MessageContext - MessageContext: setTargetService(http://outwardservice.lis.sinosoft.com)
+2019-01-16 11:44:18.425 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(noService10)
+2019-01-16 11:44:18.427 [main] DEBUG org.apache.axis.ConfigurationException - Exception: 
+org.apache.axis.ConfigurationException: No service named http://outwardservice.lis.sinosoft.com is available
+	at org.apache.axis.configuration.FileProvider.getService(FileProvider.java:233)
+	at org.apache.axis.AxisEngine.getService(AxisEngine.java:311)
+	at org.apache.axis.MessageContext.setTargetService(MessageContext.java:756)
+	at org.apache.axis.client.Call.invoke(Call.java:2708)
+	at org.apache.axis.client.Call.invoke(Call.java:2443)
+	at org.apache.axis.client.Call.invoke(Call.java:2366)
+	at org.apache.axis.client.Call.invoke(Call.java:1812)
+	at cn.dingan.tsdingan.utils.CxfClient.main(CxfClient.java:46)
+2019-01-16 11:44:18.428 [main] DEBUG org.apache.axis.MessageContext - MessageContext: setServiceHandler(null)
+2019-01-16 11:44:18.428 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(targetService)
+2019-01-16 11:44:18.428 [main] DEBUG org.apache.axis.client.Call - Target service:  http://outwardservice.lis.sinosoft.com
+2019-01-16 11:44:18.428 [main] DEBUG org.apache.axis.MessageContext - MessageContext: setTargetService(null)
+2019-01-16 11:44:18.428 [main] DEBUG org.apache.axis.MessageContext - MessageContext: setServiceHandler(null)
+2019-01-16 11:44:18.431 [main] DEBUG org.apache.axis.SOAPPart - Enter: SOAPPart::getAsSOAPEnvelope()
+2019-01-16 11:44:18.431 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(currForm)
+2019-01-16 11:44:18.431 [main] DEBUG org.apache.axis.SOAPPart - current form is FORM_SOAPENVELOPE
+2019-01-16 11:44:18.432 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(register00)
+2019-01-16 11:44:18.433 [main] DEBUG org.apache.axis.encoding.SerializationContext - register 'soapenv' - 'http://schemas.xmlsoap.org/soap/envelope/'
+2019-01-16 11:44:18.433 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(register00)
+2019-01-16 11:44:18.433 [main] DEBUG org.apache.axis.encoding.SerializationContext - register 'soapenv' - 'http://schemas.xmlsoap.org/soap/envelope/'
+2019-01-16 11:44:18.433 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(register00)
+2019-01-16 11:44:18.433 [main] DEBUG org.apache.axis.encoding.SerializationContext - register 'xsd' - 'http://www.w3.org/2001/XMLSchema'
+2019-01-16 11:44:18.434 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(register00)
+2019-01-16 11:44:18.434 [main] DEBUG org.apache.axis.encoding.SerializationContext - register 'xsi' - 'http://www.w3.org/2001/XMLSchema-instance'
+2019-01-16 11:44:18.434 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(startElem00)
+2019-01-16 11:44:18.434 [main] DEBUG org.apache.axis.encoding.SerializationContext - Start element [http://schemas.xmlsoap.org/soap/envelope/]:Envelope
+2019-01-16 11:44:18.438 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(startElem00)
+2019-01-16 11:44:18.439 [main] DEBUG org.apache.axis.encoding.SerializationContext - Start element [http://schemas.xmlsoap.org/soap/envelope/]:Body
+2019-01-16 11:44:18.441 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(startElem00)
+2019-01-16 11:44:18.441 [main] DEBUG org.apache.axis.encoding.SerializationContext - Start element [http://outwardservice.lis.sinosoft.com]:checkRequest
+2019-01-16 11:44:18.441 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(register00)
+2019-01-16 11:44:18.441 [main] DEBUG org.apache.axis.encoding.SerializationContext - register 'ns1' - 'http://outwardservice.lis.sinosoft.com'
+2019-01-16 11:44:18.445 [main] DEBUG o.a.c.discovery.resource.names.DiscoverNamesInFile - find: serviceName = 'META-INF/services/org.apache.axis.components.encoding.XMLEncoder'
+2019-01-16 11:44:18.446 [main] DEBUG o.a.commons.discovery.resource.DiscoverResources - find: resourceName='META-INF/services/org.apache.axis.components.encoding.XMLEncoder'
+2019-01-16 11:44:18.446 [main] DEBUG o.a.commons.discovery.resource.DiscoverResources - getNextResources: search using ClassLoader 'sun.misc.Launcher$AppClassLoader@18b4aac2'
+2019-01-16 11:44:18.446 [main] DEBUG org.apache.commons.discovery.jdk.JDK12Hooks - Could not find resource: META-INF/services/org.apache.axis.components.encoding.XMLEncoder
+2019-01-16 11:44:18.448 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(startElem00)
+2019-01-16 11:44:18.449 [main] DEBUG org.apache.axis.encoding.SerializationContext - Start element [http://outwardservice.lis.sinosoft.com]:arg0
+2019-01-16 11:44:18.449 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(register00)
+2019-01-16 11:44:18.449 [main] DEBUG org.apache.axis.encoding.SerializationContext - register 'soapenc' - 'http://schemas.xmlsoap.org/soap/encoding/'
+2019-01-16 11:44:18.450 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(endElem00)
+2019-01-16 11:44:18.450 [main] DEBUG org.apache.axis.encoding.SerializationContext - End element ns1:arg0
+2019-01-16 11:44:18.450 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(endElem00)
+2019-01-16 11:44:18.451 [main] DEBUG org.apache.axis.encoding.SerializationContext - End element ns1:checkRequest
+2019-01-16 11:44:18.451 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(endElem00)
+2019-01-16 11:44:18.451 [main] DEBUG org.apache.axis.encoding.SerializationContext - End element soapenv:Body
+2019-01-16 11:44:18.451 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(endElem00)
+2019-01-16 11:44:18.451 [main] DEBUG org.apache.axis.encoding.SerializationContext - End element soapenv:Envelope
+2019-01-16 11:44:18.451 [main] DEBUG org.apache.axis.client.Call - <?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><soapenv:Body><ns1:checkRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:ns1="http://outwardservice.lis.sinosoft.com"><ns1:arg0 xsi:type="soapenc:string" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">&lt;?xml version=&quot;1.0&quot; encoding=&quot;GBK&quot;?&gt;&lt;PolicyRequestDTO&gt;&lt;TranslationDTO&gt;&lt;TransDate&gt;2018-03-30&lt;/TransDate&gt;&lt;TransTime&gt;12:25:08&lt;/TransTime&gt;&lt;TransSerialno&gt;&lt;/TransSerialno&gt;&lt;TransDevelop&gt;01006-&#x8F66;&#x7AD9;&#x51FA;&#x5355;-03&lt;/TransDevelop&gt;&lt;/TranslationDTO&gt;&lt;MainContDTO&gt;&lt;ApplyDate&gt;2018-03-30&lt;/ApplyDate&gt;&lt;ApplyTime&gt;12:25:08&lt;/ApplyTime&gt;&lt;CvaliDate&gt;2018-03-30&lt;/CvaliDate&gt;&lt;CvaliTime&gt;12:25:08&lt;/CvaliTime&gt;&lt;EndDate&gt;2018-04-01&lt;/EndDate&gt;&lt;EndTime&gt;12:25:08&lt;/EndTime&gt;&lt;CertifyNo&gt;&lt;/CertifyNo&gt;&lt;Prem&gt;3&lt;/Prem&gt;&lt;MainAmount&gt;68000&lt;/MainAmount&gt;&lt;AdditionalAmount&gt;0&lt;/AdditionalAmount&gt;&lt;ManageCom&gt;86430107&lt;/ManageCom&gt;&lt;AgentCom&gt;10005010101&lt;/AgentCom&gt;&lt;ContplanCode&gt;C00021&lt;/ContplanCode&gt;&lt;/MainContDTO&gt;&lt;TrafficDTO&gt;&lt;TrainNo&gt;&lt;/TrainNo&gt;&lt;TicketNo&gt;T45454523&lt;/TicketNo&gt;&lt;SeatNo&gt;25&lt;/SeatNo&gt;&lt;SellDate&gt;2018-03-30&lt;/SellDate&gt;&lt;SellTime&gt;12:25:08&lt;/SellTime&gt;&lt;OperCode&gt;SELL001&lt;/OperCode&gt;&lt;/TrafficDTO&gt;&lt;AppntDTO&gt;&lt;Relation1&gt;00&lt;/Relation1&gt;&lt;Relation2&gt;00&lt;/Relation2&gt;&lt;AppntName&gt;zzzp&lt;/AppntName&gt;&lt;AppntSex&gt;0&lt;/AppntSex&gt;&lt;AppntIdtype&gt;1&lt;/AppntIdtype&gt;&lt;AppntIdno&gt;A457654343&lt;/AppntIdno&gt;&lt;AppntBirth&gt;1992-06-18&lt;/AppntBirth&gt;&lt;AppntDevelop&gt;&lt;/AppntDevelop&gt;&lt;/AppntDTO&gt;&lt;InsuredList&gt;&lt;InsuredDTO&gt;&lt;InsuredName&gt;&lt;/InsuredName&gt;&lt;InsuredSex&gt;&lt;/InsuredSex&gt;&lt;InsuredIdtype&gt;&lt;/InsuredIdtype&gt;&lt;InsuredIdno&gt;&lt;/InsuredIdno&gt;&lt;InsuredBirth&gt;&lt;/InsuredBirth&gt;&lt;MainFlag&gt;&lt;/MainFlag&gt;&lt;RelationToMainInsured&gt;&lt;/RelationToMainInsured&gt;&lt;RelationToAppnt&gt;&lt;/RelationToAppnt&gt;&lt;/InsuredDTO&gt;&lt;/InsuredList&gt;&lt;BnfList&gt;&lt;BnfDTO&gt;&lt;BnfType&gt;&lt;/BnfType&gt;&lt;BnfFlag&gt;&lt;/BnfFlag&gt;&lt;BnfOrder&gt;&lt;/BnfOrder&gt;&lt;BnfName&gt;&lt;/BnfName&gt;&lt;BnfSex&gt;&lt;/BnfSex&gt;&lt;BnfIDType&gt;&lt;/BnfIDType&gt;&lt;BnfIDNo&gt;&lt;/BnfIDNo&gt;&lt;BnfBirthday&gt;&lt;/BnfBirthday&gt;&lt;BnfRelationToInsured&gt;&lt;/BnfRelationToInsured&gt;&lt;/BnfDTO&gt;&lt;/BnfList&gt;&lt;/PolicyRequestDTO&gt;</ns1:arg0></ns1:checkRequest></soapenv:Body></soapenv:Envelope>
+2019-01-16 11:44:18.451 [main] DEBUG org.apache.axis.client.AxisClient - Enter: AxisClient::invoke
+2019-01-16 11:44:18.451 [main] DEBUG org.apache.axis.client.AxisClient - EngineHandler: null
+2019-01-16 11:44:18.455 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(axisUserAgent)
+2019-01-16 11:44:18.463 [main] DEBUG org.apache.axis.SimpleChain - Enter: SimpleChain::invoke
+2019-01-16 11:44:18.464 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(enter00)
+2019-01-16 11:44:18.464 [main] DEBUG org.apache.axis.transport.http.HTTPSender - Enter:  HTTPSender::invoke
+2019-01-16 11:44:18.465 [main] DEBUG org.apache.axis.SOAPPart - Enter: SOAPPart::saveChanges
+2019-01-16 11:44:18.466 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(register00)
+2019-01-16 11:44:18.466 [main] DEBUG org.apache.axis.encoding.SerializationContext - register 'soapenv' - 'http://schemas.xmlsoap.org/soap/envelope/'
+2019-01-16 11:44:18.466 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(register00)
+2019-01-16 11:44:18.467 [main] DEBUG org.apache.axis.encoding.SerializationContext - register 'soapenv' - 'http://schemas.xmlsoap.org/soap/envelope/'
+2019-01-16 11:44:18.467 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(register00)
+2019-01-16 11:44:18.467 [main] DEBUG org.apache.axis.encoding.SerializationContext - register 'xsd' - 'http://www.w3.org/2001/XMLSchema'
+2019-01-16 11:44:18.467 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(register00)
+2019-01-16 11:44:18.467 [main] DEBUG org.apache.axis.encoding.SerializationContext - register 'xsi' - 'http://www.w3.org/2001/XMLSchema-instance'
+2019-01-16 11:44:18.467 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(startElem00)
+2019-01-16 11:44:18.467 [main] DEBUG org.apache.axis.encoding.SerializationContext - Start element [http://schemas.xmlsoap.org/soap/envelope/]:Envelope
+2019-01-16 11:44:18.467 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(startElem00)
+2019-01-16 11:44:18.467 [main] DEBUG org.apache.axis.encoding.SerializationContext - Start element [http://schemas.xmlsoap.org/soap/envelope/]:Body
+2019-01-16 11:44:18.467 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(startElem00)
+2019-01-16 11:44:18.467 [main] DEBUG org.apache.axis.encoding.SerializationContext - Start element [http://outwardservice.lis.sinosoft.com]:checkRequest
+2019-01-16 11:44:18.468 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(register00)
+2019-01-16 11:44:18.468 [main] DEBUG org.apache.axis.encoding.SerializationContext - register 'ns1' - 'http://outwardservice.lis.sinosoft.com'
+2019-01-16 11:44:18.468 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(startElem00)
+2019-01-16 11:44:18.468 [main] DEBUG org.apache.axis.encoding.SerializationContext - Start element [http://outwardservice.lis.sinosoft.com]:arg0
+2019-01-16 11:44:18.468 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(register00)
+2019-01-16 11:44:18.468 [main] DEBUG org.apache.axis.encoding.SerializationContext - register 'soapenc' - 'http://schemas.xmlsoap.org/soap/encoding/'
+2019-01-16 11:44:18.469 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(endElem00)
+2019-01-16 11:44:18.469 [main] DEBUG org.apache.axis.encoding.SerializationContext - End element ns1:arg0
+2019-01-16 11:44:18.469 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(endElem00)
+2019-01-16 11:44:18.469 [main] DEBUG org.apache.axis.encoding.SerializationContext - End element ns1:checkRequest
+2019-01-16 11:44:18.469 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(endElem00)
+2019-01-16 11:44:18.469 [main] DEBUG org.apache.axis.encoding.SerializationContext - End element soapenv:Body
+2019-01-16 11:44:18.469 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(endElem00)
+2019-01-16 11:44:18.469 [main] DEBUG org.apache.axis.encoding.SerializationContext - End element soapenv:Envelope
+2019-01-16 11:44:18.469 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(setMsgForm)
+2019-01-16 11:44:18.470 [main] DEBUG org.apache.axis.SOAPPart - Setting current message form to: FORM_OPTIMIZED (currentMessage is now org.apache.axis.utils.ByteArray)
+2019-01-16 11:44:18.470 [main] DEBUG org.apache.axis.SOAPPart - Exit: SOAPPart::saveChanges(): org.apache.axis.utils.ByteArray@66c92293
+2019-01-16 11:44:18.474 [main] DEBUG o.a.c.discovery.resource.names.NameDiscoverers - find: resourceName='org.apache.axis.components.net.SocketFactory'
+2019-01-16 11:44:18.474 [main] DEBUG o.a.c.d.r.n.DiscoverNamesInAlternateManagedProperties - find: resourceName='org.apache.axis.components.net.SocketFactory', lookup property 'axis.socketFactory'
+2019-01-16 11:44:18.474 [main] DEBUG o.a.c.d.r.names.DiscoverNamesInManagedProperties - find: resourceName = 'org.apache.axis.components.net.SocketFactory'
+2019-01-16 11:44:18.474 [main] DEBUG o.a.c.discovery.resource.names.DiscoverNamesInFile - find: serviceName = 'META-INF/services/org.apache.axis.components.net.SocketFactory'
+2019-01-16 11:44:18.474 [main] DEBUG o.a.commons.discovery.resource.DiscoverResources - find: resourceName='META-INF/services/org.apache.axis.components.net.SocketFactory'
+2019-01-16 11:44:18.474 [main] DEBUG o.a.commons.discovery.resource.DiscoverResources - getNextResources: search using ClassLoader 'sun.misc.Launcher$AppClassLoader@18b4aac2'
+2019-01-16 11:44:18.475 [main] DEBUG org.apache.commons.discovery.jdk.JDK12Hooks - Could not find resource: META-INF/services/org.apache.axis.components.net.SocketFactory
+2019-01-16 11:44:18.475 [main] DEBUG o.a.c.discovery.resource.names.DiscoverMappedNames - find: resourceName='org.apache.axis.components.net.SocketFactory', mapping to constants
+2019-01-16 11:44:18.476 [main] DEBUG o.a.c.discovery.resource.classes.DiscoverClasses - find: className='org.apache.axis.components.net.DefaultSocketFactory'
+2019-01-16 11:44:18.476 [main] DEBUG o.a.c.discovery.resource.classes.DiscoverClasses - getNextClass: next URL='jar:file:/D:/maven-repo/org/apache/axis/axis/1.4/axis-1.4.jar!/org/apache/axis/components/net/DefaultSocketFactory.class'
+2019-01-16 11:44:18.476 [main] DEBUG org.apache.commons.discovery.ResourceClass - loadClass: Loading class 'org.apache.axis.components.net.DefaultSocketFactory' with sun.misc.Launcher$AppClassLoader@18b4aac2
+2019-01-16 11:44:18.479 [main] DEBUG o.a.c.discovery.resource.names.DiscoverNamesInFile - find: serviceName = 'META-INF/services/org.apache.axis.components.net.TransportClientProperties'
+2019-01-16 11:44:18.479 [main] DEBUG o.a.commons.discovery.resource.DiscoverResources - find: resourceName='META-INF/services/org.apache.axis.components.net.TransportClientProperties'
+2019-01-16 11:44:18.479 [main] DEBUG o.a.commons.discovery.resource.DiscoverResources - getNextResources: search using ClassLoader 'sun.misc.Launcher$AppClassLoader@18b4aac2'
+2019-01-16 11:44:18.480 [main] DEBUG org.apache.commons.discovery.jdk.JDK12Hooks - Could not find resource: META-INF/services/org.apache.axis.components.net.TransportClientProperties
+2019-01-16 11:44:18.494 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(createdHTTP00)
+2019-01-16 11:44:18.494 [main] DEBUG o.apache.axis.components.net.DefaultSocketFactory - Created an insecure HTTP connection
+2019-01-16 11:44:18.495 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(xmlSent00)
+2019-01-16 11:44:18.495 [main] DEBUG org.apache.axis.transport.http.HTTPSender - XML sent:
+2019-01-16 11:44:18.495 [main] DEBUG org.apache.axis.transport.http.HTTPSender - ---------------------------------------------------
+2019-01-16 11:44:18.496 [main] DEBUG org.apache.axis.transport.http.HTTPSender - POST /ter/services/ThdpartyInterface?wsdl HTTP/1.0
+Content-Type: text/xml; charset=utf-8
+Accept: application/soap+xml, application/dime, multipart/related, text/*
+User-Agent: Axis/1.4
+Host: tepos.jxlife.com.cn
+Cache-Control: no-cache
+Pragma: no-cache
+SOAPAction: ""
+Content-Length: 2880
+
+<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><soapenv:Body><ns1:checkRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:ns1="http://outwardservice.lis.sinosoft.com"><ns1:arg0 xsi:type="soapenc:string" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">&lt;?xml version=&quot;1.0&quot; encoding=&quot;GBK&quot;?&gt;&lt;PolicyRequestDTO&gt;&lt;TranslationDTO&gt;&lt;TransDate&gt;2018-03-30&lt;/TransDate&gt;&lt;TransTime&gt;12:25:08&lt;/TransTime&gt;&lt;TransSerialno&gt;&lt;/TransSerialno&gt;&lt;TransDevelop&gt;01006-&#x8F66;&#x7AD9;&#x51FA;&#x5355;-03&lt;/TransDevelop&gt;&lt;/TranslationDTO&gt;&lt;MainContDTO&gt;&lt;ApplyDate&gt;2018-03-30&lt;/ApplyDate&gt;&lt;ApplyTime&gt;12:25:08&lt;/ApplyTime&gt;&lt;CvaliDate&gt;2018-03-30&lt;/CvaliDate&gt;&lt;CvaliTime&gt;12:25:08&lt;/CvaliTime&gt;&lt;EndDate&gt;2018-04-01&lt;/EndDate&gt;&lt;EndTime&gt;12:25:08&lt;/EndTime&gt;&lt;CertifyNo&gt;&lt;/CertifyNo&gt;&lt;Prem&gt;3&lt;/Prem&gt;&lt;MainAmount&gt;68000&lt;/MainAmount&gt;&lt;AdditionalAmount&gt;0&lt;/AdditionalAmount&gt;&lt;ManageCom&gt;86430107&lt;/ManageCom&gt;&lt;AgentCom&gt;10005010101&lt;/AgentCom&gt;&lt;ContplanCode&gt;C00021&lt;/ContplanCode&gt;&lt;/MainContDTO&gt;&lt;TrafficDTO&gt;&lt;TrainNo&gt;&lt;/TrainNo&gt;&lt;TicketNo&gt;T45454523&lt;/TicketNo&gt;&lt;SeatNo&gt;25&lt;/SeatNo&gt;&lt;SellDate&gt;2018-03-30&lt;/SellDate&gt;&lt;SellTime&gt;12:25:08&lt;/SellTime&gt;&lt;OperCode&gt;SELL001&lt;/OperCode&gt;&lt;/TrafficDTO&gt;&lt;AppntDTO&gt;&lt;Relation1&gt;00&lt;/Relation1&gt;&lt;Relation2&gt;00&lt;/Relation2&gt;&lt;AppntName&gt;zzzp&lt;/AppntName&gt;&lt;AppntSex&gt;0&lt;/AppntSex&gt;&lt;AppntIdtype&gt;1&lt;/AppntIdtype&gt;&lt;AppntIdno&gt;A457654343&lt;/AppntIdno&gt;&lt;AppntBirth&gt;1992-06-18&lt;/AppntBirth&gt;&lt;AppntDevelop&gt;&lt;/AppntDevelop&gt;&lt;/AppntDTO&gt;&lt;InsuredList&gt;&lt;InsuredDTO&gt;&lt;InsuredName&gt;&lt;/InsuredName&gt;&lt;InsuredSex&gt;&lt;/InsuredSex&gt;&lt;InsuredIdtype&gt;&lt;/InsuredIdtype&gt;&lt;InsuredIdno&gt;&lt;/InsuredIdno&gt;&lt;InsuredBirth&gt;&lt;/InsuredBirth&gt;&lt;MainFlag&gt;&lt;/MainFlag&gt;&lt;RelationToMainInsured&gt;&lt;/RelationToMainInsured&gt;&lt;RelationToAppnt&gt;&lt;/RelationToAppnt&gt;&lt;/InsuredDTO&gt;&lt;/InsuredList&gt;&lt;BnfList&gt;&lt;BnfDTO&gt;&lt;BnfType&gt;&lt;/BnfType&gt;&lt;BnfFlag&gt;&lt;/BnfFlag&gt;&lt;BnfOrder&gt;&lt;/BnfOrder&gt;&lt;BnfName&gt;&lt;/BnfName&gt;&lt;BnfSex&gt;&lt;/BnfSex&gt;&lt;BnfIDType&gt;&lt;/BnfIDType&gt;&lt;BnfIDNo&gt;&lt;/BnfIDNo&gt;&lt;BnfBirthday&gt;&lt;/BnfBirthday&gt;&lt;BnfRelationToInsured&gt;&lt;/BnfRelationToInsured&gt;&lt;/BnfDTO&gt;&lt;/BnfList&gt;&lt;/PolicyRequestDTO&gt;</ns1:arg0></ns1:checkRequest></soapenv:Body></soapenv:Envelope>
+2019-01-16 11:44:18.504 [main] DEBUG org.apache.axis.transport.http.HTTPSender - HTTP/1.1 503 Service Temporarily Unavailable
+2019-01-16 11:44:18.504 [main] DEBUG org.apache.axis.transport.http.HTTPSender - Date Wed, 16 Jan 2019 03:44:05 GMT
+2019-01-16 11:44:18.504 [main] DEBUG org.apache.axis.transport.http.HTTPSender - Content-Length 323
+2019-01-16 11:44:18.504 [main] DEBUG org.apache.axis.transport.http.HTTPSender - Content-Type text/html; charset=iso-8859-1
+2019-01-16 11:44:18.505 [main] DEBUG org.apache.axis.transport.http.HTTPSender - Connection close
+2019-01-16 11:44:18.507 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(return01)
+2019-01-16 11:44:18.508 [main] DEBUG org.apache.axis.transport.http.HTTPSender - (503)Service Temporarily Unavailable
+2019-01-16 11:44:18.508 [main] DEBUG org.apache.axis.SOAPPart - Enter: SOAPPart ctor(FORM_FAULT)
+2019-01-16 11:44:18.508 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(setMsgForm)
+2019-01-16 11:44:18.508 [main] DEBUG org.apache.axis.SOAPPart - Setting current message form to: FORM_FAULT (currentMessage is now org.apache.axis.AxisFault)
+2019-01-16 11:44:18.508 [main] DEBUG org.apache.axis.SOAPPart - Exit: SOAPPart ctor()
+2019-01-16 11:44:18.508 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(toAxisFault00)
+2019-01-16 11:44:18.508 [main] DEBUG org.apache.axis.enterprise - Mapping Exception to AxisFault
+org.apache.axis.AxisFault: (503)Service Temporarily Unavailable
+	at org.apache.axis.transport.http.HTTPSender.readFromSocket(HTTPSender.java:744)
+	at org.apache.axis.transport.http.HTTPSender.invoke(HTTPSender.java:144)
+	at org.apache.axis.strategies.InvocationStrategy.visit(InvocationStrategy.java:32)
+	at org.apache.axis.SimpleChain.doVisiting(SimpleChain.java:118)
+	at org.apache.axis.SimpleChain.invoke(SimpleChain.java:83)
+	at org.apache.axis.client.AxisClient.invoke(AxisClient.java:165)
+	at org.apache.axis.client.Call.invokeEngine(Call.java:2784)
+	at org.apache.axis.client.Call.invoke(Call.java:2767)
+	at org.apache.axis.client.Call.invoke(Call.java:2443)
+	at org.apache.axis.client.Call.invoke(Call.java:2366)
+	at org.apache.axis.client.Call.invoke(Call.java:1812)
+	at cn.dingan.tsdingan.utils.CxfClient.main(CxfClient.java:46)
+2019-01-16 11:45:47.365 [main] DEBUG o.a.commons.discovery.resource.DiscoverResources - find: resourceName='commons-logging.properties'
+2019-01-16 11:45:47.373 [main] DEBUG o.a.commons.discovery.resource.DiscoverResources - getNextResources: search using ClassLoader 'sun.misc.Launcher$AppClassLoader@18b4aac2'
+2019-01-16 11:45:47.373 [main] DEBUG org.apache.commons.discovery.jdk.JDK12Hooks - Could not find resource: commons-logging.properties
+2019-01-16 11:45:47.373 [main] DEBUG o.a.commons.discovery.resource.DiscoverResources - find: resourceName='org/apache/commons/logging/commons-logging.properties'
+2019-01-16 11:45:47.374 [main] DEBUG o.a.commons.discovery.resource.DiscoverResources - getNextResources: search using ClassLoader 'sun.misc.Launcher$AppClassLoader@18b4aac2'
+2019-01-16 11:45:47.374 [main] DEBUG org.apache.commons.discovery.jdk.JDK12Hooks - Could not find resource: org/apache/commons/logging/commons-logging.properties
+2019-01-16 11:45:47.377 [main] DEBUG o.a.c.discovery.resource.names.DiscoverNamesInFile - find: serviceName = 'META-INF/services/org.apache.commons.logging.LogFactory'
+2019-01-16 11:45:47.377 [main] DEBUG o.a.commons.discovery.resource.DiscoverResources - find: resourceName='META-INF/services/org.apache.commons.logging.LogFactory'
+2019-01-16 11:45:47.381 [main] DEBUG o.a.commons.discovery.resource.DiscoverResources - getNextResources: search using ClassLoader 'sun.misc.Launcher$AppClassLoader@18b4aac2'
+2019-01-16 11:45:47.382 [main] DEBUG o.a.commons.discovery.resource.DiscoverResources - getNextResource: next URL='jar:file:/D:/maven-repo/org/slf4j/jcl-over-slf4j/1.7.25/jcl-over-slf4j-1.7.25.jar!/META-INF/services/org.apache.commons.logging.LogFactory'
+2019-01-16 11:45:47.382 [main] DEBUG o.a.c.discovery.resource.names.DiscoverNamesInFile - getNextClassResource: next class='org.apache.commons.logging.impl.SLF4JLogFactory'
+2019-01-16 11:45:47.383 [main] DEBUG o.a.c.discovery.resource.classes.DiscoverClasses - find: className='org.apache.commons.logging.impl.SLF4JLogFactory'
+2019-01-16 11:45:47.383 [main] DEBUG o.a.c.discovery.resource.classes.DiscoverClasses - getNextClass: next URL='jar:file:/D:/maven-repo/org/slf4j/jcl-over-slf4j/1.7.25/jcl-over-slf4j-1.7.25.jar!/org/apache/commons/logging/impl/SLF4JLogFactory.class'
+2019-01-16 11:45:47.383 [main] DEBUG org.apache.commons.discovery.ResourceClass - loadClass: Loading class 'org.apache.commons.logging.impl.SLF4JLogFactory' with sun.misc.Launcher$AppClassLoader@18b4aac2
+2019-01-16 11:45:47.391 [main] DEBUG o.a.c.discovery.resource.names.NameDiscoverers - find: resourceName='org.apache.axis.EngineConfigurationFactory'
+2019-01-16 11:45:47.392 [main] DEBUG o.a.c.d.r.n.DiscoverNamesInAlternateManagedProperties - find: resourceName='org.apache.axis.EngineConfigurationFactory', lookup property 'axis.EngineConfigFactory'
+2019-01-16 11:45:47.393 [main] DEBUG o.a.c.d.r.names.DiscoverNamesInManagedProperties - find: resourceName = 'org.apache.axis.EngineConfigurationFactory'
+2019-01-16 11:45:47.394 [main] DEBUG o.a.c.discovery.resource.names.DiscoverNamesInFile - find: serviceName = 'META-INF/services/org.apache.axis.EngineConfigurationFactory'
+2019-01-16 11:45:47.394 [main] DEBUG o.a.commons.discovery.resource.DiscoverResources - find: resourceName='META-INF/services/org.apache.axis.EngineConfigurationFactory'
+2019-01-16 11:45:47.394 [main] DEBUG o.a.commons.discovery.resource.DiscoverResources - getNextResources: search using ClassLoader 'sun.misc.Launcher$AppClassLoader@18b4aac2'
+2019-01-16 11:45:47.394 [main] DEBUG org.apache.commons.discovery.jdk.JDK12Hooks - Could not find resource: META-INF/services/org.apache.axis.EngineConfigurationFactory
+2019-01-16 11:45:47.394 [main] DEBUG o.a.c.discovery.resource.names.DiscoverMappedNames - find: resourceName='org.apache.axis.EngineConfigurationFactory', mapping to constants
+2019-01-16 11:45:47.395 [main] DEBUG o.a.c.discovery.resource.classes.DiscoverClasses - find: className='org.apache.axis.configuration.EngineConfigurationFactoryServlet'
+2019-01-16 11:45:47.395 [main] DEBUG o.a.c.discovery.resource.classes.DiscoverClasses - getNextClass: next URL='jar:file:/D:/maven-repo/org/apache/axis/axis/1.4/axis-1.4.jar!/org/apache/axis/configuration/EngineConfigurationFactoryServlet.class'
+2019-01-16 11:45:47.396 [main] DEBUG org.apache.commons.discovery.ResourceClass - loadClass: Loading class 'org.apache.axis.configuration.EngineConfigurationFactoryServlet' with sun.misc.Launcher$AppClassLoader@18b4aac2
+2019-01-16 11:45:47.398 [main] DEBUG o.a.c.discovery.resource.classes.DiscoverClasses - find: className='org.apache.axis.configuration.EngineConfigurationFactoryDefault'
+2019-01-16 11:45:47.399 [main] DEBUG o.a.c.discovery.resource.classes.DiscoverClasses - getNextClass: next URL='jar:file:/D:/maven-repo/org/apache/axis/axis/1.4/axis-1.4.jar!/org/apache/axis/configuration/EngineConfigurationFactoryDefault.class'
+2019-01-16 11:45:47.400 [main] DEBUG org.apache.commons.discovery.ResourceClass - loadClass: Loading class 'org.apache.axis.configuration.EngineConfigurationFactoryDefault' with sun.misc.Launcher$AppClassLoader@18b4aac2
+2019-01-16 11:45:47.402 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - getBundle(org.apache.axis,org.apache.axis.i18n,resource,null,...)
+2019-01-16 11:45:47.418 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - loadBundle: Ignoring MissingResourceException: Can't find bundle for base name org.apache.axis.resource, locale zh_CN
+2019-01-16 11:45:47.418 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - Created org.apache.axis.i18n.resource, linked to parent null
+2019-01-16 11:45:47.419 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - getBundle(org.apache.axis,org.apache.axis.utils,resource,null,...)
+2019-01-16 11:45:47.422 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - loadBundle: Ignoring MissingResourceException: Can't find bundle for base name org.apache.axis.utils.resource, locale zh_CN
+2019-01-16 11:45:47.422 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - loadBundle: Ignoring MissingResourceException: Can't find bundle for base name org.apache.axis.resource, locale zh_CN
+2019-01-16 11:45:47.423 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - Root package not found, cross link to org.apache.axis.i18n.resource
+2019-01-16 11:45:47.423 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - Root package not found, cross link to org.apache.axis.i18n.resource
+2019-01-16 11:45:47.423 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(engineFactory)
+2019-01-16 11:45:47.423 [main] DEBUG o.a.a.c.EngineConfigurationFactoryFinder - Got EngineFactory: org.apache.axis.configuration.EngineConfigurationFactoryDefault
+2019-01-16 11:45:47.426 [main] DEBUG org.apache.axis.AxisEngine - Enter: AxisEngine::init
+2019-01-16 11:45:47.506 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(attachEnabled)
+2019-01-16 11:45:47.506 [main] DEBUG org.apache.axis.utils.JavaUtils - Attachment support is enabled?  false
+2019-01-16 11:45:47.507 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(attachDisabled)
+2019-01-16 11:45:47.507 [main] WARN  org.apache.axis.utils.JavaUtils - Unable to find required classes (javax.activation.DataHandler and javax.mail.internet.MimeMultipart). Attachment support is disabled.
+2019-01-16 11:45:47.514 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(oddDigits00)
+2019-01-16 11:45:47.515 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(badChars01)
+2019-01-16 11:45:47.597 [main] DEBUG org.apache.axis.AxisEngine - Exit: AxisEngine::init
+2019-01-16 11:45:47.720 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(transport00)
+2019-01-16 11:45:47.720 [main] DEBUG org.apache.axis.client.Call - Transport is org.apache.axis.transport.http.HTTPTransport@3e74829
+2019-01-16 11:45:47.720 [main] DEBUG org.apache.axis.client.Call - Enter: Call::invoke(ns, meth, args)
+2019-01-16 11:45:47.725 [main] DEBUG org.apache.axis.client.Call - operation=null
+2019-01-16 11:45:47.735 [main] DEBUG org.apache.axis.client.Call - Enter: Call::invoke(RPCElement)
+2019-01-16 11:45:47.742 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(attachEnabled)
+2019-01-16 11:45:47.742 [main] DEBUG org.apache.axis.Message - Attachment support is enabled?  false
+2019-01-16 11:45:47.746 [main] DEBUG org.apache.axis.SOAPPart - Enter: SOAPPart ctor(FORM_SOAPENVELOPE)
+2019-01-16 11:45:47.747 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(setMsgForm)
+2019-01-16 11:45:47.747 [main] DEBUG org.apache.axis.SOAPPart - Setting current message form to: FORM_SOAPENVELOPE (currentMessage is now org.apache.axis.message.SOAPEnvelope)
+2019-01-16 11:45:47.747 [main] DEBUG org.apache.axis.SOAPPart - Exit: SOAPPart ctor()
+2019-01-16 11:45:47.747 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(addBody00)
+2019-01-16 11:45:47.747 [main] DEBUG org.apache.axis.message.SOAPBody - Adding body element to message...
+2019-01-16 11:45:47.748 [main] DEBUG org.apache.axis.client.Call - Enter: Call::invoke()
+2019-01-16 11:45:47.748 [main] DEBUG org.apache.axis.SOAPPart - Enter: SOAPPart::getAsSOAPEnvelope()
+2019-01-16 11:45:47.748 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(currForm)
+2019-01-16 11:45:47.748 [main] DEBUG org.apache.axis.SOAPPart - current form is FORM_SOAPENVELOPE
+2019-01-16 11:45:47.748 [main] DEBUG org.apache.axis.MessageContext - MessageContext: setTargetService(http://outwardservice.lis.sinosoft.com)
+2019-01-16 11:45:47.749 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(noService10)
+2019-01-16 11:45:47.751 [main] DEBUG org.apache.axis.ConfigurationException - Exception: 
+org.apache.axis.ConfigurationException: No service named http://outwardservice.lis.sinosoft.com is available
+	at org.apache.axis.configuration.FileProvider.getService(FileProvider.java:233)
+	at org.apache.axis.AxisEngine.getService(AxisEngine.java:311)
+	at org.apache.axis.MessageContext.setTargetService(MessageContext.java:756)
+	at org.apache.axis.client.Call.invoke(Call.java:2708)
+	at org.apache.axis.client.Call.invoke(Call.java:2443)
+	at org.apache.axis.client.Call.invoke(Call.java:2366)
+	at org.apache.axis.client.Call.invoke(Call.java:1812)
+	at cn.dingan.tsdingan.utils.CxfClient.main(CxfClient.java:46)
+2019-01-16 11:45:47.752 [main] DEBUG org.apache.axis.MessageContext - MessageContext: setServiceHandler(null)
+2019-01-16 11:45:47.752 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(targetService)
+2019-01-16 11:45:47.752 [main] DEBUG org.apache.axis.client.Call - Target service:  http://outwardservice.lis.sinosoft.com
+2019-01-16 11:45:47.752 [main] DEBUG org.apache.axis.MessageContext - MessageContext: setTargetService(null)
+2019-01-16 11:45:47.752 [main] DEBUG org.apache.axis.MessageContext - MessageContext: setServiceHandler(null)
+2019-01-16 11:45:47.755 [main] DEBUG org.apache.axis.SOAPPart - Enter: SOAPPart::getAsSOAPEnvelope()
+2019-01-16 11:45:47.755 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(currForm)
+2019-01-16 11:45:47.756 [main] DEBUG org.apache.axis.SOAPPart - current form is FORM_SOAPENVELOPE
+2019-01-16 11:45:47.757 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(register00)
+2019-01-16 11:45:47.758 [main] DEBUG org.apache.axis.encoding.SerializationContext - register 'soapenv' - 'http://schemas.xmlsoap.org/soap/envelope/'
+2019-01-16 11:45:47.758 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(register00)
+2019-01-16 11:45:47.758 [main] DEBUG org.apache.axis.encoding.SerializationContext - register 'soapenv' - 'http://schemas.xmlsoap.org/soap/envelope/'
+2019-01-16 11:45:47.758 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(register00)
+2019-01-16 11:45:47.758 [main] DEBUG org.apache.axis.encoding.SerializationContext - register 'xsd' - 'http://www.w3.org/2001/XMLSchema'
+2019-01-16 11:45:47.758 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(register00)
+2019-01-16 11:45:47.759 [main] DEBUG org.apache.axis.encoding.SerializationContext - register 'xsi' - 'http://www.w3.org/2001/XMLSchema-instance'
+2019-01-16 11:45:47.759 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(startElem00)
+2019-01-16 11:45:47.759 [main] DEBUG org.apache.axis.encoding.SerializationContext - Start element [http://schemas.xmlsoap.org/soap/envelope/]:Envelope
+2019-01-16 11:45:47.763 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(startElem00)
+2019-01-16 11:45:47.763 [main] DEBUG org.apache.axis.encoding.SerializationContext - Start element [http://schemas.xmlsoap.org/soap/envelope/]:Body
+2019-01-16 11:45:47.765 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(startElem00)
+2019-01-16 11:45:47.765 [main] DEBUG org.apache.axis.encoding.SerializationContext - Start element [http://outwardservice.lis.sinosoft.com]:checkRequest
+2019-01-16 11:45:47.765 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(register00)
+2019-01-16 11:45:47.765 [main] DEBUG org.apache.axis.encoding.SerializationContext - register 'ns1' - 'http://outwardservice.lis.sinosoft.com'
+2019-01-16 11:45:47.768 [main] DEBUG o.a.c.discovery.resource.names.DiscoverNamesInFile - find: serviceName = 'META-INF/services/org.apache.axis.components.encoding.XMLEncoder'
+2019-01-16 11:45:47.768 [main] DEBUG o.a.commons.discovery.resource.DiscoverResources - find: resourceName='META-INF/services/org.apache.axis.components.encoding.XMLEncoder'
+2019-01-16 11:45:47.769 [main] DEBUG o.a.commons.discovery.resource.DiscoverResources - getNextResources: search using ClassLoader 'sun.misc.Launcher$AppClassLoader@18b4aac2'
+2019-01-16 11:45:47.769 [main] DEBUG org.apache.commons.discovery.jdk.JDK12Hooks - Could not find resource: META-INF/services/org.apache.axis.components.encoding.XMLEncoder
+2019-01-16 11:45:47.771 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(startElem00)
+2019-01-16 11:45:47.772 [main] DEBUG org.apache.axis.encoding.SerializationContext - Start element [http://outwardservice.lis.sinosoft.com]:arg0
+2019-01-16 11:45:47.772 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(register00)
+2019-01-16 11:45:47.772 [main] DEBUG org.apache.axis.encoding.SerializationContext - register 'soapenc' - 'http://schemas.xmlsoap.org/soap/encoding/'
+2019-01-16 11:45:47.773 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(endElem00)
+2019-01-16 11:45:47.773 [main] DEBUG org.apache.axis.encoding.SerializationContext - End element ns1:arg0
+2019-01-16 11:45:47.774 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(endElem00)
+2019-01-16 11:45:47.774 [main] DEBUG org.apache.axis.encoding.SerializationContext - End element ns1:checkRequest
+2019-01-16 11:45:47.774 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(endElem00)
+2019-01-16 11:45:47.774 [main] DEBUG org.apache.axis.encoding.SerializationContext - End element soapenv:Body
+2019-01-16 11:45:47.774 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(endElem00)
+2019-01-16 11:45:47.774 [main] DEBUG org.apache.axis.encoding.SerializationContext - End element soapenv:Envelope
+2019-01-16 11:45:47.774 [main] DEBUG org.apache.axis.client.Call - <?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><soapenv:Body><ns1:checkRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:ns1="http://outwardservice.lis.sinosoft.com"><ns1:arg0 xsi:type="soapenc:string" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">&lt;?xml version=&quot;1.0&quot; encoding=&quot;GBK&quot;?&gt;&lt;PolicyRequestDTO&gt;&lt;TranslationDTO&gt;&lt;TransDate&gt;2018-03-30&lt;/TransDate&gt;&lt;TransTime&gt;12:25:08&lt;/TransTime&gt;&lt;TransSerialno&gt;&lt;/TransSerialno&gt;&lt;TransDevelop&gt;01006-&#x8F66;&#x7AD9;&#x51FA;&#x5355;-03&lt;/TransDevelop&gt;&lt;/TranslationDTO&gt;&lt;MainContDTO&gt;&lt;ApplyDate&gt;2018-03-30&lt;/ApplyDate&gt;&lt;ApplyTime&gt;12:25:08&lt;/ApplyTime&gt;&lt;CvaliDate&gt;2018-03-30&lt;/CvaliDate&gt;&lt;CvaliTime&gt;12:25:08&lt;/CvaliTime&gt;&lt;EndDate&gt;2018-04-01&lt;/EndDate&gt;&lt;EndTime&gt;12:25:08&lt;/EndTime&gt;&lt;CertifyNo&gt;&lt;/CertifyNo&gt;&lt;Prem&gt;3&lt;/Prem&gt;&lt;MainAmount&gt;68000&lt;/MainAmount&gt;&lt;AdditionalAmount&gt;0&lt;/AdditionalAmount&gt;&lt;ManageCom&gt;86430107&lt;/ManageCom&gt;&lt;AgentCom&gt;10005010101&lt;/AgentCom&gt;&lt;ContplanCode&gt;C00021&lt;/ContplanCode&gt;&lt;/MainContDTO&gt;&lt;TrafficDTO&gt;&lt;TrainNo&gt;&lt;/TrainNo&gt;&lt;TicketNo&gt;T45454523&lt;/TicketNo&gt;&lt;SeatNo&gt;25&lt;/SeatNo&gt;&lt;SellDate&gt;2018-03-30&lt;/SellDate&gt;&lt;SellTime&gt;12:25:08&lt;/SellTime&gt;&lt;OperCode&gt;SELL001&lt;/OperCode&gt;&lt;/TrafficDTO&gt;&lt;AppntDTO&gt;&lt;Relation1&gt;00&lt;/Relation1&gt;&lt;Relation2&gt;00&lt;/Relation2&gt;&lt;AppntName&gt;zzzp&lt;/AppntName&gt;&lt;AppntSex&gt;0&lt;/AppntSex&gt;&lt;AppntIdtype&gt;1&lt;/AppntIdtype&gt;&lt;AppntIdno&gt;A457654343&lt;/AppntIdno&gt;&lt;AppntBirth&gt;1992-06-18&lt;/AppntBirth&gt;&lt;AppntDevelop&gt;&lt;/AppntDevelop&gt;&lt;/AppntDTO&gt;&lt;InsuredList&gt;&lt;InsuredDTO&gt;&lt;InsuredName&gt;&lt;/InsuredName&gt;&lt;InsuredSex&gt;&lt;/InsuredSex&gt;&lt;InsuredIdtype&gt;&lt;/InsuredIdtype&gt;&lt;InsuredIdno&gt;&lt;/InsuredIdno&gt;&lt;InsuredBirth&gt;&lt;/InsuredBirth&gt;&lt;MainFlag&gt;&lt;/MainFlag&gt;&lt;RelationToMainInsured&gt;&lt;/RelationToMainInsured&gt;&lt;RelationToAppnt&gt;&lt;/RelationToAppnt&gt;&lt;/InsuredDTO&gt;&lt;/InsuredList&gt;&lt;BnfList&gt;&lt;BnfDTO&gt;&lt;BnfType&gt;&lt;/BnfType&gt;&lt;BnfFlag&gt;&lt;/BnfFlag&gt;&lt;BnfOrder&gt;&lt;/BnfOrder&gt;&lt;BnfName&gt;&lt;/BnfName&gt;&lt;BnfSex&gt;&lt;/BnfSex&gt;&lt;BnfIDType&gt;&lt;/BnfIDType&gt;&lt;BnfIDNo&gt;&lt;/BnfIDNo&gt;&lt;BnfBirthday&gt;&lt;/BnfBirthday&gt;&lt;BnfRelationToInsured&gt;&lt;/BnfRelationToInsured&gt;&lt;/BnfDTO&gt;&lt;/BnfList&gt;&lt;/PolicyRequestDTO&gt;</ns1:arg0></ns1:checkRequest></soapenv:Body></soapenv:Envelope>
+2019-01-16 11:45:47.776 [main] DEBUG org.apache.axis.client.AxisClient - Enter: AxisClient::invoke
+2019-01-16 11:45:47.777 [main] DEBUG org.apache.axis.client.AxisClient - EngineHandler: null
+2019-01-16 11:45:47.780 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(axisUserAgent)
+2019-01-16 11:45:47.789 [main] DEBUG org.apache.axis.SimpleChain - Enter: SimpleChain::invoke
+2019-01-16 11:45:47.789 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(enter00)
+2019-01-16 11:45:47.789 [main] DEBUG org.apache.axis.transport.http.HTTPSender - Enter:  HTTPSender::invoke
+2019-01-16 11:45:47.791 [main] DEBUG org.apache.axis.SOAPPart - Enter: SOAPPart::saveChanges
+2019-01-16 11:45:47.793 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(register00)
+2019-01-16 11:45:47.793 [main] DEBUG org.apache.axis.encoding.SerializationContext - register 'soapenv' - 'http://schemas.xmlsoap.org/soap/envelope/'
+2019-01-16 11:45:47.793 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(register00)
+2019-01-16 11:45:47.793 [main] DEBUG org.apache.axis.encoding.SerializationContext - register 'soapenv' - 'http://schemas.xmlsoap.org/soap/envelope/'
+2019-01-16 11:45:47.793 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(register00)
+2019-01-16 11:45:47.793 [main] DEBUG org.apache.axis.encoding.SerializationContext - register 'xsd' - 'http://www.w3.org/2001/XMLSchema'
+2019-01-16 11:45:47.793 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(register00)
+2019-01-16 11:45:47.793 [main] DEBUG org.apache.axis.encoding.SerializationContext - register 'xsi' - 'http://www.w3.org/2001/XMLSchema-instance'
+2019-01-16 11:45:47.794 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(startElem00)
+2019-01-16 11:45:47.794 [main] DEBUG org.apache.axis.encoding.SerializationContext - Start element [http://schemas.xmlsoap.org/soap/envelope/]:Envelope
+2019-01-16 11:45:47.795 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(startElem00)
+2019-01-16 11:45:47.795 [main] DEBUG org.apache.axis.encoding.SerializationContext - Start element [http://schemas.xmlsoap.org/soap/envelope/]:Body
+2019-01-16 11:45:47.795 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(startElem00)
+2019-01-16 11:45:47.795 [main] DEBUG org.apache.axis.encoding.SerializationContext - Start element [http://outwardservice.lis.sinosoft.com]:checkRequest
+2019-01-16 11:45:47.796 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(register00)
+2019-01-16 11:45:47.796 [main] DEBUG org.apache.axis.encoding.SerializationContext - register 'ns1' - 'http://outwardservice.lis.sinosoft.com'
+2019-01-16 11:45:47.796 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(startElem00)
+2019-01-16 11:45:47.796 [main] DEBUG org.apache.axis.encoding.SerializationContext - Start element [http://outwardservice.lis.sinosoft.com]:arg0
+2019-01-16 11:45:47.796 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(register00)
+2019-01-16 11:45:47.796 [main] DEBUG org.apache.axis.encoding.SerializationContext - register 'soapenc' - 'http://schemas.xmlsoap.org/soap/encoding/'
+2019-01-16 11:45:47.797 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(endElem00)
+2019-01-16 11:45:47.797 [main] DEBUG org.apache.axis.encoding.SerializationContext - End element ns1:arg0
+2019-01-16 11:45:47.797 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(endElem00)
+2019-01-16 11:45:47.797 [main] DEBUG org.apache.axis.encoding.SerializationContext - End element ns1:checkRequest
+2019-01-16 11:45:47.797 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(endElem00)
+2019-01-16 11:45:47.797 [main] DEBUG org.apache.axis.encoding.SerializationContext - End element soapenv:Body
+2019-01-16 11:45:47.797 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(endElem00)
+2019-01-16 11:45:47.797 [main] DEBUG org.apache.axis.encoding.SerializationContext - End element soapenv:Envelope
+2019-01-16 11:45:47.797 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(setMsgForm)
+2019-01-16 11:45:47.797 [main] DEBUG org.apache.axis.SOAPPart - Setting current message form to: FORM_OPTIMIZED (currentMessage is now org.apache.axis.utils.ByteArray)
+2019-01-16 11:45:47.797 [main] DEBUG org.apache.axis.SOAPPart - Exit: SOAPPart::saveChanges(): org.apache.axis.utils.ByteArray@332796d3
+2019-01-16 11:45:47.801 [main] DEBUG o.a.c.discovery.resource.names.NameDiscoverers - find: resourceName='org.apache.axis.components.net.SecureSocketFactory'
+2019-01-16 11:45:47.802 [main] DEBUG o.a.c.d.r.n.DiscoverNamesInAlternateManagedProperties - find: resourceName='org.apache.axis.components.net.SecureSocketFactory', lookup property 'axis.socketSecureFactory'
+2019-01-16 11:45:47.802 [main] DEBUG o.a.c.d.r.names.DiscoverNamesInManagedProperties - find: resourceName = 'org.apache.axis.components.net.SecureSocketFactory'
+2019-01-16 11:45:47.802 [main] DEBUG o.a.c.discovery.resource.names.DiscoverNamesInFile - find: serviceName = 'META-INF/services/org.apache.axis.components.net.SecureSocketFactory'
+2019-01-16 11:45:47.802 [main] DEBUG o.a.commons.discovery.resource.DiscoverResources - find: resourceName='META-INF/services/org.apache.axis.components.net.SecureSocketFactory'
+2019-01-16 11:45:47.802 [main] DEBUG o.a.commons.discovery.resource.DiscoverResources - getNextResources: search using ClassLoader 'sun.misc.Launcher$AppClassLoader@18b4aac2'
+2019-01-16 11:45:47.802 [main] DEBUG org.apache.commons.discovery.jdk.JDK12Hooks - Could not find resource: META-INF/services/org.apache.axis.components.net.SecureSocketFactory
+2019-01-16 11:45:47.802 [main] DEBUG o.a.c.discovery.resource.names.DiscoverMappedNames - find: resourceName='org.apache.axis.components.net.SecureSocketFactory', mapping to constants
+2019-01-16 11:45:47.802 [main] DEBUG o.a.c.discovery.resource.classes.DiscoverClasses - find: className='org.apache.axis.components.net.JSSESocketFactory'
+2019-01-16 11:45:47.803 [main] DEBUG o.a.c.discovery.resource.classes.DiscoverClasses - getNextClass: next URL='jar:file:/D:/maven-repo/org/apache/axis/axis/1.4/axis-1.4.jar!/org/apache/axis/components/net/JSSESocketFactory.class'
+2019-01-16 11:45:47.803 [main] DEBUG org.apache.commons.discovery.ResourceClass - loadClass: Loading class 'org.apache.axis.components.net.JSSESocketFactory' with sun.misc.Launcher$AppClassLoader@18b4aac2
+2019-01-16 11:45:48.042 [main] DEBUG o.a.c.discovery.resource.names.DiscoverNamesInFile - find: serviceName = 'META-INF/services/org.apache.axis.components.net.TransportClientProperties'
+2019-01-16 11:45:48.042 [main] DEBUG o.a.commons.discovery.resource.DiscoverResources - find: resourceName='META-INF/services/org.apache.axis.components.net.TransportClientProperties'
+2019-01-16 11:45:48.043 [main] DEBUG o.a.commons.discovery.resource.DiscoverResources - getNextResources: search using ClassLoader 'sun.misc.Launcher$AppClassLoader@18b4aac2'
+2019-01-16 11:45:48.043 [main] DEBUG org.apache.commons.discovery.jdk.JDK12Hooks - Could not find resource: META-INF/services/org.apache.axis.components.net.TransportClientProperties
+2019-01-16 11:45:48.257 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(createdSSL00)
+2019-01-16 11:45:48.257 [main] DEBUG o.apache.axis.components.net.DefaultSocketFactory - Created an SSL connection
+2019-01-16 11:45:48.258 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(xmlSent00)
+2019-01-16 11:45:48.258 [main] DEBUG org.apache.axis.transport.http.HTTPSender - XML sent:
+2019-01-16 11:45:48.259 [main] DEBUG org.apache.axis.transport.http.HTTPSender - ---------------------------------------------------
+2019-01-16 11:45:48.263 [main] DEBUG org.apache.axis.transport.http.HTTPSender - POST /ter/services/ThdpartyInterface?wsdl HTTP/1.0
+Content-Type: text/xml; charset=utf-8
+Accept: application/soap+xml, application/dime, multipart/related, text/*
+User-Agent: Axis/1.4
+Host: tepos.jxlife.com.cn
+Cache-Control: no-cache
+Pragma: no-cache
+SOAPAction: ""
+Content-Length: 2880
+
+<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><soapenv:Body><ns1:checkRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:ns1="http://outwardservice.lis.sinosoft.com"><ns1:arg0 xsi:type="soapenc:string" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">&lt;?xml version=&quot;1.0&quot; encoding=&quot;GBK&quot;?&gt;&lt;PolicyRequestDTO&gt;&lt;TranslationDTO&gt;&lt;TransDate&gt;2018-03-30&lt;/TransDate&gt;&lt;TransTime&gt;12:25:08&lt;/TransTime&gt;&lt;TransSerialno&gt;&lt;/TransSerialno&gt;&lt;TransDevelop&gt;01006-&#x8F66;&#x7AD9;&#x51FA;&#x5355;-03&lt;/TransDevelop&gt;&lt;/TranslationDTO&gt;&lt;MainContDTO&gt;&lt;ApplyDate&gt;2018-03-30&lt;/ApplyDate&gt;&lt;ApplyTime&gt;12:25:08&lt;/ApplyTime&gt;&lt;CvaliDate&gt;2018-03-30&lt;/CvaliDate&gt;&lt;CvaliTime&gt;12:25:08&lt;/CvaliTime&gt;&lt;EndDate&gt;2018-04-01&lt;/EndDate&gt;&lt;EndTime&gt;12:25:08&lt;/EndTime&gt;&lt;CertifyNo&gt;&lt;/CertifyNo&gt;&lt;Prem&gt;3&lt;/Prem&gt;&lt;MainAmount&gt;68000&lt;/MainAmount&gt;&lt;AdditionalAmount&gt;0&lt;/AdditionalAmount&gt;&lt;ManageCom&gt;86430107&lt;/ManageCom&gt;&lt;AgentCom&gt;10005010101&lt;/AgentCom&gt;&lt;ContplanCode&gt;C00021&lt;/ContplanCode&gt;&lt;/MainContDTO&gt;&lt;TrafficDTO&gt;&lt;TrainNo&gt;&lt;/TrainNo&gt;&lt;TicketNo&gt;T45454523&lt;/TicketNo&gt;&lt;SeatNo&gt;25&lt;/SeatNo&gt;&lt;SellDate&gt;2018-03-30&lt;/SellDate&gt;&lt;SellTime&gt;12:25:08&lt;/SellTime&gt;&lt;OperCode&gt;SELL001&lt;/OperCode&gt;&lt;/TrafficDTO&gt;&lt;AppntDTO&gt;&lt;Relation1&gt;00&lt;/Relation1&gt;&lt;Relation2&gt;00&lt;/Relation2&gt;&lt;AppntName&gt;zzzp&lt;/AppntName&gt;&lt;AppntSex&gt;0&lt;/AppntSex&gt;&lt;AppntIdtype&gt;1&lt;/AppntIdtype&gt;&lt;AppntIdno&gt;A457654343&lt;/AppntIdno&gt;&lt;AppntBirth&gt;1992-06-18&lt;/AppntBirth&gt;&lt;AppntDevelop&gt;&lt;/AppntDevelop&gt;&lt;/AppntDTO&gt;&lt;InsuredList&gt;&lt;InsuredDTO&gt;&lt;InsuredName&gt;&lt;/InsuredName&gt;&lt;InsuredSex&gt;&lt;/InsuredSex&gt;&lt;InsuredIdtype&gt;&lt;/InsuredIdtype&gt;&lt;InsuredIdno&gt;&lt;/InsuredIdno&gt;&lt;InsuredBirth&gt;&lt;/InsuredBirth&gt;&lt;MainFlag&gt;&lt;/MainFlag&gt;&lt;RelationToMainInsured&gt;&lt;/RelationToMainInsured&gt;&lt;RelationToAppnt&gt;&lt;/RelationToAppnt&gt;&lt;/InsuredDTO&gt;&lt;/InsuredList&gt;&lt;BnfList&gt;&lt;BnfDTO&gt;&lt;BnfType&gt;&lt;/BnfType&gt;&lt;BnfFlag&gt;&lt;/BnfFlag&gt;&lt;BnfOrder&gt;&lt;/BnfOrder&gt;&lt;BnfName&gt;&lt;/BnfName&gt;&lt;BnfSex&gt;&lt;/BnfSex&gt;&lt;BnfIDType&gt;&lt;/BnfIDType&gt;&lt;BnfIDNo&gt;&lt;/BnfIDNo&gt;&lt;BnfBirthday&gt;&lt;/BnfBirthday&gt;&lt;BnfRelationToInsured&gt;&lt;/BnfRelationToInsured&gt;&lt;/BnfDTO&gt;&lt;/BnfList&gt;&lt;/PolicyRequestDTO&gt;</ns1:arg0></ns1:checkRequest></soapenv:Body></soapenv:Envelope>
+2019-01-16 11:45:48.436 [main] DEBUG org.apache.axis.transport.http.HTTPSender - HTTP/1.1 200 OK
+2019-01-16 11:45:48.437 [main] DEBUG org.apache.axis.transport.http.HTTPSender - Date Wed, 16 Jan 2019 03:44:34 GMT
+2019-01-16 11:45:48.437 [main] DEBUG org.apache.axis.transport.http.HTTPSender - Server Apache
+2019-01-16 11:45:48.437 [main] DEBUG org.apache.axis.transport.http.HTTPSender - Content-Type text/xml; charset=utf-8
+2019-01-16 11:45:48.437 [main] DEBUG org.apache.axis.transport.http.HTTPSender - Content-Language zh-CN
+2019-01-16 11:45:48.437 [main] DEBUG org.apache.axis.transport.http.HTTPSender - Expires Thu, 01 Dec 1994 16:00:00 GMT
+2019-01-16 11:45:48.437 [main] DEBUG org.apache.axis.transport.http.HTTPSender - Cache-Control no-cache="set-cookie, set-cookie2"
+2019-01-16 11:45:48.438 [main] DEBUG org.apache.axis.transport.http.HTTPSender - Set-Cookie _xm_webid_1_=1170326194; Expires=Tue, 16-Apr-19 03:44:34 GMT; Path=/
+2019-01-16 11:45:48.438 [main] DEBUG org.apache.axis.transport.http.HTTPSender - Connection close
+2019-01-16 11:45:48.439 [main] DEBUG org.apache.axis.SOAPPart - Enter: SOAPPart ctor(FORM_INPUTSTREAM)
+2019-01-16 11:45:48.439 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(setMsgForm)
+2019-01-16 11:45:48.439 [main] DEBUG org.apache.axis.SOAPPart - Setting current message form to: FORM_INPUTSTREAM (currentMessage is now org.apache.axis.transport.http.SocketInputStream)
+2019-01-16 11:45:48.439 [main] DEBUG org.apache.axis.SOAPPart - Exit: SOAPPart ctor()
+2019-01-16 11:45:48.439 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(no00)
+2019-01-16 11:45:48.439 [main] DEBUG org.apache.axis.transport.http.HTTPSender - 
+no Content-Length
+2019-01-16 11:45:48.439 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(xmlRecd00)
+2019-01-16 11:45:48.440 [main] DEBUG org.apache.axis.transport.http.HTTPSender - 
+XML received:
+2019-01-16 11:45:48.440 [main] DEBUG org.apache.axis.transport.http.HTTPSender - -----------------------------------------------
+2019-01-16 11:45:48.440 [main] DEBUG org.apache.axis.SOAPPart - Enter: SOAPPart::getAsSOAPEnvelope()
+2019-01-16 11:45:48.440 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(currForm)
+2019-01-16 11:45:48.440 [main] DEBUG org.apache.axis.SOAPPart - current form is FORM_INPUTSTREAM
+2019-01-16 11:45:48.449 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(pushHandler00)
+2019-01-16 11:45:48.449 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Pushing handler org.apache.axis.message.EnvelopeHandler@31e3250d
+2019-01-16 11:45:48.450 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Enter: DeserializationContext::startPrefixMapping(soapenv, http://schemas.xmlsoap.org/soap/envelope/)
+2019-01-16 11:45:48.450 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Exit: DeserializationContext::startPrefixMapping()
+2019-01-16 11:45:48.450 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Enter: DeserializationContext::startPrefixMapping(xsd, http://www.w3.org/2001/XMLSchema)
+2019-01-16 11:45:48.450 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Exit: DeserializationContext::startPrefixMapping()
+2019-01-16 11:45:48.451 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Enter: DeserializationContext::startPrefixMapping(xsi, http://www.w3.org/2001/XMLSchema-instance)
+2019-01-16 11:45:48.451 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Exit: DeserializationContext::startPrefixMapping()
+2019-01-16 11:45:48.451 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Enter: DeserializationContext::startElement(http://schemas.xmlsoap.org/soap/envelope/, Envelope)
+2019-01-16 11:45:48.451 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(pushHandler00)
+2019-01-16 11:45:48.451 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Pushing handler org.apache.axis.message.EnvelopeBuilder@19fe4644
+2019-01-16 11:45:48.451 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Pushing element Envelope
+2019-01-16 11:45:48.451 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Exit: DeserializationContext::startElement()
+2019-01-16 11:45:48.451 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Enter: DeserializationContext::startElement(http://schemas.xmlsoap.org/soap/envelope/, Body)
+2019-01-16 11:45:48.452 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(pushHandler00)
+2019-01-16 11:45:48.452 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Pushing handler org.apache.axis.message.BodyBuilder@18245eb0
+2019-01-16 11:45:48.452 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(newElem00)
+2019-01-16 11:45:48.453 [main] DEBUG org.apache.axis.message.MessageElement - New MessageElement (org.apache.axis.message.SOAPBody@7c7d3c46) named {soapenv}Body
+2019-01-16 11:45:48.453 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Pushing element Body
+2019-01-16 11:45:48.453 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Exit: DeserializationContext::startElement()
+2019-01-16 11:45:48.453 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Enter: DeserializationContext::startPrefixMapping(ns1, http://outwardservice.lis.sinosoft.com)
+2019-01-16 11:45:48.453 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Exit: DeserializationContext::startPrefixMapping()
+2019-01-16 11:45:48.453 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Enter: DeserializationContext::startElement(http://outwardservice.lis.sinosoft.com, checkRequestResponse)
+2019-01-16 11:45:48.453 [main] DEBUG org.apache.axis.message.BodyBuilder - Enter: BodyBuilder::onStartChild()
+2019-01-16 11:45:48.453 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(dispatching00)
+2019-01-16 11:45:48.453 [main] DEBUG org.apache.axis.MessageContext - Dispatching to a body namespace 'http://outwardservice.lis.sinosoft.com'
+2019-01-16 11:45:48.453 [main] DEBUG org.apache.axis.MessageContext - MessageContext: setServiceHandler(null)
+2019-01-16 11:45:48.453 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(newElem00)
+2019-01-16 11:45:48.453 [main] DEBUG org.apache.axis.message.MessageElement - New MessageElement (org.apache.axis.message.RPCElement@24fb6a80) named {ns1}checkRequestResponse
+2019-01-16 11:45:48.453 [main] DEBUG org.apache.axis.message.MessageElement -   soapenv:encodingStyle = 'http://schemas.xmlsoap.org/soap/encoding/'
+2019-01-16 11:45:48.454 [main] DEBUG org.apache.axis.message.BodyBuilder - Exit: BodyBuilder::onStartChild()
+2019-01-16 11:45:48.454 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(pushHandler00)
+2019-01-16 11:45:48.454 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Pushing handler org.apache.axis.message.SOAPHandler@48c35007
+2019-01-16 11:45:48.454 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Pushing element checkRequestResponse
+2019-01-16 11:45:48.454 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Exit: DeserializationContext::startElement()
+2019-01-16 11:45:48.454 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Enter: DeserializationContext::startElement(, checkRequestReturn)
+2019-01-16 11:45:48.454 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(pushHandler00)
+2019-01-16 11:45:48.454 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Pushing handler org.apache.axis.message.SOAPHandler@72a85671
+2019-01-16 11:45:48.454 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(newElem00)
+2019-01-16 11:45:48.454 [main] DEBUG org.apache.axis.message.MessageElement - New MessageElement (org.apache.axis.message.MessageElement@6722db6e) named {}checkRequestReturn
+2019-01-16 11:45:48.454 [main] DEBUG org.apache.axis.message.MessageElement -   xsi:type = 'xsd:string'
+2019-01-16 11:45:48.454 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Pushing element checkRequestReturn
+2019-01-16 11:45:48.454 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Exit: DeserializationContext::startElement()
+2019-01-16 11:45:48.455 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Enter: DeserializationContext::endElement(, checkRequestReturn)
+2019-01-16 11:45:48.455 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(popHandler00)
+2019-01-16 11:45:48.455 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Popping handler org.apache.axis.message.SOAPHandler@72a85671
+2019-01-16 11:45:48.456 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Popped element stack to org.apache.axis.message.RPCElement:checkRequestResponse
+2019-01-16 11:45:48.456 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Exit: DeserializationContext::endElement()
+2019-01-16 11:45:48.456 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Enter: DeserializationContext::endElement(http://outwardservice.lis.sinosoft.com, checkRequestResponse)
+2019-01-16 11:45:48.457 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(popHandler00)
+2019-01-16 11:45:48.457 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Popping handler org.apache.axis.message.SOAPHandler@48c35007
+2019-01-16 11:45:48.457 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Popped element stack to org.apache.axis.message.SOAPBody:Body
+2019-01-16 11:45:48.457 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Exit: DeserializationContext::endElement()
+2019-01-16 11:45:48.457 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Enter: DeserializationContext::endPrefixMapping(ns1)
+2019-01-16 11:45:48.457 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Exit: DeserializationContext::endPrefixMapping()
+2019-01-16 11:45:48.457 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Enter: DeserializationContext::endElement(http://schemas.xmlsoap.org/soap/envelope/, Body)
+2019-01-16 11:45:48.457 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(popHandler00)
+2019-01-16 11:45:48.457 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Popping handler org.apache.axis.message.BodyBuilder@18245eb0
+2019-01-16 11:45:48.457 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Popped element stack to org.apache.axis.message.SOAPEnvelope:Envelope
+2019-01-16 11:45:48.457 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Exit: DeserializationContext::endElement()
+2019-01-16 11:45:48.458 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Enter: DeserializationContext::endElement(http://schemas.xmlsoap.org/soap/envelope/, Envelope)
+2019-01-16 11:45:48.458 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(popHandler00)
+2019-01-16 11:45:48.458 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Popping handler org.apache.axis.message.EnvelopeBuilder@19fe4644
+2019-01-16 11:45:48.458 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Popped element stack to null
+2019-01-16 11:45:48.458 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Exit: DeserializationContext::endElement()
+2019-01-16 11:45:48.458 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Enter: DeserializationContext::endPrefixMapping(soapenv)
+2019-01-16 11:45:48.458 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Exit: DeserializationContext::endPrefixMapping()
+2019-01-16 11:45:48.458 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Enter: DeserializationContext::endPrefixMapping(xsd)
+2019-01-16 11:45:48.458 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Exit: DeserializationContext::endPrefixMapping()
+2019-01-16 11:45:48.458 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Enter: DeserializationContext::endPrefixMapping(xsi)
+2019-01-16 11:45:48.458 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Exit: DeserializationContext::endPrefixMapping()
+2019-01-16 11:45:48.459 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Enter: DeserializationContext::endDocument()
+2019-01-16 11:45:48.459 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Exit: DeserializationContext::endDocument()
+2019-01-16 11:45:48.459 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(setMsgForm)
+2019-01-16 11:45:48.459 [main] DEBUG org.apache.axis.SOAPPart - Setting current message form to: FORM_SOAPENVELOPE (currentMessage is now org.apache.axis.message.SOAPEnvelope)
+2019-01-16 11:45:48.459 [main] DEBUG org.apache.axis.SOAPPart - Exit: SOAPPart::getAsSOAPEnvelope
+2019-01-16 11:45:48.459 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(register00)
+2019-01-16 11:45:48.459 [main] DEBUG org.apache.axis.encoding.SerializationContext - register 'soapenv' - 'http://schemas.xmlsoap.org/soap/envelope/'
+2019-01-16 11:45:48.460 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(register00)
+2019-01-16 11:45:48.460 [main] DEBUG org.apache.axis.encoding.SerializationContext - register 'xsd' - 'http://www.w3.org/2001/XMLSchema'
+2019-01-16 11:45:48.460 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(register00)
+2019-01-16 11:45:48.460 [main] DEBUG org.apache.axis.encoding.SerializationContext - register 'xsi' - 'http://www.w3.org/2001/XMLSchema-instance'
+2019-01-16 11:45:48.460 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(startElem00)
+2019-01-16 11:45:48.460 [main] DEBUG org.apache.axis.encoding.SerializationContext - Start element [http://schemas.xmlsoap.org/soap/envelope/]:Envelope
+2019-01-16 11:45:48.460 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(startElem00)
+2019-01-16 11:45:48.460 [main] DEBUG org.apache.axis.encoding.SerializationContext - Start element [http://schemas.xmlsoap.org/soap/envelope/]:Body
+2019-01-16 11:45:48.461 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(register00)
+2019-01-16 11:45:48.461 [main] DEBUG org.apache.axis.encoding.SerializationContext - register 'ns1' - 'http://outwardservice.lis.sinosoft.com'
+2019-01-16 11:45:48.461 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.startElement ['http://outwardservice.lis.sinosoft.com' checkRequestResponse]
+2019-01-16 11:45:48.461 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(startElem00)
+2019-01-16 11:45:48.462 [main] DEBUG org.apache.axis.encoding.SerializationContext - Start element [http://outwardservice.lis.sinosoft.com]:checkRequestResponse
+2019-01-16 11:45:48.462 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.startElement ['' checkRequestReturn]
+2019-01-16 11:45:48.462 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(startElem00)
+2019-01-16 11:45:48.462 [main] DEBUG org.apache.axis.encoding.SerializationContext - Start element []:checkRequestReturn
+2019-01-16 11:45:48.462 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['<']
+2019-01-16 11:45:48.462 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['?xml version=']
+2019-01-16 11:45:48.462 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['"']
+2019-01-16 11:45:48.462 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['1.0']
+2019-01-16 11:45:48.462 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['"']
+2019-01-16 11:45:48.462 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters [' encoding=']
+2019-01-16 11:45:48.462 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['"']
+2019-01-16 11:45:48.462 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['GBK']
+2019-01-16 11:45:48.462 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['"']
+2019-01-16 11:45:48.462 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['?']
+2019-01-16 11:45:48.462 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['>']
+2019-01-16 11:45:48.462 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['<']
+2019-01-16 11:45:48.463 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['PolicyResponseDTO']
+2019-01-16 11:45:48.463 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['>']
+2019-01-16 11:45:48.463 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['<']
+2019-01-16 11:45:48.463 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['PolicyRequestDTO']
+2019-01-16 11:45:48.463 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['>']
+2019-01-16 11:45:48.463 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['<']
+2019-01-16 11:45:48.463 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['TransDate']
+2019-01-16 11:45:48.463 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['>']
+2019-01-16 11:45:48.463 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['2018-03-30']
+2019-01-16 11:45:48.463 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['<']
+2019-01-16 11:45:48.463 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['/TransDate']
+2019-01-16 11:45:48.463 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['>']
+2019-01-16 11:45:48.463 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['<']
+2019-01-16 11:45:48.463 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['TransTime']
+2019-01-16 11:45:48.463 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['>']
+2019-01-16 11:45:48.463 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['12:25:08']
+2019-01-16 11:45:48.463 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['<']
+2019-01-16 11:45:48.463 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['/TransTime']
+2019-01-16 11:45:48.463 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['>']
+2019-01-16 11:45:48.463 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['<']
+2019-01-16 11:45:48.464 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['TransSerialno']
+2019-01-16 11:45:48.464 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['>']
+2019-01-16 11:45:48.464 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['10005010101004482010']
+2019-01-16 11:45:48.464 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['<']
+2019-01-16 11:45:48.464 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['/TransSerialno']
+2019-01-16 11:45:48.464 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['>']
+2019-01-16 11:45:48.464 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['<']
+2019-01-16 11:45:48.464 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['/PolicyRequestDTO']
+2019-01-16 11:45:48.464 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['>']
+2019-01-16 11:45:48.464 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['<']
+2019-01-16 11:45:48.464 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['MainContDTO']
+2019-01-16 11:45:48.464 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['>']
+2019-01-16 11:45:48.464 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['<']
+2019-01-16 11:45:48.464 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['ReTranDate']
+2019-01-16 11:45:48.464 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['>']
+2019-01-16 11:45:48.464 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['2019-01-16']
+2019-01-16 11:45:48.464 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['<']
+2019-01-16 11:45:48.464 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['/ReTranDate']
+2019-01-16 11:45:48.464 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['>']
+2019-01-16 11:45:48.464 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['<']
+2019-01-16 11:45:48.464 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['ReTranTime']
+2019-01-16 11:45:48.465 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['>']
+2019-01-16 11:45:48.465 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['11:44:34']
+2019-01-16 11:45:48.465 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['<']
+2019-01-16 11:45:48.465 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['/ReTranTime']
+2019-01-16 11:45:48.465 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['>']
+2019-01-16 11:45:48.465 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['<']
+2019-01-16 11:45:48.465 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['CertifyNo /']
+2019-01-16 11:45:48.465 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['>']
+2019-01-16 11:45:48.465 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['<']
+2019-01-16 11:45:48.465 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['Flag']
+2019-01-16 11:45:48.465 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['>']
+2019-01-16 11:45:48.465 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['0']
+2019-01-16 11:45:48.465 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['<']
+2019-01-16 11:45:48.465 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['/Flag']
+2019-01-16 11:45:48.465 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['>']
+2019-01-16 11:45:48.465 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['<']
+2019-01-16 11:45:48.465 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['Desc']
+2019-01-16 11:45:48.465 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['>']
+2019-01-16 11:45:48.465 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['校']
+2019-01-16 11:45:48.465 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['验']
+2019-01-16 11:45:48.466 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['通']
+2019-01-16 11:45:48.466 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['过']
+2019-01-16 11:45:48.466 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['<']
+2019-01-16 11:45:48.466 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['/Desc']
+2019-01-16 11:45:48.466 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['>']
+2019-01-16 11:45:48.466 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['<']
+2019-01-16 11:45:48.466 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['/MainContDTO']
+2019-01-16 11:45:48.466 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['>']
+2019-01-16 11:45:48.466 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['<']
+2019-01-16 11:45:48.466 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['/PolicyResponseDTO']
+2019-01-16 11:45:48.466 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.characters ['>']
+2019-01-16 11:45:48.466 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.endElement ['' checkRequestReturn]
+2019-01-16 11:45:48.466 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(endElem00)
+2019-01-16 11:45:48.466 [main] DEBUG org.apache.axis.encoding.SerializationContext - End element checkRequestReturn
+2019-01-16 11:45:48.466 [main] DEBUG org.apache.axis.message.SAXOutputter - SAXOutputter.endElement ['http://outwardservice.lis.sinosoft.com' checkRequestResponse]
+2019-01-16 11:45:48.466 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(endElem00)
+2019-01-16 11:45:48.467 [main] DEBUG org.apache.axis.encoding.SerializationContext - End element ns1:checkRequestResponse
+2019-01-16 11:45:48.467 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(endElem00)
+2019-01-16 11:45:48.467 [main] DEBUG org.apache.axis.encoding.SerializationContext - End element soapenv:Body
+2019-01-16 11:45:48.467 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(endElem00)
+2019-01-16 11:45:48.467 [main] DEBUG org.apache.axis.encoding.SerializationContext - End element soapenv:Envelope
+2019-01-16 11:45:48.467 [main] DEBUG org.apache.axis.transport.http.HTTPSender - <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><soapenv:Body><ns1:checkRequestResponse soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:ns1="http://outwardservice.lis.sinosoft.com"><checkRequestReturn xsi:type="xsd:string">&lt;?xml version=&quot;1.0&quot; encoding=&quot;GBK&quot;?&gt;&lt;PolicyResponseDTO&gt;&lt;PolicyRequestDTO&gt;&lt;TransDate&gt;2018-03-30&lt;/TransDate&gt;&lt;TransTime&gt;12:25:08&lt;/TransTime&gt;&lt;TransSerialno&gt;10005010101004482010&lt;/TransSerialno&gt;&lt;/PolicyRequestDTO&gt;&lt;MainContDTO&gt;&lt;ReTranDate&gt;2019-01-16&lt;/ReTranDate&gt;&lt;ReTranTime&gt;11:44:34&lt;/ReTranTime&gt;&lt;CertifyNo /&gt;&lt;Flag&gt;0&lt;/Flag&gt;&lt;Desc&gt;&#x6821;&#x9A8C;&#x901A;&#x8FC7;&lt;/Desc&gt;&lt;/MainContDTO&gt;&lt;/PolicyResponseDTO&gt;</checkRequestReturn></ns1:checkRequestResponse></soapenv:Body></soapenv:Envelope>
+2019-01-16 11:45:48.467 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(exit00)
+2019-01-16 11:45:48.467 [main] DEBUG org.apache.axis.transport.http.HTTPSender - Exit:  HTTPDispatchHandler::invoke
+2019-01-16 11:45:48.467 [main] DEBUG org.apache.axis.SimpleChain - Exit: SimpleChain::invoke
+2019-01-16 11:45:48.467 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(semanticCheck00)
+2019-01-16 11:45:48.467 [main] DEBUG o.apache.axis.handlers.soap.MustUnderstandChecker - Doing SOAP semantic checks...
+2019-01-16 11:45:48.467 [main] DEBUG org.apache.axis.SOAPPart - Enter: SOAPPart::getAsSOAPEnvelope()
+2019-01-16 11:45:48.468 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(currForm)
+2019-01-16 11:45:48.468 [main] DEBUG org.apache.axis.SOAPPart - current form is FORM_SOAPENVELOPE
+2019-01-16 11:45:48.468 [main] DEBUG org.apache.axis.client.AxisClient - Exit: AxisClient::invoke
+2019-01-16 11:45:48.468 [main] DEBUG org.apache.axis.SOAPPart - Enter: SOAPPart::getAsSOAPEnvelope()
+2019-01-16 11:45:48.468 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(currForm)
+2019-01-16 11:45:48.468 [main] DEBUG org.apache.axis.SOAPPart - current form is FORM_SOAPENVELOPE
+2019-01-16 11:45:48.468 [main] DEBUG org.apache.axis.client.Call - Exit: Call::invoke()
+2019-01-16 11:45:48.468 [main] DEBUG org.apache.axis.SOAPPart - Enter: SOAPPart::getAsSOAPEnvelope()
+2019-01-16 11:45:48.468 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(currForm)
+2019-01-16 11:45:48.468 [main] DEBUG org.apache.axis.SOAPPart - current form is FORM_SOAPENVELOPE
+2019-01-16 11:45:48.469 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(pushHandler00)
+2019-01-16 11:45:48.469 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Pushing handler org.apache.axis.message.EnvelopeHandler@631e06ab
+2019-01-16 11:45:48.469 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Enter: DeserializationContext::startPrefixMapping(ns1, http://outwardservice.lis.sinosoft.com)
+2019-01-16 11:45:48.469 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Exit: DeserializationContext::startPrefixMapping()
+2019-01-16 11:45:48.469 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Enter: DeserializationContext::startElement(http://outwardservice.lis.sinosoft.com, checkRequestResponse)
+2019-01-16 11:45:48.469 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(pushHandler00)
+2019-01-16 11:45:48.469 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Pushing handler org.apache.axis.message.RPCHandler@2a3591c5
+2019-01-16 11:45:48.469 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Exit: DeserializationContext::startElement()
+2019-01-16 11:45:48.469 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Enter: DeserializationContext::startElement(, checkRequestReturn)
+2019-01-16 11:45:48.470 [main] DEBUG org.apache.axis.message.RPCHandler - Enter: RPCHandler.onStartChild()
+2019-01-16 11:45:48.470 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(typeFromAttr00)
+2019-01-16 11:45:48.470 [main] DEBUG org.apache.axis.message.RPCHandler - Type from attributes is:  {http://www.w3.org/2001/XMLSchema}string
+2019-01-16 11:45:48.473 [main] DEBUG org.apache.axis.message.RPCHandler - Exit: RPCHandler.onStartChild()
+2019-01-16 11:45:48.474 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(pushHandler00)
+2019-01-16 11:45:48.475 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Pushing handler org.apache.axis.encoding.ser.SimpleDeserializer@acb0951
+2019-01-16 11:45:48.475 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Exit: DeserializationContext::startElement()
+2019-01-16 11:45:48.476 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Enter: DeserializationContext::endElement(, checkRequestReturn)
+2019-01-16 11:45:48.476 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(popHandler00)
+2019-01-16 11:45:48.476 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Popping handler org.apache.axis.encoding.ser.SimpleDeserializer@acb0951
+2019-01-16 11:45:48.476 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(setValueInTarget00)
+2019-01-16 11:45:48.476 [main] DEBUG org.apache.axis.encoding.DeserializerImpl - Set value <?xml version="1.0" encoding="GBK"?><PolicyResponseDTO><PolicyRequestDTO><TransDate>2018-03-30</TransDate><TransTime>12:25:08</TransTime><TransSerialno>10005010101004482010</TransSerialno></PolicyRequestDTO><MainContDTO><ReTranDate>2019-01-16</ReTranDate><ReTranTime>11:44:34</ReTranTime><CertifyNo /><Flag>0</Flag><Desc>校验通过</Desc></MainContDTO></PolicyResponseDTO> in target org.apache.axis.message.RPCParamTarget@5bf22f18
+2019-01-16 11:45:48.476 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Popped element stack to org.apache.axis.message.RPCElement:checkRequestResponse
+2019-01-16 11:45:48.476 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Exit: DeserializationContext::endElement()
+2019-01-16 11:45:48.476 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Enter: DeserializationContext::endElement(http://outwardservice.lis.sinosoft.com, checkRequestResponse)
+2019-01-16 11:45:48.476 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(popHandler00)
+2019-01-16 11:45:48.476 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Popping handler org.apache.axis.message.RPCHandler@2a3591c5
+2019-01-16 11:45:48.477 [main] DEBUG org.apache.axis.i18n.ProjectResourceBundle - org.apache.axis.i18n.resource::handleGetObject(setProp00)
+2019-01-16 11:45:48.477 [main] DEBUG org.apache.axis.message.RPCHandler - Setting MessageContext property in RPCHandler.endElement().
+2019-01-16 11:45:48.477 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Popped element stack to org.apache.axis.message.SOAPBody:Body
+2019-01-16 11:45:48.477 [main] DEBUG org.apache.axis.encoding.DeserializationContext - Exit: DeserializationContext::endElement()
+2019-01-16 11:45:48.477 [main] DEBUG org.apache.axis.client.Call - Exit: Call::invoke(RPCElement)
+2019-01-16 11:45:48.477 [main] DEBUG org.apache.axis.client.Call - Exit: Call::invoke(ns, meth, args)
+2019-01-16 11:45:48.477 [main] DEBUG org.apache.axis.TIME - axis.Call.invoke: 757 {http://outwardservice.lis.sinosoft.com}checkRequest
