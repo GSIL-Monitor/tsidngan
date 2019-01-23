@@ -2,10 +2,7 @@ package cn.dingan.tsdingan.model;
 
 import java.math.BigDecimal;
 
-import lombok.Getter;
-import lombok.Setter;
-@Setter
-@Getter
+import javax.xml.bind.annotation.XmlElement;
 public class RemittGrpDTO {
     
     private String GrpName;//   单位名称    String  VARCHAR2(200)   非空  单位名称
@@ -61,5 +58,314 @@ public class RemittGrpDTO {
     private String StockholderOtherType;//   控股股东其他证件类型  String  VARCHAR2(32)    可空  
     private String StockholderIDNo;//    控股股东或实际控制人证件号码  String  VARCHAR2(128)   可空  
     private String RemittGrpDevelop;//   汇缴单位扩展字段    String  VARCHAR2(2000)  可空  扩展字段以“|”分割，字段组合为：key,value
+	public String getGrpName() {
+		return GrpName;
+	}
+	@XmlElement(name = "GrpName")
+	public void setGrpName(String grpName) {
+		GrpName = grpName;
+	}
+	public String getBusinessType() {
+		return BusinessType;
+	}
+	public void setBusinessType(String businessType) {
+		BusinessType = businessType;
+	}
+	public String getGrpNature() {
+		return GrpNature;
+	}
+	public void setGrpNature(String grpNature) {
+		GrpNature = grpNature;
+	}
+	public String getUnifiedSocialCreditCode() {
+		return UnifiedSocialCreditCode;
+	}
+	public void setUnifiedSocialCreditCode(String unifiedSocialCreditCode) {
+		UnifiedSocialCreditCode = unifiedSocialCreditCode;
+	}
+	public String getTaxCode() {
+		return TaxCode;
+	}
+	public void setTaxCode(String taxCode) {
+		TaxCode = taxCode;
+	}
+	public String getTaxEffSTARTDATE() {
+		return TaxEffSTARTDATE;
+	}
+	public void setTaxEffSTARTDATE(String taxEffSTARTDATE) {
+		TaxEffSTARTDATE = taxEffSTARTDATE;
+	}
+	public String getTaxEffENDDATE() {
+		return TaxEffENDDATE;
+	}
+	public void setTaxEffENDDATE(String taxEffENDDATE) {
+		TaxEffENDDATE = taxEffENDDATE;
+	}
+	public String getLicenseCode() {
+		return LicenseCode;
+	}
+	public void setLicenseCode(String licenseCode) {
+		LicenseCode = licenseCode;
+	}
+	public String getLicEffStartDate() {
+		return LicEffStartDate;
+	}
+	public void setLicEffStartDate(String licEffStartDate) {
+		LicEffStartDate = licEffStartDate;
+	}
+	public String getLicEffEndDate() {
+		return LicEffEndDate;
+	}
+	public void setLicEffEndDate(String licEffEndDate) {
+		LicEffEndDate = licEffEndDate;
+	}
+	public String getOrganCode() {
+		return OrganCode;
+	}
+	public void setOrganCode(String organCode) {
+		OrganCode = organCode;
+	}
+	public String getOrgCEffStartDate() {
+		return OrgCEffStartDate;
+	}
+	public void setOrgCEffStartDate(String orgCEffStartDate) {
+		OrgCEffStartDate = orgCEffStartDate;
+	}
+	public String getOrgCEffEndDate() {
+		return OrgCEffEndDate;
+	}
+	public void setOrgCEffEndDate(String orgCEffEndDate) {
+		OrgCEffEndDate = orgCEffEndDate;
+	}
+	public String getSocialInsuNo() {
+		return SocialInsuNo;
+	}
+	public void setSocialInsuNo(String socialInsuNo) {
+		SocialInsuNo = socialInsuNo;
+	}
+	public String getTaxType() {
+		return TaxType;
+	}
+	public void setTaxType(String taxType) {
+		TaxType = taxType;
+	}
+	public String getTaxPayerType() {
+		return TaxPayerType;
+	}
+	public void setTaxPayerType(String taxPayerType) {
+		TaxPayerType = taxPayerType;
+	}
+	public String getHandler() {
+		return Handler;
+	}
+	public void setHandler(String handler) {
+		Handler = handler;
+	}
+	public String getGrpZipCode() {
+		return GrpZipCode;
+	}
+	public void setGrpZipCode(String grpZipCode) {
+		GrpZipCode = grpZipCode;
+	}
+	public String getProvince() {
+		return Province;
+	}
+	public void setProvince(String province) {
+		Province = province;
+	}
+	public String getCity() {
+		return City;
+	}
+	public void setCity(String city) {
+		City = city;
+	}
+	public String getCounty() {
+		return County;
+	}
+	public void setCounty(String county) {
+		County = county;
+	}
+	public String getDetailAddress() {
+		return DetailAddress;
+	}
+	public void setDetailAddress(String detailAddress) {
+		DetailAddress = detailAddress;
+	}
+	public String getTelPhone() {
+		return TelPhone;
+	}
+	public void setTelPhone(String telPhone) {
+		TelPhone = telPhone;
+	}
+	public String getPhone() {
+		return Phone;
+	}
+	@XmlElement(name = "Phone")
+	public void setPhone(String phone) {
+		Phone = phone;
+	}
+	public String getEMail() {
+		return EMail;
+	}
+	@XmlElement(name = "EMail")
+	public void setEMail(String eMail) {
+		EMail = eMail;
+	}
+	public String getBankNodeName() {
+		return BankNodeName;
+	}
+	public void setBankNodeName(String bankNodeName) {
+		BankNodeName = bankNodeName;
+	}
+	public String getBankAccName() {
+		return BankAccName;
+	}
+	public void setBankAccName(String bankAccName) {
+		BankAccName = bankAccName;
+	}
+	public String getBankAccNo() {
+		return BankAccNo;
+	}
+	public void setBankAccNo(String bankAccNo) {
+		BankAccNo = bankAccNo;
+	}
+	public Integer getPeoples() {
+		return Peoples;
+	}
+	public void setPeoples(Integer peoples) {
+		Peoples = peoples;
+	}
+	public String getOnWorkPeoples() {
+		return OnWorkPeoples;
+	}
+	public void setOnWorkPeoples(String onWorkPeoples) {
+		OnWorkPeoples = onWorkPeoples;
+	}
+	public String getOffWorkPeoples() {
+		return OffWorkPeoples;
+	}
+	public void setOffWorkPeoples(String offWorkPeoples) {
+		OffWorkPeoples = offWorkPeoples;
+	}
+	public String getOtherPeoples() {
+		return OtherPeoples;
+	}
+	public void setOtherPeoples(String otherPeoples) {
+		OtherPeoples = otherPeoples;
+	}
+	public BigDecimal getRgtMoney() {
+		return RgtMoney;
+	}
+	public void setRgtMoney(BigDecimal rgtMoney) {
+		RgtMoney = rgtMoney;
+	}
+	public BigDecimal getAsset() {
+		return Asset;
+	}
+	public void setAsset(BigDecimal asset) {
+		Asset = asset;
+	}
+	public BigDecimal getNetProfitRate() {
+		return NetProfitRate;
+	}
+	public void setNetProfitRate(BigDecimal netProfitRate) {
+		NetProfitRate = netProfitRate;
+	}
+	public String getSatrap() {
+		return Satrap;
+	}
+	public void setSatrap(String satrap) {
+		Satrap = satrap;
+	}
+	public String getSatrapIDType() {
+		return SatrapIDType;
+	}
+	public void setSatrapIDType(String satrapIDType) {
+		SatrapIDType = satrapIDType;
+	}
+	public String getSatrapIDNo() {
+		return SatrapIDNo;
+	}
+	public void setSatrapIDNo(String satrapIDNo) {
+		SatrapIDNo = satrapIDNo;
+	}
+	public String getSatrapIDEffStartDate() {
+		return SatrapIDEffStartDate;
+	}
+	public void setSatrapIDEffStartDate(String satrapIDEffStartDate) {
+		SatrapIDEffStartDate = satrapIDEffStartDate;
+	}
+	public String getSatrapIDEffEndDate() {
+		return SatrapIDEffEndDate;
+	}
+	public void setSatrapIDEffEndDate(String satrapIDEffEndDate) {
+		SatrapIDEffEndDate = satrapIDEffEndDate;
+	}
+	public String getSatrapPhone() {
+		return SatrapPhone;
+	}
+	public void setSatrapPhone(String satrapPhone) {
+		SatrapPhone = satrapPhone;
+	}
+	public String getSatrapEmail() {
+		return SatrapEmail;
+	}
+	public void setSatrapEmail(String satrapEmail) {
+		SatrapEmail = satrapEmail;
+	}
+	public String getCorporationsName() {
+		return CorporationsName;
+	}
+	public void setCorporationsName(String corporationsName) {
+		CorporationsName = corporationsName;
+	}
+	public String getCorporationsIDType() {
+		return CorporationsIDType;
+	}
+	public void setCorporationsIDType(String corporationsIDType) {
+		CorporationsIDType = corporationsIDType;
+	}
+	public String getCorporationsOtherType() {
+		return CorporationsOtherType;
+	}
+	public void setCorporationsOtherType(String corporationsOtherType) {
+		CorporationsOtherType = corporationsOtherType;
+	}
+	public String getCorporationsIDNo() {
+		return CorporationsIDNo;
+	}
+	public void setCorporationsIDNo(String corporationsIDNo) {
+		CorporationsIDNo = corporationsIDNo;
+	}
+	public String getStockholderName() {
+		return StockholderName;
+	}
+	public void setStockholderName(String stockholderName) {
+		StockholderName = stockholderName;
+	}
+	public String getStockholderIDType() {
+		return StockholderIDType;
+	}
+	public void setStockholderIDType(String stockholderIDType) {
+		StockholderIDType = stockholderIDType;
+	}
+	public String getStockholderOtherType() {
+		return StockholderOtherType;
+	}
+	public void setStockholderOtherType(String stockholderOtherType) {
+		StockholderOtherType = stockholderOtherType;
+	}
+	public String getStockholderIDNo() {
+		return StockholderIDNo;
+	}
+	public void setStockholderIDNo(String stockholderIDNo) {
+		StockholderIDNo = stockholderIDNo;
+	}
+	public String getRemittGrpDevelop() {
+		return RemittGrpDevelop;
+	}
+	public void setRemittGrpDevelop(String remittGrpDevelop) {
+		RemittGrpDevelop = remittGrpDevelop;
+	}
 
 }

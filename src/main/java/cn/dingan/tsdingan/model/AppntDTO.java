@@ -2,10 +2,8 @@ package cn.dingan.tsdingan.model;
 
 import java.math.BigDecimal;
 
-import lombok.Getter;
-import lombok.Setter;
-@Setter
-@Getter
+import javax.xml.bind.annotation.XmlElement;
+
 public class AppntDTO {
     private String Relation1;//  与被保人关系  String  VARCHAR2(2) 非空  见字段可选值
     private String Relation2;//   与受益人关系  String  VARCHAR2(2) 非空  见字段可选值
@@ -34,5 +32,175 @@ public class AppntDTO {
     private String AppntBankAccNo;//  投保人银行账户 String  VARCHAR2(40)    可空  
     private String AppntAccName;//    投保人银行户名 String  VARCHAR2(60)    可空  
     private String AppntDevelop;//    扩展字段    String  VARCHAR2(20)    可空  
+	public String getRelation1() {
+		return Relation1;
+	}
+	@XmlElement(name = "Relation1")
+	public void setRelation1(String relation1) {
+		Relation1 = relation1;
+	}
+	public String getRelation2() {
+		return Relation2;
+	}
+	@XmlElement(name = "Relation2")
+	public void setRelation2(String relation2) {
+		Relation2 = relation2;
+	}
+	public String getAppntName() {
+		return AppntName;
+	}
+	@XmlElement(name = "AppntName")
+	public void setAppntName(String appntName) {
+		AppntName = appntName;
+	}
+	public String getAppntSex() {
+		return AppntSex;
+	}
+	@XmlElement(name = "AppntSex")
+	public void setAppntSex(String appntSex) {
+		AppntSex = appntSex;
+	}
+	public String getAppntIdtype() {
+		return AppntIdtype;
+	}
+	@XmlElement(name = "AppntIdtype")
+	public void setAppntIdtype(String appntIdtype) {
+		AppntIdtype = appntIdtype;
+	}
+	public String getAppntIdno() {
+		return AppntIdno;
+	}
+	@XmlElement(name = "AppntIdno")
+	public void setAppntIdno(String appntIdno) {
+		AppntIdno = appntIdno;
+	}
+	public String getAppntBirth() {
+		return AppntBirth;
+	}
+	@XmlElement(name = "AppntBirth")
+	public void setAppntBirth(String appntBirth) {
+		AppntBirth = appntBirth;
+	}
+	public String getAppntAge() {
+		return AppntAge;
+	}
+	public void setAppntAge(String appntAge) {
+		AppntAge = appntAge;
+	}
+	public String getAppntAddress() {
+		return AppntAddress;
+	}
+	public void setAppntAddress(String appntAddress) {
+		AppntAddress = appntAddress;
+	}
+	public String getAppntPhone() {
+		return AppntPhone;
+	}
+	public void setAppntPhone(String appntPhone) {
+		AppntPhone = appntPhone;
+	}
+	public String getAppntType() {
+		return AppntType;
+	}
+	public void setAppntType(String appntType) {
+		AppntType = appntType;
+	}
+	public String getAppntNativePlace() {
+		return AppntNativePlace;
+	}
+	@XmlElement(name = "AppntNativePlace")
+	public void setAppntNativePlace(String appntNativePlace) {
+		AppntNativePlace = appntNativePlace;
+	}
+	public String getAppntNationality() {
+		return AppntNationality;
+	}
+	public void setAppntNationality(String appntNationality) {
+		AppntNationality = appntNationality;
+	}
+	public String getAppntRgtAddress() {
+		return AppntRgtAddress;
+	}
+	public void setAppntRgtAddress(String appntRgtAddress) {
+		AppntRgtAddress = appntRgtAddress;
+	}
+	public String getAppntMarriage() {
+		return AppntMarriage;
+	}
+	public void setAppntMarriage(String appntMarriage) {
+		AppntMarriage = appntMarriage;
+	}
+	public String getAppntHealth() {
+		return AppntHealth;
+	}
+	public void setAppntHealth(String appntHealth) {
+		AppntHealth = appntHealth;
+	}
+	public BigDecimal getAppntStature() {
+		return AppntStature;
+	}
+	public void setAppntStature(BigDecimal appntStature) {
+		AppntStature = appntStature;
+	}
+	public BigDecimal getAppntAvoirdupois() {
+		return AppntAvoirdupois;
+	}
+	public void setAppntAvoirdupois(BigDecimal appntAvoirdupois) {
+		AppntAvoirdupois = appntAvoirdupois;
+	}
+	public String getAppntDegree() {
+		return AppntDegree;
+	}
+	public void setAppntDegree(String appntDegree) {
+		AppntDegree = appntDegree;
+	}
+	public String getAppntOccupationType() {
+		return AppntOccupationType;
+	}
+	public void setAppntOccupationType(String appntOccupationType) {
+		AppntOccupationType = appntOccupationType;
+	}
+	public String getAppntOccupationCode() {
+		return AppntOccupationCode;
+	}
+	public void setAppntOccupationCode(String appntOccupationCode) {
+		AppntOccupationCode = appntOccupationCode;
+	}
+	public String getAppntStartWorkDate() {
+		return AppntStartWorkDate;
+	}
+	public void setAppntStartWorkDate(String appntStartWorkDate) {
+		AppntStartWorkDate = appntStartWorkDate;
+	}
+	public String getAppntPosition() {
+		return AppntPosition;
+	}
+	public void setAppntPosition(String appntPosition) {
+		AppntPosition = appntPosition;
+	}
+	public String getAppntBankCode() {
+		return AppntBankCode;
+	}
+	public void setAppntBankCode(String appntBankCode) {
+		AppntBankCode = appntBankCode;
+	}
+	public String getAppntBankAccNo() {
+		return AppntBankAccNo;
+	}
+	public void setAppntBankAccNo(String appntBankAccNo) {
+		AppntBankAccNo = appntBankAccNo;
+	}
+	public String getAppntAccName() {
+		return AppntAccName;
+	}
+	public void setAppntAccName(String appntAccName) {
+		AppntAccName = appntAccName;
+	}
+	public String getAppntDevelop() {
+		return AppntDevelop;
+	}
+	public void setAppntDevelop(String appntDevelop) {
+		AppntDevelop = appntDevelop;
+	}
 
 }

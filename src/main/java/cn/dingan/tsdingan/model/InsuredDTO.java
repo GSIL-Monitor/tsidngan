@@ -2,10 +2,7 @@ package cn.dingan.tsdingan.model;
 
 import java.math.BigDecimal;
 
-import lombok.Getter;
-import lombok.Setter;
-@Setter
-@Getter
+import javax.xml.bind.annotation.XmlElement;
 public class InsuredDTO {
     private String InsuredName;//    被保人姓名   String  VARCHAR2(20)    非空  
     private String InsuredSex;// 被保人性别   String  VARCHAR2(1) 非空  0-男；1-女；2-不详
@@ -34,5 +31,177 @@ public class InsuredDTO {
     private String InsuredBankCode;//    被保人银行编码 String  VARCHAR2(10)    可空  
     private String InsuredBankAccNo;//   被保人银行账户 String  VARCHAR2(40)    可空  
     private String InsuredDevelop;//扩展字段    String  VARCHAR2(2000)  可空  扩展字段以“|”分割，字段组合为：key,valuekey,value|key,value…
+	public String getInsuredName() {
+		return InsuredName;
+	}
+	
+	@XmlElement(name = "InsuredName")
+	public void setInsuredName(String insuredName) {
+		InsuredName = insuredName;
+	}
+	public String getInsuredSex() {
+		return InsuredSex;
+	}
+	@XmlElement(name = "InsuredSex")
+	public void setInsuredSex(String insuredSex) {
+		InsuredSex = insuredSex;
+	}
+	public String getInsuredIdtype() {
+		return InsuredIdtype;
+	}
+	@XmlElement(name = "InsuredIdtype")
+	public void setInsuredIdtype(String insuredIdtype) {
+		InsuredIdtype = insuredIdtype;
+	}
+	public String getInsuredIdno() {
+		return InsuredIdno;
+	}
+	@XmlElement(name = "InsuredIdno")
+	public void setInsuredIdno(String insuredIdno) {
+		InsuredIdno = insuredIdno;
+	}
+	public String getInsuredBirth() {
+		return InsuredBirth;
+	}
+	@XmlElement(name = "InsuredBirth")
+	public void setInsuredBirth(String insuredBirth) {
+		InsuredBirth = insuredBirth;
+	}
+	public String getMainFlag() {
+		return MainFlag;
+	}
+	@XmlElement(name = "MainFlag")
+	public void setMainFlag(String mainFlag) {
+		MainFlag = mainFlag;
+	}
+	public String getRelationToMainInsured() {
+		return RelationToMainInsured;
+	}
+	public void setRelationToMainInsured(String relationToMainInsured) {
+		RelationToMainInsured = relationToMainInsured;
+	}
+	public String getRelationToAppnt() {
+		return RelationToAppnt;
+	}
+	@XmlElement(name = "RelationToAppnt")
+	public void setRelationToAppnt(String relationToAppnt) {
+		RelationToAppnt = relationToAppnt;
+	}
+	public Integer getInsuredAge() {
+		return InsuredAge;
+	}
+	public void setInsuredAge(Integer insuredAge) {
+		InsuredAge = insuredAge;
+	}
+	public String getInsuredAddress() {
+		return InsuredAddress;
+	}
+	public void setInsuredAddress(String insuredAddress) {
+		InsuredAddress = insuredAddress;
+	}
+	public String getInsuredPhone() {
+		return InsuredPhone;
+	}
+	public void setInsuredPhone(String insuredPhone) {
+		InsuredPhone = insuredPhone;
+	}
+	public String getInsuredType() {
+		return InsuredType;
+	}
+	public void setInsuredType(String insuredType) {
+		InsuredType = insuredType;
+	}
+	public String getInsuredNativePlace() {
+		return InsuredNativePlace;
+	}
+	
+	@XmlElement(name = "InsuredNativePlace")
+	public void setInsuredNativePlace(String insuredNativePlace) {
+		InsuredNativePlace = insuredNativePlace;
+	}
+	public String getInsuredNationality() {
+		return InsuredNationality;
+	}
+	public void setInsuredNationality(String insuredNationality) {
+		InsuredNationality = insuredNationality;
+	}
+	public String getInsuredRgtAddress() {
+		return InsuredRgtAddress;
+	}
+	public void setInsuredRgtAddress(String insuredRgtAddress) {
+		InsuredRgtAddress = insuredRgtAddress;
+	}
+	public String getInsuredMarriage() {
+		return InsuredMarriage;
+	}
+	public void setInsuredMarriage(String insuredMarriage) {
+		InsuredMarriage = insuredMarriage;
+	}
+	public String getInsuredHealth() {
+		return InsuredHealth;
+	}
+	public void setInsuredHealth(String insuredHealth) {
+		InsuredHealth = insuredHealth;
+	}
+	public BigDecimal getInsuredStature() {
+		return InsuredStature;
+	}
+	public void setInsuredStature(BigDecimal insuredStature) {
+		InsuredStature = insuredStature;
+	}
+	public BigDecimal getInsuredAvoirdupois() {
+		return InsuredAvoirdupois;
+	}
+	public void setInsuredAvoirdupois(BigDecimal insuredAvoirdupois) {
+		InsuredAvoirdupois = insuredAvoirdupois;
+	}
+	public String getInsuredDegree() {
+		return InsuredDegree;
+	}
+	public void setInsuredDegree(String insuredDegree) {
+		InsuredDegree = insuredDegree;
+	}
+	public String getInsuredOccupationType() {
+		return InsuredOccupationType;
+	}
+	public void setInsuredOccupationType(String insuredOccupationType) {
+		InsuredOccupationType = insuredOccupationType;
+	}
+	public String getInsuredOccupationCode() {
+		return InsuredOccupationCode;
+	}
+	public void setInsuredOccupationCode(String insuredOccupationCode) {
+		InsuredOccupationCode = insuredOccupationCode;
+	}
+	public String getInsuredStartWorkDate() {
+		return InsuredStartWorkDate;
+	}
+	public void setInsuredStartWorkDate(String insuredStartWorkDate) {
+		InsuredStartWorkDate = insuredStartWorkDate;
+	}
+	public String getInsuredPosition() {
+		return InsuredPosition;
+	}
+	public void setInsuredPosition(String insuredPosition) {
+		InsuredPosition = insuredPosition;
+	}
+	public String getInsuredBankCode() {
+		return InsuredBankCode;
+	}
+	public void setInsuredBankCode(String insuredBankCode) {
+		InsuredBankCode = insuredBankCode;
+	}
+	public String getInsuredBankAccNo() {
+		return InsuredBankAccNo;
+	}
+	public void setInsuredBankAccNo(String insuredBankAccNo) {
+		InsuredBankAccNo = insuredBankAccNo;
+	}
+	public String getInsuredDevelop() {
+		return InsuredDevelop;
+	}
+	public void setInsuredDevelop(String insuredDevelop) {
+		InsuredDevelop = insuredDevelop;
+	}
 
 }
