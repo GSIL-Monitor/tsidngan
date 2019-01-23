@@ -61,7 +61,8 @@ public class HrEmployeeServiceImpl implements HrEmployeeService {
 
         List<HrEmployee> records = hrEmployeeMapper.selectByExampleAndRowBounds(example, page);
 
-        return null;
+        return new DataSet<>(page.getPageNo(), page.getPageSize(), page.getTotalPages(), page.getTotalCount(),
+                records);
     }
 
 }

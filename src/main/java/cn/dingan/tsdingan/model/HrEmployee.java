@@ -12,10 +12,10 @@ import org.jeecgframework.poi.excel.annotation.Excel;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import groovy.transform.ToString;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Table(name = "hr_employee")
 @Setter
