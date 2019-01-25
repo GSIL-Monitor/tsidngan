@@ -353,7 +353,7 @@ public class CxfClient {
         MainContDTO.setInsuredList(InsuredList);
         
         
-      //汇缴单位信息
+        //汇缴单位信息
         RemittGrpDTO RemittGrpDTO = new RemittGrpDTO();
         RemittGrpDTO.setEMail("15925754@qq.com");
         RemittGrpDTO.setPhone("18620385582");
