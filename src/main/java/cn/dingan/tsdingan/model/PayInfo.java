@@ -2,8 +2,6 @@ package cn.dingan.tsdingan.model;
 
 import java.math.BigDecimal;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
-
 import lombok.Getter;
 import lombok.Setter;
 

@@ -14,8 +14,6 @@ import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLSession;
 
-import org.apache.commons.logging.Log;
-
 public class HttpConnectionUtil {
 	private HttpURLConnection conn;
 	private String connectUrl;
@@ -42,7 +40,8 @@ public class HttpConnectionUtil {
     		HttpsURLConnection httpsConn = (HttpsURLConnection)conn;
     		httpsConn.setSSLSocketFactory(SSLUtil.getInstance().getSSLSocketFactory());
     	} else if (conn instanceof HttpURLConnection){
-    		HttpURLConnection httpConn = (HttpURLConnection)conn;
+    		@SuppressWarnings("unused")
+            HttpURLConnection httpConn = (HttpURLConnection)conn;
     	} else {
     		throw new Exception("不是http/https协议的url");
     	}
