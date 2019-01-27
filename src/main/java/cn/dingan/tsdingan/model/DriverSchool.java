@@ -85,6 +85,9 @@ public class DriverSchool {
      */
     @ApiModelProperty(value = "登录账号")
     private String account;
+    
+    @Column(name = "is_deleted")
+    private String isDeleted;
 
     /**
      * 登录密码

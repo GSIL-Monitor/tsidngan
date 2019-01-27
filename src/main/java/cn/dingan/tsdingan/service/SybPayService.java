@@ -5,12 +5,14 @@ import java.util.Date;
 import java.util.Map;
 import java.util.TreeMap;
 
+import org.springframework.stereotype.Component;
 
 import cn.dingan.tsdingan.contants.Contants;
 import cn.dingan.tsdingan.model.PayInfo;
 import cn.dingan.tsdingan.utils.HttpConnectionUtil;
 import cn.dingan.tsdingan.utils.SybUtil;
 
+@Component
 public class SybPayService {
     
     

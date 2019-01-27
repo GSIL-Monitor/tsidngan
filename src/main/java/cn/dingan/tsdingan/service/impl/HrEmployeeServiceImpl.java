@@ -25,8 +25,6 @@ import tk.mybatis.mapper.entity.Example.Criteria;
 @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class, readOnly = true)
 public class HrEmployeeServiceImpl implements HrEmployeeService {
 
-
-	 
 	@Autowired
 	private HrEmployeeMapper hrEmployeeMapper;
 

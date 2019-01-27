@@ -19,7 +19,6 @@ public class PayController {
     
     private static final Logger logger = LoggerFactory.getLogger(PayController.class);
     
-    @Autowired
     private SybPayService sybPayService;
     
     
