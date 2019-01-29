@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>考勤记录</title>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="description" content="" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable=no" />
+<link rel="stylesheet" href="../css/font-awesome.min.css" />
+<link rel="stylesheet" href="../css/common.css" />
+<link rel="stylesheet" href="../css/css.css" />
+<script type="text/javascript" src="../js/jquery-2.0.3.min.js"></script>
+<script type="text/javascript" src="../js/date.js"></script>
+</head>
+
+<body>
+
+	<!-- top -->
+	<div class="topBarBox"></div>
+	<div class="top-bar">
+
+		<span class="text" th:if="${manager ==1}">我的考勤</span>
+		<!-- <a href="#" class="go-back"> <i class="fa fa-angle-left"
+			aria-hidden="true"></i>
+		</a> -->
+		<div th:if="${manager==2}">
+			<select id="attendSelect"
+				style="list-style: none; border: 0; background: none; line-height: 50px; font-size: 16px;">
+				<option value="0">我的考勤</option>
+				<option value="1">下属考勤</option>
+			</select>
+		</div>
+
+	</div>
+
+	<div class="date-box" id="dateDiv">
+		<div class="date-title">
+			<span class="prev-mouth" id="prev"><i
+				class="fa fa-chevron-left" aria-hidden="true"></i></span> <span class=""
+				id="year"></span> <span class="next-mouth" id="next"><i
+				class="fa fa-chevron-right" aria-hidden="true"></i></span>
+		</div>
+		<div class="day date-li">
+			<span>日</span> <span>一</span> <span>二</span> <span>三</span> <span>四</span>
+			<span>五</span> <span>六</span>
+		</div>
+		<div class="date date-li" id="date"></div>
+	</div>
+
+	<div class="log-box" id="logInfoDiv">
+		<div class="title" id="attendanceDate" th:text="${attendanceDate}"></div>
+		<div id="recordsDiv">
+			<div th:each="record : ${records}">
+				<div class="info">
+					<div class="state pass normal" th:if="${record.status ==1}"></div>
+					<div class="state pass normal" th:if="${record.status ==2}"></div>
+					<div class="state lates normal" th:if="${record.status ==3}"></div>
+					<div class="state lates normal" th:if="${record.status ==4}"></div>
+					<div class="text">
+						<p>
+							<span class="span">签到时间：</span><span
+								th:text="${#dates.format(record.attenceDate,'yyyy-MM-dd HH:mm:ss')}"></span>
+						</p>
+						<p>
+							<span class="span">签到地点：</span><span class="adress"
+								th:text="${record.address}"></span>
+						</p>
+						<p th:if="${record.remark} !=null">
+							<span class="span">外出事由：</span><span class="adress"
+								th:text="${record.remark}"></span>
+						</p>
+
+
+					</div>
+					<div class="type">
+						状态： <span class="normal" th:if="${record.status ==1}">正常签到</span>
+						<span class="normal" th:if="${record.status ==2}">正常签退</span> <span
+							class="late" th:if="${record.status ==3}">迟到</span> <span
+							class="late" th:if="${record.status ==4}">早退</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 员工信息 -->
+	<div th:if="${employee !=null}">
+		<input id="employeeId" type="hidden" th:value="${employee.employeeId}" />
+	</div>
+	<input id="dateStr" type="hidden" />
+	<input id="status" type="hidden" />
+	<input type="hidden" id="wechaturl" th:value="${wechaturl}" />
+</body>
+</html>
+<script th:inline="javascript" type="text/javascript">
+	/*<![CDATA[*/
+	$("#attendSelect").on('change',function(){
+		var attendSelect = $("#attendSelect").val();
+		if(attendSelect ==1) {
+			getSub();
+		}else {
+			//安卓微信window.location.href 无效 需加时间戳
+			window.location.href =  location.href+'?time='+((new Date()).getTime());
+		}
+	});
+		
+	var dates = new dates(
+			{
+				prev : "prev",
+				next : "next",
+				span : "dateLink",
+				callback : function(dateStr) {
+					$("#recordsDiv").html("");
+					var employeeId = $("#employeeId").val();
+					var wechaturl = $("#wechaturl").val();
+					$("#dateStr").val(dateStr);
+					$.ajax({
+						type : "POST",
+						url : wechaturl + "/query/record",
+						data : {
+							'employeeId' : employeeId,
+							'dateStr' : dateStr
+						},
+						dataType : 'json',
+						success : function(data) {
+							if (data.success) {
+								var result = data.object;
+								$("#attendanceDate").text(
+										data.message);
+								var html = "";
+								for (var i = 0; i < result.length; i++) {
+									var attenceDate = result[i]['attenceDate'];
+									html += '<div class="info">';
+									if (result[i]['status'] == 1 || result[i]['status'] == 2) {
+										html += '<div class="state pass">';
+									}else {
+										html += '<div class="state lates">';
+									}
+									html +='</div><div class="text"><p><span class="span">签到时间：</span><span>';
+									
+									html +=	result[i]['attenceDate']
+									html +=	'</span>';
+									html += '</p><p><span class="span">签到地点：</span><span class="adress">'
+											+ result[i]['address']
+											+ '</span></p></div>';
+	
+									if (result[i]['status'] == 1) {
+										html += '<div class="type">状态： <span class="normal">正常签到</span></div></div>';
+									}
+									if (result[i]['status'] == 2) {
+										html += '<div class="type">状态： <span class="normal">正常签退</span></div></div>';
+									}
+									if (result[i]['status'] == 3) {
+										html += '<div class="type">状态： <span class="late">迟到</span></div></div>';
+									}
+									if (result[i]['status'] == 4) {
+										html += '<div class="type">状态： <span class="late">早退</span></div></div>';
+									}
+								}
+								$("#recordsDiv").append(html);
+							}
+						}
+					})
+				}
+			});
+	
+		function getSub() {
+			var wechaturl = $("#wechaturl").val();
+			var employeeId = $("#employeeId").val();
+			var dateStr = $("#dateStr").val();
+			var queryStr = $("#queryStr").val();
+			var status =$("#status").val();
+			$.ajax({
+				type : "POST",
+				url : wechaturl + "/query/subrecord",
+				data : {
+					'employeeId' : employeeId,
+					'dateStr' : dateStr,
+					'queryStr':queryStr,
+					'status' :status
+				},
+				dataType : 'json',
+				success : function(data) {
+					if (data.success) {
+						$("#dateDiv").hide();
+						var result = data.object;
+						var html = '<div style="padding:10px 10px 0;"><input type="text" id="queryStr" style="border-radius:5px;width: calc(100% - 70px);height:26px;padding: 0;float: left;">';
+							html +='<button style="width: 60px;height: 30px;background: none #0090ff;border: 0;border-radius: 5px;float:right;color:#ffffff;" onclick="querySub()">搜索</button></div><div class="clear"></div>';
+						for (var i = 0; i < result.length; i++) {
+							html += '<div class="info">';
+							if(result[i]['attenceDate']==null) {
+								html += '<div class="state lates"></div>';
+								html +='<div class="text"><p><span class="span">'+result[i]["employeeName"]+'</span><span onclick="queryStatus(0)">';
+								html +="未签到</span></p></div>";
+							}else {
+								if(result[i]['status'] == 1 || result[i]['status'] == 2) {
+									html += '<div class="state pass"></div>';
+									
+								}else {
+									html += '<div class="state lates"></div>';
+								}
+								html +='<div class="text"><p><span class="span">'+result[i]["employeeName"]+'</span><span>';
+								html +=result[i]['attenceDate']+ '</span></p>';
+								html += '<p><span class="span">签到地点：</span><span class="adress">'
+									+ result[i]['address']
+									+ '</span></p></div>';
+
+								if (result[i]['status'] == 1) {
+									html += '<div class="type">状态： <span class="normal" onclick="queryStatus(1)">正常签到</span></div>';
+								}
+								if (result[i]['status'] == 2) {
+									html += '<div class="type">状态： <span class="normal" onclick="queryStatus(2)">正常签退</span></div>';
+								}
+								if (result[i]['status'] == 3) {
+									html += '<div class="type">状态： <span class="late" onclick="queryStatus(3)">迟到</span></div>';
+								}
+								if (result[i]['status'] == 4) {
+									html += '<div class="type">状态： <span class="late" onclick="queryStatus(4)">早退</span></div>';
+								}
+									
+							}
+							html +="</div>";
+						}
+						$("#recordsDiv").html(html);
+					}
+				}
+			})
+		}
+		
+		//根据名称或部门查询
+		function querySub(){
+			$("#status").val("");
+			getSub();
+		}
+		
+		//根据状态查询
+		function queryStatus(type) {
+			$("#status").val(type);
+			getSub();
+		}
+	
+	/*]]>*/
+</script>

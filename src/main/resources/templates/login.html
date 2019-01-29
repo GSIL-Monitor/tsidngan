@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" class="login-html">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"> 
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <title>创星科技认证中心</title>
+    <!-- <link rel="stylesheet" type="text/css" href="/static/css/login.css?"+Math.random(10000)>
+    <link rel="stylesheet" type="text/css" href="/static/css/layui.css?" + Math.random(10000)> -->
+    <script src="/static/jquery.js?"></script>
+    <script src="/static/layui.js?"></script>
+    <script src="/static/json2.js?"></script>
+    <script type="text/javascript">
+    	document.write('<link rel="stylesheet" type="text/css" href="/static/css/login.css?"'+Math.random(10000)+ '">');
+    	document.write('<link rel="stylesheet" type="text/css" href="/static/css/layui.css?"'+Math.random(10000)+ '">');
+    </script>
+    <script>
+	 if(top!=self){
+		if(top.location != self.location) {
+			top.location=self.location;
+		}
+	 }
+      //jQuery实现在一个输入框按回车键后光标跳到下一个输入框  
+    function focusNextInput(thisInput)  
+    {   
+        var loginForm = document.getElementById('loginForm');
+        var inputs = loginForm.getElementsByTagName('input');
+        for(var i = 0;i<inputs.length;i++){   
+            // 如果是最后一个，则焦点回到第一个   
+            if(i==(inputs.length-1)){   
+                login(); break;   
+            }else if(thisInput == inputs[i]){   
+                inputs[i+1].focus(); break;
+            }   
+        }
+        if(thisInput.name == 'password'){
+            document.getElementById('userLoginSubmit').click();
+        }
+    }
+    if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+        $('head').append('<link rel="stylesheet" type="text/css" href="/static/css/login_phone.css">');
+    }
+    
+    var time = 120;
+    $(function(){
+        $('#forger').on('click',function(){
+            $('.loginFormBox').css('left','-100%');
+            $('.first-box').css('left','0');
+        });
+        $('#goBackLogin,#goBackLogins').on('click',function(){
+            $('.loginFormBox').css('left','0');
+            $('.loginFormPhoneBox').css('left','100%');
+        	$('input').val('');
+        });
+        
+        // 获取验证码
+        $('#getPhoneCode').on('click',function(){
+            // 1.验证工号绑定手机号码（
+            // 2.点击按钮发送验证码
+            // 3.提交验证输入验证码
+            valdiateMobile();
+            
+        });
+        
+        // 验证手机
+        function valdiateMobile() {
+            var userCode = $("#forgetForm input[name='usercode']").val();
+            if(userCode == null || userCode == '') {
+                layer.msg("请输入工号!");
+                return;
+            }
+            var mobile = $("#forgetForm input[name='mobile']").val();
+            if(mobile == null || mobile == '') {
+                layer.msg("请输入手机号码!");
+                return;
+            }
+            var formData = {};
+            formData['userCode'] = userCode;
+            formData['mobile'] =  mobile;
+            $.ajax({
+                url: '/user/valdiateMobile',
+                type: 'post',
+                data: formData,
+                success: function(resp){
+                    if(resp && resp.success) {
+                        sendVerifyCode();
+                    }else{
+                        layer.msg(resp.message || '系统错误.')
+                    }
+                }
+            })
+        }
+        
+        // 发送验证码
+        function sendVerifyCode() {
+            var userCode = $("#forgetForm input[name='usercode']").val();
+            if(userCode == null || userCode == '') {
+                layer.msg("请输入工号!");
+                return;
+            }
+            var mobile = $("#forgetForm input[name='mobile']").val();
+            if(mobile == null || mobile == '') {
+                layer.msg("请输入手机号码!");
+                return;
+            }
+            var formData = {};
+            formData['businessNo'] = userCode;
+            formData['mobile'] =  mobile;
+            formData['businessType'] = '10001';
+            $.ajax({
+                url: '/send/verify',
+                contentType: "application/json; charset=utf-8",
+                type: 'post',
+                data: JSON.stringify(formData),
+                success: function(resp){
+                    if(resp && resp.success) {
+                        $('#getPhoneCode').addClass('dis');
+                        times();
+                    }
+                }
+            })
+        }
+    })
+    
+    
+    function times(){
+        time --;
+        $('#getPhoneCode').html(time + '秒后重新获取！');
+        if(time == 0){
+            $('#getPhoneCode').html('获取验证码').removeClass('dis');
+            return false
+        }
+        setTimeout(times,1000);
+    }
+    layui.use(['layer','form'], function(){
+        var form = layui.form;
+        form.on('submit(userLoginSubmit)', function(data){
+            var index = layer.load();
+            $.ajax({
+                url:"/user/login"
+                ,contentType:"application/json"
+                ,data:JSON.stringify(data.field)
+                ,method:"post"
+                ,dataType:"json"
+                ,success:function (res) {
+                    layer.close(index);
+                    if (res.success == true){
+                        layer.msg("当前系统登录成功，系统将自动跳转",{time:1000},function () {
+                            console.log(res.message);
+                            window.location.href =  res.message;
+                        });
+                    } else {
+                        layer.msg(res.message);
+                    }
+                }
+            });
+            return false;
+        })
+    });
+    
+    // 验证验证码
+    layui.use(['layer','form'], function(){
+        var form = layui.form;
+        form.on('submit(forgetSubmit)', function(data){
+        	var userCode = $("#forgetForm input[name='usercode']").val();
+            if(userCode == null || userCode == '') {
+                layer.msg("请输入工号!");
+                return;
+            }
+            var mobile = $("#forgetForm input[name='mobile']").val();
+            if(userCode == null || userCode == '') {
+                layer.msg("请输入手机号码!");
+                return;
+            }
+            var formData = {};
+            formData['businessNo'] = userCode;
+            formData['mobile'] =  mobile;
+            formData['businessType'] = '10001';
+            $.ajax({
+                url: '/selectVerifyCode',
+                type: 'post',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(formData),
+                success: function(resp){
+                    if(resp && resp.success) {
+                    	var code = $("#forgetForm input[name='code']").val();
+                    	if(code == resp.object) {
+                    		$('.loginFormBox').css('left','-100%');
+                            $('.first-box').css('left','-100%');
+                        	$('.second-box').css('left','0');	
+                    	}else{
+                    		layer.msg('输入验证码错误，请重新输入!');	
+                    	}
+                    } else {
+                        layer.msg(resp.message || '输入验证码错误!');
+                    }
+                }
+            })
+        })
+    });
+    
+    // 修改密码
+    layui.use(['layer','form'], function(){
+        var form = layui.form;
+        form.on('submit(changeSubmit)', function(data){
+        	var userCode = $("#forgetForm input[name='usercode']").val();
+            if(userCode == null || userCode == '') {
+                layer.msg("请输入工号!");
+                return;
+            }
+            var rePassword = $("#changePwdForm input[name='rePassword']").val();
+            var password = $("#changePwdForm input[name='password']").val();
+            if(password.length < 6){
+                layer.msg("密码长度不能小于6位");
+                return;
+            }
+            if(password != rePassword) {
+                layer.msg("两次输入密码不一致");
+                return;
+            }
+            var formData = {};
+            formData['userId'] = userCode;
+            formData['password'] =  password;
+            $.ajax({
+                url: '/user/change/pwd/save',
+                type: 'post',
+                data: formData,
+                success: function(resp){
+                	if(resp && resp.success) {
+                		$('.loginFormBox').css('left','0');
+                        $('.first-box').css('left','-100%');
+                    	$('.second-box').css('left','-100%');
+                    	
+                    	var returnUrl = $("#loginForm input[name='remarkid']").val();
+                    	$('input').val('');
+                    	$("#loginForm input[name='remarkid']").val(returnUrl);
+                    	layer.msg(resp.message || '修改密码成功,请重新登录!');
+                    } else{
+                    	layer.msg(resp.message || '修改密码错误.')
+                    }
+                }
+            })
+        })
+    });
+        
+    </script>
+</head>
+<body class="login-body">
+<div class="login-logo">
+    <img src="/static/images/login_logo.png" width="693">
+</div>
+<div class="login-left">
+</div>
+<div class="login-right">
+</div>
+<div class="login-main">
+    <div class=" login-form">
+        <form action="/user/login" method="post" class="layui-form" id="loginForm">
+            <div class="loginMain">
+                <img src="/static/images/logo_main.png" width="416">
+            </div>
+	        <div class="loginFormBox">
+	            <div class="title">创星之家综合信息平台欢迎您：</div>
+	            <div class="layui-input-inline">
+	                <input type="text" name="usercode" lay-verify="required" placeholder="请输入工号" autocomplete="off" class="layui-input" onkeypress="if(event.keyCode==13) focusNextInput(this);">
+	            </div>
+	            <div class="layui-input-inline">
+	                <input type="password" name="password" lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input" onkeypress="if(event.keyCode==13) focusNextInput(this);">
+	            </div>
+	            <div class="layui-input-inline">
+	                <!-- <label class="fl">
+	                    <input type="checkbox" name="" lay-skin="primary" title="记住用户名"> 
+	                </label> -->
+	                <a href="#" class="fr forget" style="float:right;" id="forger">忘记密码</a>
+	            </div>
+	                <input type="hidden" name="remarkid"  th:value="${returnURL}" />
+	            <div class="layui-input-inline login-btn">
+	                <!-- <p class="loginAlt">${message}</p> -->
+	                <button type="button" class="layui-btn" id="userLoginSubmit" lay-submit lay-filter="userLoginSubmit">登录</button>
+	                <!-- <button type="button" class="layui-btn"  type="submit">登录</button> -->
+	            </div>
+                <div class="Copyright">Copyright © 湖南创星科技股份有限公司</div>
+	        </div>
+        </form>
+        <form action="/user/login" method="post" class="layui-form" id="forgetForm">
+            <div class="loginFormPhoneBox first-box">
+                <div class="title">创星认证中心：</div>
+                <div class="layui-input-inline">
+                    <input type="text" name="usercode" lay-verify="required" placeholder="请输入工号" autocomplete="off" class="layui-input" onkeypress="if(event.keyCode==13) focusNextInput(this);">
+                </div>
+                <div class="layui-input-inline">
+                    <input type="text" name="mobile" lay-verify="required" placeholder="请输入手机号" autocomplete="off" class="layui-input codes" onkeypress="if(event.keyCode==13) focusNextInput(this);">
+                    <a href="javascript:;" id="getPhoneCode">获取验证码</a>
+                </div>
+                <div class="layui-input-inline">
+                    <input type="text" name="code" lay-verify="required" placeholder="请输入验证码" autocomplete="off" class="layui-input" onkeypress="if(event.keyCode==13) focusNextInput(this);">
+                </div>
+                <div class="layui-input-inline login-btn">
+                    <!-- <p class="loginAlt">${message}</p> -->
+                    <button type="button" class="layui-btn" id="editorNextButton" lay-submit lay-filter="forgetSubmit">下一步</button>
+                    <!-- <button type="button" class="layui-btn"  type="submit">登录</button> -->
+                </div>
+                <div class="layui-input-inline">
+                    <a href="#" class="fr forget" style="float:right;" id="goBackLogin">返回登陆</a>
+                </div>
+            </div>
+        </form>
+        <form method="post" class="layui-form" id="changePwdForm">
+            <div class="loginFormPhoneBox second-box" style="left:100%;">
+                <div class="title">创星认证中心：</div>
+                <div class="layui-input-inline">
+                    <input type="password" name="password" lay-verify="required" placeholder="请输入新密码" autocomplete="off" class="layui-input" onkeypress="if(event.keyCode==13) focusNextInput(this);">
+                </div>
+                <div class="layui-input-inline">
+                    <input type="password" name="rePassword" lay-verify="required" placeholder="重复密码" autocomplete="off" class="layui-input" onkeypress="if(event.keyCode==13) focusNextInput(this);">
+                </div>
+                <div class="layui-input-inline login-btn">
+                    <!-- <p class="loginAlt">${message}</p> -->
+                    <button type="button" class="layui-btn" lay-submit lay-filter="changeSubmit">提交</button>
+                    <!-- <button type="button" class="layui-btn"  type="submit">登录</button> -->
+                </div>
+                <div class="layui-input-inline">
+                    <a href="#" class="fr forget" style="float:right;" id="goBackLogins">返回登陆</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>	
+<style>
+       .llq a：hover .b_tanc{display:block;}
+      .lotis ul li img{
+           vertical-align: middle;
+           padding-right: 5px;
+   		width: 18px;
+       }  
+	.lotis{
+		position:fixed;
+		left:0;
+		right:0;
+		bottom:30px;
+		color:#fff;
+		text-align:center;
+	}
+	.lotis ul,.llq,.llq *{
+		width:auto;
+		display:inline-block;
+		margin:0;
+		float:none;
+	}
+	.llq{
+		width:100%;
+       	position:relative;
+       	padding-bottom:10px;
+	}
+	.lotis ul li{
+		float:left;
+		padding-right:5px;
+	}
+       .llq a{
+       	color: #000000;
+       	padding-left: 6px;
+       }
+       .b_tanc{position: absolute;top:-161px; left:50%;display:none;z-index:999;}
+       .b_tanc img{position:absolute;left:-200px;top:-20px;}
+       .llq a:hover .b_tanc{display:block;}	  
+	
+</style>
+<div class="copyimg">
+    <img src="/static/images/gupiao.jpg" class="gm" />
+    <div class="box">
+        <img src="/static/images/1.png" />
+        <img src="/static/images/2.png" />
+        <img src="/static/images/3.png" />
+        <img src="/static/images/4.png" />
+        <img src="/static/images/5.png" />
+    </div>
+</div>
+<!-- <div class="lotis">
+ 		<div class="llq">
+  		360浏览器请使用极速模式<a href="#" >如何使用？
+  		 <p class="b_tanc">
+  		   <img  src="/static/images/tanc.png" />
+  		</p>
+  		 </a>
+ 		</div>
+ 		<ul>
+  		 <li>支持浏览器：</li>
+  		 <li><img src="/static/images/gg.png" />谷歌</li>
+  		 <li><img src="/static/images/hh.png" />火狐</li>
+  		 <li><img src="/static/images/ie.png" />360极速模式</li>
+  		 <li><img src="/static/images/ie.png" />Edge</li>  
+ 		</ul>
+</div> -->
+</body>
+</html>

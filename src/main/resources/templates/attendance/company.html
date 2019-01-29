@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>公司考勤</title>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="description" content="" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable=no" />
+<link rel="stylesheet" href="../css/common.css" />
+<link rel="stylesheet" href="../css/css.css" />
+<script type="text/javascript"
+	src="http://api.map.baidu.com/api?v=3.0&amp;ak=TTYEcxv5asPAMZ8ZBIMtuqIyXLOjrGhM"></script>
+<script type="text/javascript"
+	src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="../js/layer.js"></script>
+</head>
+
+<body>
+
+	<!-- top -->
+	<div class="topBarBox"></div>
+	<div class="top-bar">
+		<!-- <a href="#" class="go-back"> <i class="fa fa-angle-left"
+			aria-hidden="true"></i>
+		</a> -->
+		<span class="text">考勤</span>
+	</div>
+
+	<!-- content -->
+	<div class="content" style="position: relative; z-index: 66">
+		<div class="ui-box">
+			<span class="text" th:text="${today}"></span>
+		</div>
+		<div class="ui-box">
+			<span class="text co999">签到时间</span> <span
+				class="fr rinfo co3bb101 nowtime" id="morning"></span>
+		</div>
+		<div class="ui-box">
+			<span class="text co999">签退时间</span> <span
+				class="fr rinfo cof00 nowtime" id="afternoon"></span>
+		</div>
+		<div class="ui-box map-adress" style="hight: auto; padding: 8px 10px">
+			当前位置：<span id="nowAdress"></span>
+		</div>
+	</div>
+	<div class="clock-in-map" style="background-size:cover;background-position: center center;background-repeat: no-repeat;" id="mapImg">
+	</div>
+	<div class="clock-in-map" style="z-index: 100000; background: none">
+		<img src="../images/refresh.png" class="clock-in-dress"
+			onclick="refreshAddress();" />
+	</div>
+
+	<style>
+	.clock-in-dress {
+		width: 40px;
+		height: 40px;
+		position: absolute;
+		right: 10px;
+		bottom: 30px;
+	}
+</style>
+
+	<!-- 判断是否企业员工和是否已经绑定员工 -->
+		<a class="clock-in-button clock-in-button-in" id="signUp" >签 到</a> 
+		<a class="clock-in-button clock-in-button-out" style="display: block;" id="signBack" >签 退</a>
+
+	<input id="wxuserid" type="hidden" th:value="${wxuserid}" />
+
+
+	<!--微信js签名 -->
+	<form action="/" th:object="${wxJsapiSignature}">
+		<input id="appId" type="hidden" th:value="*{appId}" /> <input
+			id="nonceStr" type="hidden" th:value="*{nonceStr}" /> <input
+			id="timestamp" type="hidden" th:value="*{timestamp}" /> <input
+			id="signature" type="hidden" th:value="*{signature}" />
+	</form>
+
+
+
+	<!-- 当前考勤信息 -->
+	<input type="hideen" id="signoutTime" />
+	<input type="hideen" id="signinTime" />
+	<input type="hidden" id="attenceInfoId" />
+
+	<!-- 员工信息 -->
+	<input id="employeeId" type="hidden" />
+	<input id="employeeCode" type="hidden" />
+	<input id="employeeName" type="hidden" />
+	<input id="orgId" type="hidden" />
+	<input id="orgCode" type="hidden" />
+	<input id="orgName" type="hidden" />
+
+
+	<input type="hidden" id="latitude" />
+	<input type="hidden" id="longitude" />
+	<input type="hidden" id="basePath" th:value="${wechaturl}" />
+</body>
+</html>
+<script th:inline="javascript" type="text/javascript">
+/*<![CDATA[*/
+	var wechaturl = $("#basePath").val();
+	//初始化微信jssdk
+	$(function() {
+		
+		var appId = $("#appId").val();
+		var nonceStr = $("#nonceStr").val();
+		var timestamp = $("#timestamp").val();
+		var signature = $("#signature").val();
+		sendLog("第一步")
+		wx.config({
+			debug : false,
+			appId : appId,
+			timestamp : timestamp,
+			nonceStr : nonceStr,
+			signature : signature,
+			jsApiList : [ "getLocation",'playVoice' ]
+		});
+		sendLog("第二步")
+		wx.ready(function() {
+			gpsLocation();
+			
+		});
+		wx.error(function(res){
+			sendError("签名错误信息-----"+res);
+		});
+		
+	})
+	
+	function sendLog(v) {
+		$.ajax({
+			type: 'get',
+			url: wechaturl +"/log",
+			data: {
+				userId: $("#wxuserid").val() +"--" + v
+			},
+			success: function(){
+				
+			}
+		})
+	}
+	
+	function sendError(v) {
+		$.ajax({
+			type: 'get',
+			url: wechaturl +"/senderror",
+			data: {
+				userId: $("#wxuserid").val() +"--" + v
+			},
+			success: function(){
+				
+			}
+		})
+	}
+	
+	
+	//查询人员和考勤信息
+	function getEmployeeAndAttence() {
+		var wxuserid = $("#wxuserid").val();
+		$.ajax({
+			type : "POST",
+			url : wechaturl+"/attendance/getEmployeeAndAttence",
+			data : {
+				'wxuserid' : wxuserid,
+				'signType' :1
+			},
+			success : function(msg) {
+				 if(msg.success) {
+					 var employee = msg.object;
+					 $("#employeeId").val(employee.employeeId);
+					 $("#employeeCode").val(employee.code);
+					 $("#employeeName").val(employee.name);
+					 $("#orgId").val(employee.org.organizationId);
+					 $("#orgCode").val(employee.org.code);
+					 $("#orgName").val(employee.org.name);
+					 if(employee.attenceInfo !=null ){
+						 $("#signoutTime").val(employee.attenceInfo.signoutTime);
+						 $("#signinTime").val(employee.attenceInfo.signinTime);
+						 $("#attenceInfoId").val(employee.attenceInfo.attenceInfoId);
+						 $("#signUp").hide();
+						 $("#signBack").show();
+					 }else {
+						 $("#signUp").show();
+						 $("#signBack").hide();
+					 }
+				 }else {
+					 $("#signUp").hide();
+					 $("#signBack").hide();
+				 }
+				 times();
+			}
+		})
+	}
+	
+	//授权获取用户位置信息
+	function gpsLocation() {
+		sendLog('第三步')
+		wx.getLocation({
+			type : 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
+			success : function(res) {
+				var lat = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+				var lng = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+				var accuracy = res.accuracy; // 位置精度
+				var gpsStr = res.longitude + "," + res.latitude;
+				$("#latitude").val(lat);
+				$("#longitude").val(lng);
+				//构建百度地图
+				//map(lng, lat);
+				$("#signUp").hide();
+				$("#signBack").hide();
+				sendLog('第四步')
+				getaddress(gpsStr);
+				var src = wechaturl+"/baidumap/getCoordinateBaiduMapView?coordinate="+gpsStr;
+				$("#mapImg").css("background-image","url("+src+")");
+				getEmployeeAndAttence();
+			},
+			cancel: function(res) {
+				sendLog('定位授权已取消')
+			},
+			fail: function(res){
+				sendLog('获取定位错误')
+		    }
+		});
+	};
+	
+	//刷新地址
+	function refreshAddress() {
+		gpsLocation();
+	}
+	
+
+	//获取地址信息--赋值到span
+	function getaddress(coordinate) {
+		$.ajax({
+				type : "POST",
+				url : wechaturl+"/baidumap/getAddressForCoordinateList",
+				data : {
+					'coordinate' : coordinate
+				},
+				dataType : 'json',
+				success : function(msg) {
+					var result = msg.object;
+					$("#nowAdress").text(result[0].address);
+				}
+			})
+
+	};
+	
+	
+	
+	function times() {
+		var signinTime = $("#signinTime").val();
+		var signoutTime = $("#signoutTime").val();
+		if (signinTime == "" || typeof (signinTime) == "undefined") {
+			if($("#morning").attr("class").indexOf("nowtime")>0){
+				var now = new Date();
+				var h = now.getHours(), m = now.getMinutes(), s = now.getSeconds();
+				var time = numFormat(h) + ":" + numFormat(m) + ":" + numFormat(s);
+				$("#morning").html(time);
+				setTimeout(times, 1000);
+			}
+			
+		}else {
+			$("#morning").text(signinTime);
+		}
+		if (signoutTime == "" || typeof (signoutTime) == "undefined") {
+			
+			if($("#afternoon").attr("class").indexOf("nowtime")>0){ 
+				var now = new Date();
+				var h = now.getHours(), m = now.getMinutes(), s = now.getSeconds();
+				var time = numFormat(h) + ":" + numFormat(m) + ":" + numFormat(s);
+				$("#afternoon").html(time);
+				setTimeout(times, 1000);
+			}
+			
+		}else {
+			$("#afternoon").text(signoutTime);
+		}
+		
+		
+	}
+	function numFormat(num) {
+		var nums = parseInt(num);
+		if (nums < 10) {
+			nums = "0" + num;
+		}
+		return nums;
+	}
+	
+	
+	
+	//签到
+	$("#signUp").on("click", function() {
+		var employeeId = $("#employeeId").val();
+		var employeeName = $("#employeeName").val();
+		var employeeCode = $("#employeeCode").val();
+		var orgId = $("#orgId").val();
+		var orgCode = $("#orgCode").val();
+		var orgName = $("#orgName").val();
+		var signinAddress = $("#nowAdress").text();
+		//获取签到时间
+		var signinTime = $("#morning").html();
+		var latitude = $("#latitude").val();
+		var longitude = $("#longitude").val();
+		
+		if((latitude==0 && longitude ==0) || signinAddress=="" || typeof (signinAddress) == "undefined") {
+			alert("位置信息获取失败,请前往微信通讯录中企业号打卡或刷新页面");
+			return false;
+		}
+		
+		$("#signUp").hide();
+		$.ajax({
+			type : "POST",
+			url : wechaturl+"/company/signIn",
+			data : {
+				'employeeId' : employeeId,
+				'employeeName' : employeeName,
+				'employeeCode' : employeeCode,
+				'orgId' : orgId,
+				'orgCode' : orgCode,
+				'orgName' : orgName,
+				'latitude' : latitude,
+				'longitude' : longitude,
+				'signinTime' : signinTime,
+				'signinAddress' :signinAddress
+
+			},
+			dataType : 'json',
+			success : function(msg) {
+				if(msg.success){
+					//回显考勤id
+					$("#attenceInfoId").val(msg.object.attenceInfoId);
+					$("#signBack").show();
+					$("#morning").html(signinTime);
+					$("#morning").removeClass("nowtime");
+					
+				}else {
+					$("#signUp").show();
+				}
+				alert(msg.message);
+			}
+		})
+
+	});
+	//签退
+	$("#signBack").on("click", function() {
+		layer.confirm('是否确认考勤', {
+            btn: ['是','否'] //按钮
+        }, function(){//确认签退
+        	layer.closeAll();
+        	//获取员工信息
+            var employeeId = $("#employeeId").val();
+    		var employeeName = $("#employeeName").val();
+    		var employeeCode = $("#employeeCode").val();
+    		var orgId = $("#orgId").val();
+    		var orgCode = $("#orgCode").val();
+    		var orgName = $("#orgName").val();
+    		var attenceInfoId = $("#attenceInfoId").val();
+    		var signoutAddress = $("#nowAdress").text();
+    		//获取经纬度
+    		var latitude = $("#latitude").val();
+    		var longitude = $("#longitude").val();
+    		
+    		if((latitude==0 && longitude ==0) || signoutAddress=='' || typeof (signoutAddress) == "undefined") {
+    			alert("位置信息获取失败,请前往微信通讯录中企业号打卡或刷新页面");
+    			return false;
+    		}
+    		
+   			$.ajax({
+   				type : "POST",
+   				url : wechaturl+"/company/signOut",
+   				data : {
+   					'employeeId' : employeeId,
+   					'employeeName' : employeeName,
+   					'employeeCode' : employeeCode,
+   					'orgId' : orgId,
+   					'orgCode' : orgCode,
+   					'orgName' : orgName,
+   					'latitude' : latitude,
+   					'longitude' : longitude,
+   					'attenceInfoId' : attenceInfoId,
+   					'signoutAddress' :signoutAddress
+   				},
+   				dataType : 'json',
+   				success : function(msg) {
+   					alert(msg.message);
+   					if(msg.success) {
+   						//设置签退时间回显
+   						$("#signoutTime").val(msg.object.signoutTime);
+   						//签退时间,从后台传过来
+   						$("#afternoon").html(msg.object.signoutTime);
+   						//移除打卡时间样式
+   			    		$("#afternoon").removeClass("nowtime");
+   					}
+   				}
+   			})
+        }, function(){//取消签退
+        });
+	});
+
+	
+
+	/*]]>*/
+</script>

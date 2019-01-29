@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>外出考勤</title>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="description" content="" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable=no" />
+<link rel="stylesheet" href="../css/common.css" />
+<link rel="stylesheet" href="../css/css.css" />
+<script type="text/javascript"
+	src="http://api.map.baidu.com/api?v=3.0&amp;ak=TTYEcxv5asPAMZ8ZBIMtuqIyXLOjrGhM"></script>
+<script type="text/javascript"
+	src="http://res.wx.qq.com/open/js/jweixin-1.3.2.js"></script>
+<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="../js/layer.js"></script>
+</head>
+
+<body>
+
+	<!-- top -->
+	<div class="topBarBox"></div>
+	<div class="top-bar">
+		<!-- <a href="#" class="go-back"> <i class="fa fa-angle-left"
+			aria-hidden="true"></i>
+		</a>  --><span class="text">考勤</span>
+	</div>
+
+	<!-- content -->
+	<div class="content" style="position: relative; z-index: 66">
+		<div class="ui-box">
+			<span class="text" th:text="${today}"></span>
+		</div>
+		<div class="ui-box goout">
+			<textarea name="" id="remark" class="remarkselectarea" placeholder="外出事因"></textarea>
+			<a class="remarkselect"></a>
+			<div class="imgbox fl" style="display:none" id="imgDiv"><img class="imgS" src="" id="outImg" width="80" height="80"/></div>
+			<div class="fl mgl10"><button class="uploadImg" id="uploadImg"><img class="" style="background:#fff" src="../images/照相机.png" width="30" heihgt="30" /></button></div>
+		</div>
+		<div class="ui-box map-adress" style="hight: auto; padding: 8px 10px">
+			当前位置：<span id="nowAdress"></span>&nbsp;&nbsp;&nbsp;&nbsp;<a  id="finetuningAddress">地址微调</a>
+		</div>
+	</div>
+	<div class="clock-in-map" style="background-size:cover;background-position: center center;background-repeat: no-repeat;" id="mapImg">
+		<!-- img src="" width="100%" height="100%"/> -->
+	</div>
+	<div class="clock-in-map" style="z-index: 1;background:none;">
+		<img src="../images/refresh.png" class="clock-in-dress" onclick="refreshAddress();"/>
+	</div>
+	<style>
+		.mgl10 {
+			margin-top: 50px;
+			margin-left:10px;
+		}
+		.fl{
+			float: left;
+			margin-bottom: 10px;
+		}
+		.imgbox {
+			width: 80px;
+			height: 80px;
+		}
+		.uploadImg {
+			border: 0;
+		}
+		.clock-in-dress{
+			width:40px;
+			height:40px;
+			position:absolute;
+			right:10px;
+			bottom:30px;
+		}
+		.remarkselectarea{
+			width:calc(100% - 20px);
+		}
+		.remarkselect{
+			width:20px;
+			height:20px;
+			float:right;
+		}
+		.remarkselect:after{
+			content:"";
+			display:inline-block;
+			border-right:10px transparent solid;
+			border-left:10px transparent solid;
+			border-top:10px #d1d1d1 solid;
+		}
+	</style>	
+	
+
+	<a class="clock-in-button clock-in-button-in" id="outSignUp" style="display: none;"
+		>打卡</a>
+
+	
+	<!--微信js签名 -->
+	<form action="/" th:object="${wxJsapiSignature}">
+		<input id="appId" type="hidden" th:value="*{appId}" /> <input
+			id="nonceStr" type="hidden" th:value="*{nonceStr}" /> <input
+			id="timestamp" type="hidden" th:value="*{timestamp}" /> <input
+			id="signature" type="hidden" th:value="*{signature}" />
+	</form>
+	
+	<!-- 当前考勤信息 -->
+	<input type="hideen" id="signoutTime" />
+	<input type="hideen" id="signinTime" />
+	<input type="hidden" id="attenceInfoId" />
+
+
+	<!-- 员工信息 -->
+	<input id="employeeId" type="hidden" />
+	<input id="employeeCode" type="hidden" />
+	<input id="employeeName" type="hidden" />
+	<input id="orgId" type="hidden" />
+	<input id="orgCode" type="hidden" />
+	<input id="orgName" type="hidden" />
+	<input id="signinImg" type="hidden" />
+
+	<input id="wxuserid" type="hidden" th:value="${wxuserid}" />
+	<input type="hidden" id="latitude" />
+	<input type="hidden" id="longitude" />
+	<input type="hidden" id="basePath" th:value="${wechaturl}" />
+	
+	
+	<div id="addressListDiv" style="display: none">
+     
+	</div>
+	
+	<div id="remarkDiv" style="display: none">
+     
+	</div>
+	
+</body>
+</html>
+
+<script th:inline="javascript" type="text/javascript">
+/*<![CDATA[*/
+ //初始化微信jssdk
+ 	var wechaturl = $("#basePath").val();
+	$(function() {
+		var appId = $("#appId").val();
+		var nonceStr = $("#nonceStr").val();
+		var timestamp = $("#timestamp").val();
+		var signature = $("#signature").val();
+		
+		wx.config({
+			debug : false,
+			appId : appId,
+			timestamp : timestamp,
+			nonceStr : nonceStr,
+			signature : signature,
+			jsApiList : [ "getLocation","chooseImage","previewImage","uploadImage","getLocalImgData" ]
+		});
+		wx.ready(function() {
+			gpsLocation();
+		});
+		
+		 
+		initRemark();
+	})
+	
+	//查询人员和考勤信息
+	function getEmployeeAndAttence() {
+		var wxuserid = $("#wxuserid").val();
+		$.ajax({
+			type : "POST",
+			url : wechaturl+"/attendance/getEmployeeAndAttence",
+			data : {
+				'wxuserid' : wxuserid,
+				'signType' :2
+			},
+			success : function(msg) {
+				 if(msg.success) {
+					 var employee = msg.object;
+					 $("#employeeId").val(employee.employeeId);
+					 $("#employeeCode").val(employee.code);
+					 $("#employeeName").val(employee.name);
+					 $("#orgId").val(employee.org.organizationId);
+					 $("#orgCode").val(employee.org.code);
+					 $("#orgName").val(employee.org.name);
+					 $("#outSignUp").show();
+					 if(employee.attenceInfo !=null ){
+						 $("#signoutTime").val(employee.attenceInfo.signoutTime);
+						 $("#signinTime").val(employee.attenceInfo.signinTime);
+						 $("#attenceInfoId").val(employee.attenceInfo.attenceInfoId);
+					 }
+					 if(employee.remarkList != null) {
+						var alertHtml = "";
+						for(var i =0;i<employee.remarkList.length;i++) {
+							alertHtml +='<label style="padding:5px 10px;display:block;"><input type="radio" style="margin-right:10px; float:left;margin-top:7px;" name="remarkRadio" value='+employee.remarkList[i]+'></input>';
+							alertHtml +=''+employee.remarkList[i]+'</label>';
+						}
+						$("#remarkDiv").html(alertHtml);
+					 }
+				 }
+				 times();
+			}
+		})
+	}
+	
+	//授权获取用户位置信息
+	function gpsLocation() {
+		wx.getLocation({
+			type : 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
+			success : function(res) {
+				var lat = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+				var lng = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+				var accuracy = res.accuracy; // 位置精度
+				var gpsStr = res.longitude + "," + res.latitude;
+				$("#latitude").val(lat);
+				$("#longitude").val(lng);
+				getaddress(gpsStr);
+				var src = wechaturl+"/baidumap/getCoordinateBaiduMapView?coordinate="+gpsStr;
+				$("#mapImg").css("background-image","url("+src+")");
+				getEmployeeAndAttence();
+			}
+		});
+	};
+
+	//获取地址信息--赋值到span
+	function getaddress(coordinate) {
+		$.ajax({
+				type : "POST",
+				url : wechaturl+"/baidumap/getAddressForCoordinateList",
+				data : {
+					'coordinate' : coordinate
+				},
+				dataType : 'json',
+				success : function(msg) {
+					var result = msg.object;
+					$("#nowAdress").text(result[0].address);
+					var alertHtml = "";
+					for(var i =0;i<result.length;i++) {
+						alertHtml +='<label style="padding:5px 10px;display:block;"><input type="radio" style="margin-right:10px; float:left;margin-top:7px;" name="gpsStr" value='+result[i].GPSStr+' address='+result[i].address+'></input>';
+						alertHtml +=''+result[i].address+'</label>';
+					}
+					$("#addressListDiv").html(alertHtml);
+				}
+			})
+
+	};
+	
+	//刷新地址
+	function refreshAddress() {
+		gpsLocation();
+	}
+	
+	function numFormat(num) {
+		var nums = parseInt(num);
+
+		return nums;
+	}
+	
+	function times() {
+		var now = new Date();
+		var h = now.getHours(), m = now.getMinutes(), s = now.getSeconds();
+		var time = numFormat(h) + ":" + numFormat(m) + ":" + numFormat(s);
+		var timeClass = document.getElementsByClassName('nowtime');
+		for ( var i in timeClass) {
+			timeClass[i].innerHTML = time;
+		}
+		setTimeout(times, 1000);
+	}
+	function numFormat(num) {
+		var nums = parseInt(num);
+		if (nums < 10) {
+			nums = "0" + num;
+		}
+		return nums;
+	}
+	//外出考勤打卡
+	$("#outSignUp").on("click", function() {
+		var remark = $("#remark").val();
+		if(remark=='' || typeof (remark) == "undefined") {
+			alert("请填写外出事由!");
+			return false;
+		}
+		var signinImg = $("#signinImg").val();
+		if(signinImg=='' || typeof (remark) == "undefined" || signinImg==null)  {
+			alert("请拍照上传,如已拍照上传请稍等图片上传成功!");
+			return false;
+		}
+		layer.confirm('是否确认考勤', {
+            btn: ['是','否'] //按钮
+        }, function(){ 
+        	$("#outSignUp").hide();
+        	layer.closeAll();
+        	var employeeId = $("#employeeId").val();
+    		var employeeName = $("#employeeName").val();
+    		var employeeCode = $("#employeeCode").val();
+    		var orgId = $("#orgId").val();
+    		var orgCode = $("#orgCode").val();
+    		var orgName = $("#orgName").val();
+    		var signinAddress = $("#nowAdress").text();
+    		var latitude = $("#latitude").val();
+    		var longitude = $("#longitude").val();
+    		var attenceInfoId = $("#attenceInfoId").val();
+    		
+    		if((latitude==0 && longitude ==0) || signinAddress=='' || typeof (signinAddress) == "undefined") {
+    			alert("位置信息获取失败,请前往微信通讯录中企业号打卡或刷新页面");
+    			$("#outSignUp").show();
+    			return false;
+    		}
+    		
+    		$.ajax({
+    			type : "POST",
+    			url : wechaturl+"/out/clock",
+    			data : {
+    				'employeeId' : employeeId,
+    				'employeeName' : employeeName,
+    				'employeeCode' : employeeCode,
+    				'orgId' : orgId,
+    				'orgCode' : orgCode,
+    				'orgName' : orgName,
+    				'latitude' : latitude,
+    				'longitude' : longitude,
+    				'attenceInfoId' : attenceInfoId,
+    				'signinAddress' :signinAddress,
+    				'remark' :remark,
+    				'signinImg':signinImg
+    			},
+    			dataType : 'json',
+    			success : function(msg) {
+    				$("#outSignUp").show();
+    				if(msg.success){
+    					//回显考勤id
+    					$("#attenceInfoId").val(msg.object.attenceInfoId);
+    					$("#remark").val("");
+    					$("#imgDiv").hide();
+    					$("#signinImg").val("");
+    					
+    				}
+    				alert(msg.message);
+    			}
+    		})
+        	}, function(){//取消签退
+        });
+	});
+	
+	//地址微调
+	$("#finetuningAddress").on("click", function(){
+		var html = $("#addressListDiv").html();
+		layer.open({
+            type: 1,
+            title: '考勤地址微调',
+            closeBtn: 1,
+            shadeClose: false,
+            area: ['350px', '280px'],
+            skin: 'demo-class',
+            content: html,
+            btn: ['确认', '取消']  
+			 ,yes: function(){
+				 var checkedGps = $("input[name='gpsStr']:checked");
+				$("#nowAdress").text(checkedGps.attr("address"));
+				layer.closeAll();
+	        }
+	        ,btn2: function(){
+	          layer.closeAll();
+	        }
+        });
+	})
+	
+	$(".remarkselect").on("click",function(){
+		var html = $("#remarkDiv").html();
+		layer.open({
+            type: 1,
+            title: '外出事因',
+            closeBtn: 1,
+            shadeClose: false,
+            area: ['350px', '280px'],
+            skin: 'demo-class',
+            content: html,
+            btn: ['确认', '取消']  
+			 ,yes: function(){
+				var remark = $("input[name='remarkRadio']:checked").val();
+				$("#remark").val(remark);
+				layer.closeAll();
+	        }
+	        ,btn2: function(){
+	          layer.closeAll();
+	        }
+        });
+	})
+	
+	$("#uploadImg").on("click",function(){
+		wx.chooseImage({
+		    count: 1, // 指定拍照数量
+		    sizeType: ['compressed'], // 指定压缩图
+		    sourceType: ['camera'], // 指定来源是相机
+		    defaultCameraMode: "normal", //表示进入拍照界面的默认模式
+		    success: function (res) {
+		    	console.log(res);
+		    	var localIds = res.localIds;
+		    	alert("选择照片开始回调");
+                /*判断ios是不是用的 wkwebview 内核*/
+                if (window.__wxjs_is_wkwebview){
+                    for (var i = 0; i < localIds.length; i++){
+                        wx.getLocalImgData({
+                            localId:res.localIds[i],
+                            success: function (res){
+                                var localData = res.localData; // localData是图片的base64数据，可以用img标签显示
+                                localData = localData.replace('jgp', 'jpeg');//iOS 系统里面得到的数据，类型为 image/jgp,因此需要替换一下
+                                $("#outImg").attr("src",localData);
+                                $("#imgDiv").show();
+                            }
+                        })
+                        //安卓手机不兼容上传图片
+                        uploadToWeixinServer(res.localIds[i]);
+                        
+                    }
+                }else{   //如果不是用的wkwebview 内核 或者是用的安卓系统 执行下面的xunh
+                    for (var i = 0; i < localIds.length; i++) {
+                        $("#outImg").attr("src",localIds[i]);
+                        $("#imgDiv").show();
+                        uploadToWeixinServer(res.localIds[i]);
+                    }
+                }
+		    }
+		});
+	})
+	
+	//上传到微信服务器
+	function uploadToWeixinServer(localId) {
+		 wx.uploadImage({
+             localId: localId,
+             isShowProgressTips: 1, // 默认为1，显示进度提示
+             success: function (res) {
+　　　　　　　　 //res.serverId 返回图片的微信服务器端ID
+                uploadToOwnerServer(res.serverId);//异步上传到我们自己的服务器
+             }
+         });
+	}
+	
+	function uploadToOwnerServer(serverId) {
+		$.ajax({
+			type : "POST",
+			url : wechaturl+"/wechat/uploadPhoto",
+			data : {
+				'serverId' : serverId
+			},
+			dataType : 'json',
+			success : function(res) {
+			 	if(res) {
+			 		$("#signinImg").val(res.object.fileUrl);
+			 	}
+			}
+		})
+	}
+	 
+	
+/*]]>*/
+</script>
