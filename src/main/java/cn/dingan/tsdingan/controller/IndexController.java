@@ -7,11 +7,11 @@ import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import cn.dingan.tsdingan.model.DriverSchool;
 import cn.dingan.tsdingan.model.Result;
@@ -22,8 +22,7 @@ import cn.dingan.tsdingan.utils.MD5Util;
 import cn.dingan.tsdingan.utils.UserUtil;
 
 
-@Controller
-@RequestMapping("/index")
+@RestController
 public class IndexController extends BaseController{
 	
 	
@@ -68,7 +67,7 @@ public class IndexController extends BaseController{
      * @return String
      * @throws @author penghb <penghongbao@liangyibang.com> 2016-6-12 上午11:48:52
      */
-    @RequestMapping("/loginout")
+    @RequestMapping("/index/loginout")
     public String logout(Model model) {
         super.getSession().removeAttribute(UserUtil.LOGIN_USER);
         super.getSession().removeAttribute(UserUtil.RESOURCES);
@@ -82,9 +81,9 @@ public class IndexController extends BaseController{
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/loginValid")
+	@RequestMapping("/index/loginValid")
     @ResponseBody
-    public Result loginin(@RequestBody SysUser record) {
+    public Result loginValid(SysUser record) {
 		Result result = new Result();
 		try {
 			SysUser user = sysUserService.selectByUserName(record);
@@ -97,6 +96,10 @@ public class IndexController extends BaseController{
 			if(password.equals(user.getPassword())){
 				// 登录成功
 				applyAuthority(user);
+				
+//				String token = TokenUtils.createToken(user.getId());
+//				user.setToken(token);
+			
 				UserUtil.setUser(user);
 				// 更新该用户的最后登录时间和最后登录ip
 				
@@ -136,7 +139,7 @@ public class IndexController extends BaseController{
 	 * @param record
 	 * @return
 	 */
-	@RequestMapping("/logon")
+	@RequestMapping("/index/logon")
     @ResponseBody
     public Result logon(@RequestBody DriverSchool record) {
 		Result result = new Result();

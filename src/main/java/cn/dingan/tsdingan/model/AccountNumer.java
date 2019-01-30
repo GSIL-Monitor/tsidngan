@@ -1,35 +1,22 @@
 package cn.dingan.tsdingan.model;
 
+import io.swagger.annotations.*;
 import java.util.Date;
+import javax.persistence.*;
+import lombok.*;
 
+@Table(name = "account_numer")
+@Setter
+@Getter
 public class AccountNumer {
     private String id;
 
+    /**
+     * 序号
+     */
+    @ApiModelProperty(value = "序号")
     private Integer code;
 
+    @Column(name = "create_date")
     private Date createDate;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public Integer getCode() {
-        return code;
-    }
-
-    public void setCode(Integer code) {
-        this.code = code;
-    }
-
-    public Date getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
 }

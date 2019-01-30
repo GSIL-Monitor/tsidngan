@@ -1,5 +1,6 @@
 package cn.dingan.tsdingan.interceptor;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,12 +9,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
-import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
+import com.alibaba.fastjson.JSONObject;
 
 import cn.dingan.tsdingan.model.SysUser;
 import cn.dingan.tsdingan.utils.UserUtil;
@@ -58,14 +60,19 @@ public class SessionInterceptor extends HandlerInterceptorAdapter {
         HttpSession session = request.getSession();
         SysUser user = (SysUser) session.getAttribute(UserUtil.LOGIN_USER);
         if (user == null) {
-            response.sendRedirect(request.getContextPath() + "/index/login");
+            response.setCharacterEncoding("UTF-8");  
+            response.setContentType("application/json; charset=utf-8");
+            PrintWriter out = null ;
+            JSONObject res = new JSONObject();
+            res.put("success","false");
+            res.put("msg","未登陆");
+            out = response.getWriter();
+            out.append(res.toString());
             return false;
         } else {
             String current = (String)session.getAttribute(UserUtil.CURRENT);
             UserUtil.setUser(user);
             UserUtil.setCurrent(current);
-            
-            
             return true;
         }
     }
@@ -108,4 +115,36 @@ public class SessionInterceptor extends HandlerInterceptorAdapter {
 		}
 		super.postHandle(request, response, handler, modelAndView);
 	}
+	
+//	public boolean checkToken(HttpServletRequest request){
+//        Map<String, String> map = getHeadersInfo(request);
+//        String token = map.get("token");
+//        Long userId = Long.valueOf(map.get("userid"));
+//        try {
+//            //假如用户冻结这里验证不通过
+//            SysUser user = UserUtil.getUser();
+//            if(user==null)
+//                return false;
+//
+//            Long tokenUserId = TokenUtils.getAppUID(token);
+//            if(userId.equals(tokenUserId)){
+//                return true;
+//            }else{
+//                return false;
+//            }
+//        }catch (Exception e){
+//            return false;
+//        }
+//    }
+//	
+//	private Map<String, String> getHeadersInfo(HttpServletRequest request) {
+//        Map<String, String> map = new HashMap<String, String>();
+//        Enumeration headerNames = request.getHeaderNames();
+//        while (headerNames.hasMoreElements()) {
+//            String key = (String) headerNames.nextElement();
+//            String value = request.getHeader(key);
+//            map.put(key, value);
+//        }
+//        return map;
+//    }
 }

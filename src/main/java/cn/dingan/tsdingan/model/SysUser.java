@@ -1,5 +1,7 @@
 package cn.dingan.tsdingan.model;
 
+import javax.persistence.Transient;
+
 public class SysUser {
     private String id;
 
@@ -20,6 +22,18 @@ public class SysUser {
     
     private String isactivation;
     
+    
+    @Transient
+    private String token;
+    
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
     public String getIsactivation() {
 		return isactivation;
 	}
