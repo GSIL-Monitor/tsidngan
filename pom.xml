@@ -14,6 +14,29 @@
 	<name>ts-dingan</name>
 	<url>http://maven.apache.org</url>
 
+	
+	<!-- 私有仓库 -->
+	<repositories>
+		<repository>
+			<id>public</id><!--这个ID需要与你新建的组group ID一致-->
+			<name>Public Repository</name>
+			<url>http://plattest2.trasen.cn/repository/maven-public/</url>
+		</repository>
+	</repositories>
+
+	<!-- 自动打包 -->
+	<distributionManagement>
+		<repository>
+			<id>releases</id><!--这个ID需要与你的release仓库的Repository ID一致-->
+			<url>http://plattest2.trasen.cn/repository/maven-releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshots</id><!--这个ID需要与你的snapshots仓库的Repository ID一致-->
+			<url>http://plattest2.trasen.cn/repository/maven-snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+	  
+	
 	  
 	<properties>
 		<!-- 文件拷贝时的编码 -->
@@ -46,13 +69,7 @@
             <artifactId>axis-jaxrpc</artifactId>  
             <version>1.4</version>  
         </dependency>
-        
-        
-         <dependency>  
-            <groupId>org.apache.axis</groupId>  
-            <artifactId>axis</artifactId>  
-            <version>1.4</version>  
-        </dependency> 
+         
         
         <dependency>
 		    <groupId>com.auth0</groupId>
@@ -65,6 +82,48 @@
             <artifactId>wsdl4j</artifactId>  
         </dependency>  
         
+        <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+        
+        
+        <dependency>
+		     <groupId>org.apache.cxf</groupId>
+		     <artifactId>cxf-spring-boot-starter-jaxws</artifactId>
+		     <version>3.2.4</version>
+		</dependency>
+		
+		
+		<dependency>
+		    <groupId>org.glassfish.jersey.core</groupId>
+		    <artifactId>jersey-common</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>javax.ws.rs</groupId>
+			<artifactId>javax.ws.rs-api</artifactId>
+			<version>2.0</version>
+		</dependency>
+		
+		
+		 <dependency>  
+            <groupId>org.apache.axis</groupId>  
+            <artifactId>axis</artifactId>  
+            <version>1.4</version>  
+        </dependency> 
+         
+        <dependency>  
+            <groupId>axis</groupId>  
+            <artifactId>axis-jaxrpc</artifactId>  
+            <version>1.4</version>  
+        </dependency>
+        
+        <dependency>
+		    <groupId>commons-discovery</groupId>
+		    <artifactId>commons-discovery</artifactId>
+		    <version>0.2</version>
+		</dependency>
 
 	</dependencies>
 	<build>
