@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import cn.dingan.tsdingan.model.DriverSchool;
+import cn.dingan.tsdingan.model.EmailMessageVo;
 import cn.dingan.tsdingan.model.Result;
 import cn.dingan.tsdingan.model.SysUser;
 import cn.dingan.tsdingan.service.DriverSchoolService;
+import cn.dingan.tsdingan.service.EmailService;
 import cn.dingan.tsdingan.service.SysUserService;
 import cn.dingan.tsdingan.utils.MD5Util;
 import cn.dingan.tsdingan.utils.UserUtil;
@@ -35,6 +37,9 @@ public class IndexController extends BaseController{
 	
 	@Autowired
 	private DriverSchoolService driverSchoolService;
+	
+	@Autowired
+    private EmailService emailService;
 	
 	
 	@RequestMapping("/topwd")
@@ -160,4 +165,15 @@ public class IndexController extends BaseController{
 		result.setSuccess(false);
 		return result;
 	}
+	
+	@RequestMapping("/index/test")
+    public String test(Model model) {
+	    //发送邮件
+	    EmailMessageVo  messageVo = new EmailMessageVo();
+	    messageVo.setContent("测试------------");
+	    messageVo.setSendTo("380053453@qq.com");
+	    emailService.sendEmail(messageVo);
+	    
+        return "true";
+    }
 }

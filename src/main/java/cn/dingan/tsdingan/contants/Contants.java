@@ -13,4 +13,12 @@ public class Contants {
     
     //回调地址
     public static final String notify_url = "http://localhost:";
+    
+    //测试环境webservice地址
+    public static final String endpoint = "https://tepos.jxlife.com.cn/ter/services/ThdpartyInterface?wsdl";
+    
+    
+    //试算地址
+    public static final String TRY = "http://outwardservice.lis.sinosoft.com";
+    
 }

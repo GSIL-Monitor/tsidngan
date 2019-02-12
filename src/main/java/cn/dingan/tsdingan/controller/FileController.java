@@ -14,10 +14,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,14 +28,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import cn.dingan.tsdingan.model.DataSet;
 import cn.dingan.tsdingan.model.HrEmployee;
-import cn.dingan.tsdingan.model.Page;
 import cn.dingan.tsdingan.model.PlatformResult;
 import cn.dingan.tsdingan.model.Result;
-import cn.dingan.tsdingan.service.HrEmployeeService;
 import cn.dingan.tsdingan.utils.ApplicationUtils;
-import cn.dingan.tsdingan.utils.ExportUtil;
 import cn.dingan.tsdingan.utils.ImportExcelUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -60,8 +54,8 @@ public class FileController {
 
 	@Value("${saveFileUrl}")
 	private String saveFileUrl;
-	@Autowired
-    private HrEmployeeService employeeService;
+//	@Autowired
+//    private HrEmployeeService employeeService;
 
 	 
 	
@@ -247,17 +241,17 @@ public class FileController {
     public void export(HrEmployee record, HttpServletRequest request,
             HttpServletResponse response) throws IOException {
 	    // 导出文件名称
-        String name = "xx.xls";
-        // 模板位置
-        String templateUrl = "template/certification.xls";
+//        String name = "xx.xls";
+//        // 模板位置
+//        String templateUrl = "template/certification.xls";
         
-        DataSet<HrEmployee> dataSet =
-                employeeService.getDataSetList(new Page(), record);
-        List<HrEmployee> list = dataSet.getRows();
-        
-        if (null != dataSet.getRows()) {
-            ExportUtil.export(request, response, list, name, templateUrl);
-        }
+//        DataSet<HrEmployee> dataSet =
+//                employeeService.getDataSetList(new Page(), record);
+//        List<HrEmployee> list = dataSet.getRows();
+//        
+//        if (null != dataSet.getRows()) {
+//            ExportUtil.export(request, response, list, name, templateUrl);
+//        }
     }
 	
 	   /**

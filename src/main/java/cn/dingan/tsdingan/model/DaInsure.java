@@ -3,6 +3,9 @@ package cn.dingan.tsdingan.model;
 import io.swagger.annotations.*;
 import java.util.Date;
 import javax.persistence.*;
+
+import org.jeecgframework.poi.excel.annotation.Excel;
+
 import lombok.*;
 
 @Table(name = "da_insure")
@@ -27,12 +30,14 @@ public class DaInsure {
     /**
      * 姓名
      */
+    @Excel(name = "姓名")
     @ApiModelProperty(value = "姓名")
     private String name;
 
     /**
      * 身份证号
      */
+    @Excel(name = "身份证号")
     @Column(name = "id_number")
     @ApiModelProperty(value = "身份证号")
     private String idNumber;
@@ -40,6 +45,7 @@ public class DaInsure {
     /**
      * 手机号
      */
+    @Excel(name = "手机号")
     @ApiModelProperty(value = "手机号")
     private String phone;
 
