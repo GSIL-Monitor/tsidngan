@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -47,21 +48,26 @@ public class IndexController extends BaseController{
         return "password";
     }
 	
-//	@RequestMapping("/changepwd")
-//    @ResponseBody
-//    public Object changepwd(@RequestParam("oldpwd") String oldpwd,
-//                    @RequestParam("newpwd") String newpwd) {
-//        SysUser user = UserUtil.getUser();
-//        String pass = MD5Util.md5Password(oldpwd);
-//        if (pass.equals(user.getPwd())) {
-//            String newpass = MD5Util.md5Password(newpwd);
-//            user.setPwd(newpass);
-//            sysUserService.insert(user);
-//            super.getSession().setAttribute(UserUtil.LOGIN_USER, user);
-//            return new Result(true,"修改成功");
-//        }
-//        return new Result(false, "原密码输入错误");
-//    }
+  @RequestMapping("/changepwd")
+  @ResponseBody
+  public Object changepwd(@RequestParam("oldpwd") String oldpwd,
+                    @RequestParam("newpwd") String newpwd) {
+        Result result = new Result();
+        SysUser user = UserUtil.getUser();
+        String pass = MD5Util.md5Password(oldpwd);
+        if (pass.equals(user.getPassword())) {
+            String newpass = MD5Util.md5Password(newpwd);
+            user.setPassword(newpass);
+            sysUserService.update(user);
+            super.getSession().setAttribute(UserUtil.LOGIN_USER, user);
+            result.setMessage("修改密码成功");
+            result.setSuccess(true);
+            return result;
+        }
+        result.setMessage("原密码输入错误");
+        result.setSuccess(false);
+        return result;
+  }
 	
 	
 	/**

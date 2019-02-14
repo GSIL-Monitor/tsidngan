@@ -34,6 +34,6 @@
 		<sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources" />
 		<javaClientGenerator targetPackage="cn.dingan.tsdingan.dao"
 			targetProject="src/main/java" type="XMLMAPPER" />
-		<table tableName="da_insure"></table>
+		<table tableName="serialno"></table>
 	</context>
 </generatorConfiguration>
