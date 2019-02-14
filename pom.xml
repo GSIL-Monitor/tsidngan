@@ -64,12 +64,6 @@
 			<version>1.0.1</version>
 		</dependency>
 		
-		 <dependency>  
-            <groupId>axis</groupId>  
-            <artifactId>axis-jaxrpc</artifactId>  
-            <version>1.4</version>  
-        </dependency>
-         
         
         <dependency>
 		    <groupId>com.auth0</groupId>
