@@ -2,8 +2,6 @@ package cn.dingan.tsdingan.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -201,8 +199,8 @@ public class FileController {
 //		if (file == null) {
 //			return;
 //		}
-		InputStream is = null;
-		OutputStream os = null;
+//		InputStream is = null;
+//		OutputStream os = null;
 //		try {
 //			response.setContentType("multipart/form-data");
 //			response.setHeader("Content-Disposition",

@@ -15,8 +15,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ibm.db2.jcc.am.re;
-
 import cn.dingan.tsdingan.contants.Contants;
 import cn.dingan.tsdingan.dao.DriverSchoolMapper;
 import cn.dingan.tsdingan.dao.SerialnoMapper;
@@ -73,13 +71,13 @@ public class InsureServiceImpl implements InsureService{
             //根据登录人查询机构信息
             SysUser user = UserUtil.getUser();
             
-//            DriverSchool school = null;
-//            
-//            if(StringUtils.isNotBlank(user.getDriverSchoolId())) {
-//                school = driverSchoolMapper.selectByPrimaryKey(user.getDriverSchoolId());
-//            }
+            DriverSchool school = null;
             
-            DriverSchool school = new DriverSchool();
+            if(StringUtils.isNotBlank(user.getDriverSchoolId())) {
+                school = driverSchoolMapper.selectByPrimaryKey(user.getDriverSchoolId());
+            }
+            
+//            DriverSchool school = new DriverSchool();
             school.setEmail("380053453@qq.com");
             school.setPhone("18911267760");
             school.setName("测试驾校");

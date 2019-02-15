@@ -127,4 +127,22 @@ public class DaInsureServiceImpl implements DaInsureService {
         
         return "";
     }
+    
+    /**
+     * 
+    * @Title: checkIdNumber
+    * @Description: 校验身份证号
+    * @param @param idNumber
+    * @param @return    参数
+    * @return DaInsure    返回类型
+    * @throws
+    * @author jyq#trasen.cn
+    * @date 2019年2月15日 下午5:53:53
+     */
+    public DaInsure checkIdNumber(String idNumber) {
+       Example example = new Example(DaInsure.class);
+       example.createCriteria().andEqualTo("idNumber",idNumber).andEqualTo("isDeleted",Contants.IS_DELETED_FALSE);
+       
+       return daInsureMapper.selectOneByExample(example);
+    }
 }

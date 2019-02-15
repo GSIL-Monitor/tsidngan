@@ -61,6 +61,39 @@ public class DaInsureController {
         }
         return result;
     }
+    
+    /**
+     * 
+    * @Title: checkIdNumber
+    * @Description: 校验身份证号
+    * @param @param idNumber
+    * @param @return    参数
+    * @return Result    返回类型
+    * @throws
+    * @author jyq#trasen.cn
+    * @date 2019年2月15日 下午5:53:32
+     */
+    @ApiOperation(value = "校验身份证号", notes = "校验身份证号")
+    @PostMapping("/daInsure/checkIdNumber/{idNumber}")
+    public Result checkIdNumber(@PathVariable String idNumber) {
+        Result result = new Result();
+        try {
+            DaInsure record = daInsureService.checkIdNumber(idNumber);
+            
+            if(record==null) {
+                result.setSuccess(true);
+            }else {
+                result.setSuccess(false);
+                result.setMessage("身份证号重复");
+            }
+            
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            result.setMessage("操作失败.");
+            result.setSuccess(false);
+        }
+        return result;
+    }
 
     /**
      * 新增

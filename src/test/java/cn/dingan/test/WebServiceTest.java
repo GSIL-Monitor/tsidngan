@@ -1,7 +1,6 @@
 package cn.dingan.test;
 
 import javax.xml.namespace.QName;
-import javax.xml.rpc.ServiceException;
 
 import org.apache.axis.client.Call;
 import org.apache.axis.client.Service;
