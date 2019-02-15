@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ibm.db2.jcc.am.s;
+import com.ibm.db2.jcc.am.re;
 
 import cn.dingan.tsdingan.contants.Contants;
 import cn.dingan.tsdingan.dao.DriverSchoolMapper;
@@ -34,6 +34,8 @@ import cn.dingan.tsdingan.model.RemittGrpDTO;
 import cn.dingan.tsdingan.model.Serialno;
 import cn.dingan.tsdingan.model.SysUser;
 import cn.dingan.tsdingan.model.TranslationDTO;
+import cn.dingan.tsdingan.response.PolicyResponseDTO;
+import cn.dingan.tsdingan.response.ResopnseMainContDTO;
 import cn.dingan.tsdingan.service.InsureService;
 import cn.dingan.tsdingan.utils.UserUtil;
 import cn.dingan.tsdingan.utils.XMLUtil;
@@ -71,27 +73,83 @@ public class InsureServiceImpl implements InsureService{
             //根据登录人查询机构信息
             SysUser user = UserUtil.getUser();
             
-            DriverSchool school = null;
+//            DriverSchool school = null;
+//            
+//            if(StringUtils.isNotBlank(user.getDriverSchoolId())) {
+//                school = driverSchoolMapper.selectByPrimaryKey(user.getDriverSchoolId());
+//            }
             
-            if(StringUtils.isNotBlank(user.getDriverSchoolId())) {
-                school = driverSchoolMapper.selectByPrimaryKey(user.getDriverSchoolId());
+            DriverSchool school = new DriverSchool();
+            school.setEmail("380053453@qq.com");
+            school.setPhone("18911267760");
+            school.setName("测试驾校");
+            
+            if(null==list) {
+                list = new ArrayList<>();
+//                DaInsure vo1 = new DaInsure();
+//                vo1.setSex("0");
+//                vo1.setIdNumber("430421199210208630");
+//                vo1.setName("蒋亚球");
+//                vo1.setBirthDate(new SimpleDateFormat("yyyy-MM-dd").parse("1992-10-20"));
+//                list.add(vo1);
+//                
+//                DaInsure vo2 = new DaInsure();
+//                vo2.setSex("0");
+//                vo2.setIdNumber("430421199210208630");
+//                vo2.setName("蒋亚球");
+//                vo2.setBirthDate(new SimpleDateFormat("yyyy-MM-dd").parse("1992-10-20"));
+//                list.add(vo2);
             }
             
             if(null!=school) {
+                //调用试算接口
                 PolicyRequestDTO dto = setXML(list,school);
-                String xml2 = XMLUtil.convertToXml(dto,PolicyRequestDTO.class );
+                String xml = XMLUtil.convertToXml(dto,PolicyRequestDTO.class );
                 
-                xml2 = xml2.replace("standalone=\"yes\"", "");
+                xml = xml.replace("standalone=\"yes\"", "");
+                //保险公司返回报文
+                String resultXML = callInterface(xml,"underwritingRequest");
                 
-                callInterface(xml2,"underwritingRequest");
+                
+                int flag = 0;
+                
+                if(null!=resultXML) {
+                    PolicyResponseDTO resultDto = XMLUtil.getResult(resultXML);
+                    if(null!=resultDto) {
+                        //获取返回接口列表
+                        List<ResopnseMainContDTO> manContList = resultDto.getMainContDTOList();
+                        
+                        if(null!=manContList && manContList.size()>0) {
+                            for(ResopnseMainContDTO vo : manContList) {
+                                if(StringUtils.isNotBlank(vo.getFlag()) && "0".equals(vo.getFlag())) {
+                                    
+                                }else {
+                                    flag ++;  
+                                }
+                            }
+                        }
+                    }else {
+                        return "投保接口出错,请联系管理员!";  
+                    }
+                }else {
+                    return "投保接口出错,请联系管理员!";  
+                }
+                
+                if(flag==0) {
+                    return "成功";
+                }else {
+                    return "投保信息有误,请修改或联系管理员!";
+                }
             }
             
             
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+            
         }
-        return null;
+        
+        return "投保接口出错,请联系管理员!";
     }
     
     
@@ -114,7 +172,7 @@ public class InsureServiceImpl implements InsureService{
             call.setTargetEndpointAddress(new java.net.URL(Contants.endpoint));
             //checkRequest
             //试算接口
-            call.setOperationName(new  QName(method,"underwritingRequest" ));
+            call.setOperationName(new  QName("http://outwardservice.lis.sinosoft.com",method ));
 
             String tResult = (String)call.invoke(new Object[] { xml });
             
@@ -195,31 +253,29 @@ public class InsureServiceImpl implements InsureService{
         MainContDTOList MainContDTOList = new MainContDTOList();
         
         List<MainContDTO> dtoList = new ArrayList<>();
-        
-        //保单主信息
-        MainContDTO MainContDTO = new MainContDTO();
-        MainContDTO.setPrem(new BigDecimal(10));
-        
-        
-        //受益人列表
-        BnfList BnfList = new BnfList();
-        
-        List<BnfDTO> BnfDTOS = new ArrayList<>();
-        //受益人信息
-        BnfDTO BnfDTO = new BnfDTO();
-        BnfDTO.setBnfFlag("1");
-        BnfDTOS.add(BnfDTO);
-        BnfList.setBnfDTO(BnfDTOS);
-        MainContDTO.setBnfList(BnfList);
-        
-        
-        MainContDTO.setEndDate("2019-06-06");//终止日期 怎么获取
-        MainContDTO.setEndTime("11:15:19");
-        MainContDTO.setAgentCom("10005010101");//在售票系统中维护，以保险公司提供的为准 怎么获取
-        MainContDTO.setContplanCode("S00031");//套餐编码
-        
-        //投保人信息
         for(DaInsure vo : list) {
+            //保单主信息
+            MainContDTO MainContDTO = new MainContDTO();
+            MainContDTO.setPrem(new BigDecimal(10));
+            
+            //受益人列表
+            BnfList BnfList = new BnfList();
+            
+            List<BnfDTO> BnfDTOS = new ArrayList<>();
+            //受益人信息
+            BnfDTO BnfDTO = new BnfDTO();
+            BnfDTO.setBnfFlag("1");
+            BnfDTOS.add(BnfDTO);
+            BnfList.setBnfDTO(BnfDTOS);
+            MainContDTO.setBnfList(BnfList);
+            
+            
+            MainContDTO.setEndDate("2019-06-06");//终止日期 怎么获取
+            MainContDTO.setEndTime("11:15:19");
+            MainContDTO.setAgentCom("10005010101");//在售票系统中维护，以保险公司提供的为准 怎么获取
+            MainContDTO.setContplanCode("S00031");//套餐编码
+            
+            //投保人信息
             AppntDTO AppntDTO = new AppntDTO();
             AppntDTO.setAppntSex(vo.getSex());
             AppntDTO.setAppntIdno(vo.getIdNumber());
@@ -230,49 +286,50 @@ public class InsureServiceImpl implements InsureService{
             AppntDTO.setAppntIdtype("0");
             AppntDTO.setAppntNativePlace("CHN");
             MainContDTO.setAppntDTO(AppntDTO);
+            
+            MainContDTO.setApplyDate(today);
+            MainContDTO.setApplyTime(time);
+            MainContDTO.setCvaliDate("2018-06-06");//生效时间
+            MainContDTO.setCvaliTime("11:15:19");
+            MainContDTO.setManageCom("86430107");//管理机构 在售票系统中维护，以保险公司提供的为准 
+            MainContDTO.setMainAmount(new BigDecimal(550420));//保额
+            
+            //被投保人信息列表
+            InsuredList InsuredList = new InsuredList();
+            List<InsuredDTO> InsuredDTOS = new ArrayList<>();
+            
+            //被投保人信息
+            InsuredDTO InsuredDTO = new InsuredDTO();
+            InsuredDTO.setMainFlag("1");
+            InsuredDTO.setInsuredSex(vo.getSex());
+            InsuredDTO.setInsuredIdno(vo.getIdNumber());
+            InsuredDTO.setInsuredName(vo.getName());
+            InsuredDTO.setInsuredBirth(sf.format(vo.getBirthDate()));
+            InsuredDTO.setInsuredIdtype("0");
+            InsuredDTO.setRelationToAppnt("00");
+            InsuredDTO.setInsuredNativePlace("CHN");
+            
+            InsuredDTOS.add(InsuredDTO);
+            InsuredList.setInsuredDTO(InsuredDTOS);
+            
+            MainContDTO.setInsuredList(InsuredList);
+            
+            //汇缴单位信息
+            RemittGrpDTO RemittGrpDTO = new RemittGrpDTO();
+            RemittGrpDTO.setEMail(school.getEmail());
+            RemittGrpDTO.setPhone(school.getPhone());
+            RemittGrpDTO.setGrpName(school.getName());
+            MainContDTO.setRemittGrpDTO(RemittGrpDTO);
+            
+            
+            MainContDTO.setAdditionalAmount(new BigDecimal(0));
+            MainContDTO.setMainContDTOSerialno("1");//序号 怎么设置
+            MainContDTO.setMainDevelop("inbankcode,S8600000|inbankaccno,43001780661059666666|inbankaccname, 建行长沙韭菜园支行（收）|paymode,L|tempfeeno, 1234567899");
+            
+            dtoList.add(MainContDTO);
         }
         
-        MainContDTO.setApplyDate(today);
-        MainContDTO.setApplyTime(time);
-        MainContDTO.setCvaliDate("2018-06-06");//生效时间
-        MainContDTO.setCvaliTime("11:15:19");
-        MainContDTO.setManageCom("86430107");//管理机构 在售票系统中维护，以保险公司提供的为准 
-        MainContDTO.setMainAmount(new BigDecimal(550420));//保额
-        
-        //被投保人信息列表
-        InsuredList InsuredList = new InsuredList();
-        List<InsuredDTO> InsuredDTOS = new ArrayList<>();
-        
-        //被投保人信息
-        InsuredDTO InsuredDTO = new InsuredDTO();
-        InsuredDTO.setMainFlag("1");
-        InsuredDTO.setInsuredSex("0");
-        InsuredDTO.setInsuredIdno("430621198612062730");
-        InsuredDTO.setInsuredName("贝多芬666");
-        InsuredDTO.setInsuredBirth("1986-12-06");
-        InsuredDTO.setInsuredIdtype("0");
-        InsuredDTO.setRelationToAppnt("00");
-        InsuredDTO.setInsuredNativePlace("CHN");
-        
-        InsuredDTOS.add(InsuredDTO);
-        InsuredList.setInsuredDTO(InsuredDTOS);
-        
-        MainContDTO.setInsuredList(InsuredList);
-        
-        
-        //汇缴单位信息
-        RemittGrpDTO RemittGrpDTO = new RemittGrpDTO();
-        RemittGrpDTO.setEMail(school.getEmail());
-        RemittGrpDTO.setPhone(school.getPhone());
-        RemittGrpDTO.setGrpName(school.getName());
-        MainContDTO.setRemittGrpDTO(RemittGrpDTO);
-        
-        
-        MainContDTO.setAdditionalAmount(new BigDecimal(0));
-        MainContDTO.setMainContDTOSerialno("1");//序号 怎么设置
-        MainContDTO.setMainDevelop("inbankcode,S8600000|inbankaccno,43001780661059666666|inbankaccname, 建行长沙韭菜园支行（收）|paymode,L|tempfeeno, 1234567899");
-        
-        dtoList.add(MainContDTO);
+       
         MainContDTOList.setMainContDTO(dtoList);
         
         dto.setMainContDTOList(MainContDTOList);

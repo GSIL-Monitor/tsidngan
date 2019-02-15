@@ -256,7 +256,7 @@ public class CxfClient {
             call.setTargetEndpointAddress(new java.net.URL(endpoint));
             //checkRequest
             //试算接口
-            call.setOperationName( new  QName( "http://outwardservice.lis.sinosoft.com","underwritingRequest" ));
+            call.setOperationName( new  QName("underwritingRequest"));
 
             String tResult = (String)call.invoke(new Object[] { xml2 });
             
