@@ -38,9 +38,8 @@ public class DaInsure {
      * 身份证号
      */
     @Excel(name = "身份证号")
-    @Column(name = "id_number")
     @ApiModelProperty(value = "身份证号")
-    private String idNumber;
+    private String idcard;
 
     /**
      * 手机号
@@ -61,6 +60,10 @@ public class DaInsure {
     @Column(name = "birth_date")
     @ApiModelProperty(value = "出生日期")
     private Date birthDate;
+    
+    
+    @Column(name = "is_insure")
+    private String isInsure;
 
     /**
      * 投保人员类型(1 学员投保 2教练员投保 3特殊人员投保)

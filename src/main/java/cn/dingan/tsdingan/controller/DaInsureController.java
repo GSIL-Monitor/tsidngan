@@ -78,13 +78,13 @@ public class DaInsureController {
     public Result checkIdNumber(@PathVariable String idNumber) {
         Result result = new Result();
         try {
-            DaInsure record = daInsureService.checkIdNumber(idNumber);
-            
-            if(record==null) {
-                result.setSuccess(true);
+        	List<DaInsure> list = daInsureService.checkIdNumber(idNumber);
+            if(null!=list && list.size()>0) {
+	        	 result.setSuccess(false);
+	             result.setMessage("该投保人已存在,请检查身份证是否正确");
             }else {
-                result.setSuccess(false);
-                result.setMessage("身份证号重复");
+            	result.setSuccess(true);
+            	result.setMessage("保存成功");
             }
             
         } catch (Exception e) {
@@ -106,11 +106,18 @@ public class DaInsureController {
     public Result insertPost(@RequestBody DaInsure record) {
         Result result = new Result();
         try {
-            daInsureService.insert(record);
-            result.setSuccess(true);
+            int count = daInsureService.insert(record);
+            if(count==2) {
+            	result.setSuccess(false);
+            	result.setMessage("该投保人已存在,请检查身份证是否正确");
+            }else{
+            	result.setSuccess(true);
+            	result.setMessage("保存成功");
+            }
+            
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            result.setMessage("操作失败.");
+            result.setMessage("添加失败,请联系管理员");
             result.setSuccess(false);
         }
         return result;
@@ -175,8 +182,19 @@ public class DaInsureController {
      */
     @ApiOperation(value = "获取投保人列表", notes = "投保人列表")
     @PostMapping("/daInsure/list")
-    public DataSet<DaInsure> getPostList(Page page, DaInsure record) {
-        return daInsureService.getDataSetList(page, record);
+    public Result getPostList(Page page, DaInsure record) {
+    	 Result result = new Result();
+         try {
+        	 DataSet<DaInsure> dataset = daInsureService.getDataSetList(page, record);
+        	 result.setObject(dataset);
+             result.setSuccess(true);
+         } catch (Exception e) {
+             logger.error(e.getMessage(), e);
+             result.setSuccess(false);
+             result.setMessage("操作失败.");
+         }
+        return result;
+         
     }
 
 //    /**

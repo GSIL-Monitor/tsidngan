@@ -1,23 +1,27 @@
 package cn.dingan.tsdingan.interceptor;
 
-import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import com.alibaba.fastjson.JSONObject;
-
-import cn.dingan.tsdingan.model.SysUser;
+import cn.dingan.tsdingan.model.DriverSchool;
+import cn.dingan.tsdingan.service.DriverSchoolService;
+import cn.dingan.tsdingan.utils.TokenUtils;
 import cn.dingan.tsdingan.utils.UserUtil;
 
 
@@ -30,6 +34,7 @@ import cn.dingan.tsdingan.utils.UserUtil;
  * @author penghb
  * @date 2016-4-26
  */
+@Component
 public class SessionInterceptor extends HandlerInterceptorAdapter {
     
 //    @Resource
@@ -50,33 +55,79 @@ public class SessionInterceptor extends HandlerInterceptorAdapter {
      * 用户登录界面
      */
     private String uloginPage = null;
+    
+    @Autowired
+    private DriverSchoolService driverSchoolService;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
                     Object handler) throws Exception {
         // （1）忽略不需要拦截的请求
     	
+//        HttpSession session = request.getSession();
+        Map<String, String> map = getHeadersInfo(request);
+        String token = map.get("authorization");
+		String account = map.get("account");
+		try {
+			
+			if(StringUtils.isBlank(token) || StringUtils.isBlank(account)) {
+				response.sendRedirect("192.168.1.3:8080");
+				return false;
+			}
+			
+			DriverSchool driverSchool = new DriverSchool();
+			driverSchool.setAccount(account);
+			DriverSchool checkSchool = driverSchoolService.checkAccount(driverSchool);
+			if(checkSchool==null) {
+				response.sendRedirect("192.168.1.3:8080");
+				return false;
+			}
+			String tokenAccount = TokenUtils.getAppUID(token);
+			if(account.equals(tokenAccount)){
+				request.getSession().setAttribute(UserUtil.LOGIN_USER, checkSchool);
+				UserUtil.setUser(checkSchool);
+				return true;
+			}else{
+				response.sendRedirect("192.168.1.3:8080");
+				return false;
+			}
+		}catch (Exception e){
+			e.printStackTrace();
+			return false;
+		}
         
-        HttpSession session = request.getSession();
-        SysUser user = (SysUser) session.getAttribute(UserUtil.LOGIN_USER);
-        if (user == null) {
-            response.setCharacterEncoding("UTF-8");  
-            response.setContentType("application/json; charset=utf-8");
-            PrintWriter out = null ;
-            JSONObject res = new JSONObject();
-            res.put("success","false");
-            res.put("msg","未登陆");
-            out = response.getWriter();
-            out.append(res.toString());
-            return false;
-        } else {
-            String current = (String)session.getAttribute(UserUtil.CURRENT);
-            UserUtil.setUser(user);
-            UserUtil.setCurrent(current);
-            return true;
-        }
+//		DriverSchool user = (DriverSchool) session.getAttribute(UserUtil.LOGIN_USER);
+        
+//        if (user == null) {
+//            response.setCharacterEncoding("UTF-8");  
+//            response.setContentType("application/json; charset=utf-8");
+//            PrintWriter out = null ;
+//            JSONObject res = new JSONObject();
+//            res.put("success","false");
+//            res.put("msg","未登陆");
+//            out = response.getWriter();
+//            out.append(res.toString());
+//            return false;
+//        } else {
+//            String current = (String)session.getAttribute(UserUtil.CURRENT);
+//            UserUtil.setUser(user);
+//            UserUtil.setCurrent(current);
+//            return true;
+//        }
     }
-
+    
+    private Map<String, String> getHeadersInfo(HttpServletRequest request) {
+		Map<String, String> map = new HashMap<String, String>();
+		Enumeration headerNames = request.getHeaderNames();
+		while (headerNames.hasMoreElements()) {
+			String key = (String) headerNames.nextElement();
+			String value = request.getHeader(key);
+			map.put(key, value);
+		}
+		return map;
+	}
+    
+    
     public List<String> getIgnoreList() {
         return ignoreList;
     }

@@ -84,6 +84,6 @@ public interface DaInsureService {
     * @author jyq#trasen.cn
     * @date 2019年2月15日 下午5:53:53
      */
-    DaInsure  checkIdNumber(String idNumber);
+    List<DaInsure>  checkIdNumber(String idNumber);
     
 }

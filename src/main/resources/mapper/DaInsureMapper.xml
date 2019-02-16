@@ -8,12 +8,13 @@
     <id column="insure_id" jdbcType="VARCHAR" property="insureId" />
     <result column="driver_school_id" jdbcType="VARCHAR" property="driverSchoolId" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="id_number" jdbcType="VARCHAR" property="idNumber" />
+    <result column="idcard" jdbcType="VARCHAR" property="idcard" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="sex" jdbcType="CHAR" property="sex" />
     <result column="birth_date" jdbcType="DATE" property="birthDate" />
     <result column="type" jdbcType="VARCHAR" property="type" />
     <result column="is_deleted" jdbcType="CHAR" property="isDeleted" />
+    <result column="is_insure" jdbcType="CHAR" property="isInsure" />
     <result column="insure_date" jdbcType="TIMESTAMP" property="insureDate" />
     <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
   </resultMap>

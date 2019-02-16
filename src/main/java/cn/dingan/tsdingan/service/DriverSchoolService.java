@@ -10,5 +10,12 @@ public interface DriverSchoolService {
 	 * @param 免费注册
 	 * @return
 	 */
-	int insert(DriverSchool record);
+	String insert(DriverSchool record);
+	
+	/**
+	 * 
+	 * @param 校验登录
+	 * @return
+	 */
+	DriverSchool checkAccount(DriverSchool record);
 }

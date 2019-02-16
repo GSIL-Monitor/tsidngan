@@ -1,6 +1,6 @@
 package cn.dingan.tsdingan.utils;
 
-import cn.dingan.tsdingan.model.SysUser;
+import cn.dingan.tsdingan.model.DriverSchool;
 
 
 public class UserUtil {
@@ -12,15 +12,15 @@ public class UserUtil {
     
     
     private static final ThreadLocal<String> current = new ThreadLocal<>();
-    private static final ThreadLocal<SysUser> user = new ThreadLocal<>();
+    private static final ThreadLocal<DriverSchool> user = new ThreadLocal<>();
     
     
     
-    public static void setUser(SysUser u) {
+    public static void setUser(DriverSchool u) {
         user.set(u);
     }
     
-    public static SysUser getUser() {
+    public static DriverSchool getUser() {
         return user.get();
     }
     

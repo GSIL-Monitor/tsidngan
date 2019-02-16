@@ -16,13 +16,13 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 public class TokenUtils {
 
     /** token秘钥，请勿泄露，请勿随便修改 backups:JKKLJOoasdlfj */
-    public static final String SECRET = "fangchantest123";
+    public static final String SECRET = "dingantest123";
     /** token 过期时间: 1天 */
     public static final int calendarField = Calendar.DATE;
     public static final int calendarInterval = 1;
 
 
-    public static String createToken(String user_id) throws Exception {
+    public static String createToken(String account) throws Exception {
         Date iatDate = new Date();
         // expire time
         Calendar nowTime = Calendar.getInstance();
@@ -38,7 +38,7 @@ public class TokenUtils {
         // param backups {iss:Service, aud:APP}
         String token = JWT.create().withHeader(map) // header
                 .withClaim("iss", "Service") // payload
-                .withClaim("aud", "APP").withClaim("user_id", null == user_id ? null : user_id)
+                .withClaim("aud", "APP").withClaim("account", null == account ? null : account)
                 .withIssuedAt(iatDate) // sign time
                 .withExpiresAt(expiresDate) // expire time
                 .sign(Algorithm.HMAC256(SECRET)); // signature
@@ -70,12 +70,12 @@ public class TokenUtils {
      * @param token
      * @return user_id
      */
-    public static Long getAppUID(String token) throws Exception {
+    public static String getAppUID(String token) throws Exception {
         Map<String, Claim> claims = verifyToken(token);
-        Claim user_id_claim = claims.get("user_id");
+        Claim user_id_claim = claims.get("account");
         if (null == user_id_claim || StringUtils.isEmpty(user_id_claim.asString())) {
             // token 校验失败, 抛出Token验证非法异常
         }
-        return Long.valueOf(user_id_claim.asString());
+        return user_id_claim.asString();
     }
 }

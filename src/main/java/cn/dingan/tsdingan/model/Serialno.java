@@ -22,4 +22,16 @@ public class Serialno {
 
     @Column(name = "is_deleted")
     private String isDeleted;
+
+    /**
+     * 1 套餐流水号 2 账号流水号
+     */
+    @ApiModelProperty(value = "1 套餐流水号 2 账号流水号")
+    private String type;
+
+    /**
+     * 省份id
+     */
+    @ApiModelProperty(value = "省份id")
+    private String province;
 }

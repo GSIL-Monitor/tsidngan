@@ -1,6 +1,7 @@
 package cn.dingan.tsdingan.service.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,15 +10,16 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import cn.dingan.tsdingan.dao.DriverSchoolMapper;
-import cn.dingan.tsdingan.dao.SysUserMapper;
+import cn.dingan.tsdingan.dao.SerialnoMapper;
 import cn.dingan.tsdingan.model.DriverSchool;
 import cn.dingan.tsdingan.model.EmailMessageVo;
-import cn.dingan.tsdingan.model.SysUser;
+import cn.dingan.tsdingan.model.Serialno;
 import cn.dingan.tsdingan.service.DriverSchoolService;
 import cn.dingan.tsdingan.service.EmailService;
 import cn.dingan.tsdingan.utils.MD5Util;
 import cn.trasen.BootComm.Contants;
 import cn.trasen.commons.util.ApplicationUtils;
+import tk.mybatis.mapper.entity.Example;
 
 @Service
 @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class, readOnly = true)
@@ -27,49 +29,93 @@ public class DriverSchoolServiceImpl implements DriverSchoolService {
 	private DriverSchoolMapper driverSchoolMapper;
 	
 	@Autowired
-	private SysUserMapper sysUserMapper;
+	private EmailService emailService;
 	
 	@Autowired
-	private EmailService emailService;
+	private SerialnoMapper serialnoMapper;
 	
 	/**
 	 * 注册
 	 */
 	@Transactional(readOnly=false)
-	public int insert(DriverSchool record){
+	public String insert(DriverSchool record){
 		record.setDriverSchoolId(ApplicationUtils.GUID32());
 		record.setCreateDate(new Date());
 		record.setIsExamine("1");
 		record.setIsDeleted(Contants.IS_DELETED_FALSE);
-		//创建用户
-		insertUser(record);
+//		//创建用户
+//		String msg  = insertUser(record);
 		
-		return driverSchoolMapper.insert(record);
+		String account = getAccount(record.getProvince());
+		record.setAccount(account);
+		String password=MD5Util.md5Password("123456");
+		record.setPassword(password);
+		driverSchoolMapper.insert(record);
+		/**
+		 * 发送邮件
+		 */
+		String msg = sendEmail(record);
+		
+		return msg;
 	}
 	
 	/**
-	 * 新建驾校用户
-	 * @param record
+	 * 
+	 * @param 登录校验
+	 * @return
 	 */
-	private void insertUser(DriverSchool record) {
-		SysUser user = new SysUser();
-		user.setId(ApplicationUtils.GUID32());
-		user.setAccount(record.getAccount());
-		user.setAccountType("1");
-		user.setPassword(MD5Util.md5Password("123456"));//初始密码123456
-		user.setDriverSchoolId(record.getDriverSchoolId());
-		user.setIsactivation("1");
+	public DriverSchool checkAccount(DriverSchool record) {
+		Example example = new Example(DriverSchool.class);
+		example.createCriteria().andEqualTo("account",record.getAccount());
 		
-		record.setIsDeleted(Contants.IS_DELETED_FALSE);
-		
-		sysUserMapper.insert(user);
-		
-		//发送邮件
+		return driverSchoolMapper.selectOneByExample(example);
+	}
+	
+	 
+	/**
+	 * 发送邮件
+	 * @param record
+	 * @return 
+	 */
+	private String sendEmail(DriverSchool record) {
 		if(StringUtils.isNotBlank(record.getEmail())) {
 		    EmailMessageVo  messageVo = new EmailMessageVo();
-	        messageVo.setContent("测试------------");
+//	        messageVo.setContent("感谢您注册鼎安保险，您的账号信息为"+user.getAccount()+",您的密码为123456,我们已经发送了一封激活邮件到您的邮箱"+record.getEmail()+"");
+	        messageVo.setContent("感谢您注册，您的账号信息为"+record.getAccount()+",您的密码为123456,我们已经发送了一封激活邮件到您的邮箱"+record.getEmail()+"");
 	        messageVo.setSendTo(record.getEmail());
 	        emailService.sendEmail(messageVo);
+	        return "您的账号信息为"+record.getAccount()+",您的密码为123456,我们已经发送了一封激活邮件到您的邮箱"+record.getEmail()+"";
+		}
+		return null;
+	}
+	
+	/**
+	 * 
+	 * @param 根据省份设置账号
+	 * @return
+	 */
+	private String getAccount(String province) {
+		Example example = new Example(Serialno.class);
+		example.createCriteria().andEqualTo("province",province).andEqualTo("isDeleted",Contants.IS_DELETED_FALSE).andEqualTo("type",2);
+		List<Serialno> list = serialnoMapper.selectByExample(example);
+		if(null!=list && list.size()>0) {
+			Serialno serialno = list.get(0);
+			int no = serialno.getSerialno();
+			int nextNo = no+1;
+			serialno.setSerialno(nextNo);
+			serialnoMapper.updateByPrimaryKey(serialno);
+			return province+nextNo+"";
+			
+		}else {
+			Serialno vo = new Serialno();
+			vo.setId(ApplicationUtils.GUID32());
+			vo.setCreateDate(new Date());
+			vo.setProvince(province);
+			vo.setType("2");
+			vo.setIsDeleted("N");
+			vo.setSerialno(1);
+			serialnoMapper.insert(vo);
+			return province+"001";
 		}
 	}
 }

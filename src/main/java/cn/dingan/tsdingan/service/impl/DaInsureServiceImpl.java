@@ -3,6 +3,7 @@ package cn.dingan.tsdingan.service.impl;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.util.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,7 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import cn.dingan.tsdingan.dao.DaInsureMapper;
 import cn.dingan.tsdingan.model.DaInsure;
+import cn.dingan.tsdingan.model.DriverSchool;
 import cn.dingan.tsdingan.service.DaInsureService;
+import cn.dingan.tsdingan.utils.UserUtil;
 import cn.trasen.BootComm.Contants;
 import cn.trasen.BootComm.model.DataSet;
 import cn.trasen.commons.util.ApplicationUtils;
@@ -48,9 +51,19 @@ public class DaInsureServiceImpl implements DaInsureService {
      */
     @Transactional(readOnly=false)
     public int insert(DaInsure record) {
+    	DriverSchool school = UserUtil.getUser();
+    	if(null==school) {
+    		return 0;
+    	}
+    	record.setDriverSchoolId(school.getDriverSchoolId());
         record.setInsureId(ApplicationUtils.GUID32());
         record.setCreateDate(new Date());
         record.setIsDeleted(Contants.IS_DELETED_FALSE);
+        record.setIsInsure("1");
+        List<DaInsure> list = checkIdNumber(record.getIdcard());
+        if(null!=list && list.size()>0) {
+        	return 2;
+        }
         
         return daInsureMapper.insert(record);
     }
@@ -62,7 +75,7 @@ public class DaInsureServiceImpl implements DaInsureService {
      */
     @Transactional(readOnly = false)
     public int update(DaInsure record) {
-        Assert.hasText(record.getInsureId(), "postId must be not null.");
+        Assert.hasText(record.getInsureId(), "insureId must be not null.");
         
         return daInsureMapper.updateByPrimaryKeySelective(record);
     }
@@ -100,10 +113,21 @@ public class DaInsureServiceImpl implements DaInsureService {
      * @return
      */
     public DataSet<DaInsure> getDataSetList(Page page, DaInsure record) {
+    	DriverSchool school = UserUtil.getUser();
+    	if(null==school) {
+    		return null;
+    	}
+    	
         Example example = new Example(DaInsure.class);
         Example.Criteria criteria = example.createCriteria();
         criteria.andEqualTo(Contants.IS_DELETED_FIELD, Contants.IS_DELETED_FALSE);
-       
+        if(StringUtils.isBlank(record.getType())) {
+        	record.setType("0");
+        }
+        example.and().andEqualTo("driverSchoolId",school.getDriverSchoolId());
+        example.and().andEqualTo("type",record.getType());
+        example.and().andEqualTo("isInsure","1");
+        
         List<DaInsure> records = daInsureMapper.selectByExampleAndRowBounds(example, page);
          
         return new DataSet<>(page.getPageNo(), page.getPageSize(), page.getTotalPages(),
@@ -139,10 +163,12 @@ public class DaInsureServiceImpl implements DaInsureService {
     * @author jyq#trasen.cn
     * @date 2019年2月15日 下午5:53:53
      */
-    public DaInsure checkIdNumber(String idNumber) {
+    public List<DaInsure> checkIdNumber(String idcard) {
        Example example = new Example(DaInsure.class);
-       example.createCriteria().andEqualTo("idNumber",idNumber).andEqualTo("isDeleted",Contants.IS_DELETED_FALSE);
+       example.createCriteria().andEqualTo("idcard",idcard).andEqualTo("isDeleted",Contants.IS_DELETED_FALSE)
+       .andEqualTo("isInsure","1");
+       List<DaInsure> list = daInsureMapper.selectByExample(example);
        
-       return daInsureMapper.selectOneByExample(example);
+       return list;
     }
 }

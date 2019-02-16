@@ -9,5 +9,7 @@
     <result column="serialno" jdbcType="INTEGER" property="serialno" />
     <result column="create_date" jdbcType="DATE" property="createDate" />
     <result column="is_deleted" jdbcType="CHAR" property="isDeleted" />
+    <result column="type" jdbcType="CHAR" property="type" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
   </resultMap>
 </mapper>

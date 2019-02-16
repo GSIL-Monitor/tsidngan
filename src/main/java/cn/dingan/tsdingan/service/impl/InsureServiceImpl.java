@@ -30,7 +30,6 @@ import cn.dingan.tsdingan.model.MainContDTOList;
 import cn.dingan.tsdingan.model.PolicyRequestDTO;
 import cn.dingan.tsdingan.model.RemittGrpDTO;
 import cn.dingan.tsdingan.model.Serialno;
-import cn.dingan.tsdingan.model.SysUser;
 import cn.dingan.tsdingan.model.TranslationDTO;
 import cn.dingan.tsdingan.response.PolicyResponseDTO;
 import cn.dingan.tsdingan.response.ResopnseMainContDTO;
@@ -69,13 +68,9 @@ public class InsureServiceImpl implements InsureService{
         try {
             
             //根据登录人查询机构信息
-            SysUser user = UserUtil.getUser();
+        	DriverSchool school = UserUtil.getUser();
             
-            DriverSchool school = null;
             
-            if(StringUtils.isNotBlank(user.getDriverSchoolId())) {
-                school = driverSchoolMapper.selectByPrimaryKey(user.getDriverSchoolId());
-            }
             
 //            DriverSchool school = new DriverSchool();
             school.setEmail("380053453@qq.com");
@@ -276,7 +271,7 @@ public class InsureServiceImpl implements InsureService{
             //投保人信息
             AppntDTO AppntDTO = new AppntDTO();
             AppntDTO.setAppntSex(vo.getSex());
-            AppntDTO.setAppntIdno(vo.getIdNumber());
+            AppntDTO.setAppntIdno(vo.getIdcard());
             AppntDTO.setAppntName(vo.getName());
             AppntDTO.setRelation1("00");
             AppntDTO.setRelation2("00");
@@ -300,7 +295,7 @@ public class InsureServiceImpl implements InsureService{
             InsuredDTO InsuredDTO = new InsuredDTO();
             InsuredDTO.setMainFlag("1");
             InsuredDTO.setInsuredSex(vo.getSex());
-            InsuredDTO.setInsuredIdno(vo.getIdNumber());
+            InsuredDTO.setInsuredIdno(vo.getIdcard());
             InsuredDTO.setInsuredName(vo.getName());
             InsuredDTO.setInsuredBirth(sf.format(vo.getBirthDate()));
             InsuredDTO.setInsuredIdtype("0");

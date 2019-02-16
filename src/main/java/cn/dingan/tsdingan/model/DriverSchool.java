@@ -100,4 +100,7 @@ public class DriverSchool {
 
     @Column(name = "update_date")
     private Date updateDate;
+    
+    @Transient
+    private String token;
 }
