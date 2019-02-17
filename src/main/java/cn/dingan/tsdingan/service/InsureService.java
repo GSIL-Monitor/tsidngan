@@ -1,8 +1,7 @@
 package cn.dingan.tsdingan.service;
 
-import java.util.List;
-
 import cn.dingan.tsdingan.model.DaInsure;
+import cn.trasen.core.entity.Result;
 
 /**
  * 
@@ -25,5 +24,8 @@ public interface InsureService {
     * @author jyq#trasen.cn
     * @date 2019年2月12日 下午5:13:20
      */
-    String insureTry(List<DaInsure> list);
+	Result  insureTry(DaInsure record);
+    
+    
+    String insureTry();
 }

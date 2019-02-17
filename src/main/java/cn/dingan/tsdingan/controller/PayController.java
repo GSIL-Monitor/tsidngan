@@ -1,13 +1,20 @@
 package cn.dingan.tsdingan.controller;
 
+import java.util.Enumeration;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import cn.dingan.tsdingan.model.PayInfo;
 import cn.dingan.tsdingan.model.Result;
+import cn.dingan.tsdingan.response.PayResponse;
 import cn.dingan.tsdingan.service.SybPayService;
 import io.swagger.annotations.Api;
 
@@ -18,6 +25,7 @@ public class PayController {
     
     private static final Logger logger = LoggerFactory.getLogger(PayController.class);
     
+    @Autowired
     private SybPayService sybPayService;
     
     
@@ -25,12 +33,34 @@ public class PayController {
     public Result valdiateMobile(@RequestBody PayInfo payInfo) {
         Result result = new Result();
         try {
-            sybPayService.wxPay(payInfo);
+        	PayResponse  payResponse= sybPayService.wxPay(payInfo);
+        	if(null!=payResponse && "SUCCESS".equals(payResponse.getRetcode())) {
+        		result.setMessage("唤醒支付成功");
+    			result.setSuccess(true);
+    			result.setObject(payResponse);
+        	}else{
+        		result.setMessage("操作失败,请联系管理员");
+    			result.setSuccess(false);
+        	}
+    		 
         }catch(Exception e) {
             logger.error(e.getMessage(), e);
             result.setSuccess(false);
+            result.setMessage(e.getMessage());
         }
         return result;
     }
     
+    
+    @PostMapping("/pay/callback")
+    public Result callback(HttpServletRequest request) {
+        Result result = new Result();
+        Map<String, String[]> map = request.getParameterMap();
+        for(String key : map.keySet()) {
+        	System.out.println(key+"=========:"+map.get(key).toString());
+        }
+       //根据回调的订单号下单保险公司
+        
+        return result;
+    }
 }

@@ -1,12 +1,19 @@
 package cn.dingan.tsdingan.model;
 
-import io.swagger.annotations.*;
+import java.math.BigDecimal;
 import java.util.Date;
-import javax.persistence.*;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.jeecgframework.poi.excel.annotation.Excel;
 
-import lombok.*;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Getter;
+import lombok.Setter;
 
 @Table(name = "da_insure")
 @Setter
@@ -79,4 +86,16 @@ public class DaInsure {
 
     @Column(name = "create_date")
     private Date createDate;
+    
+    /**
+     * 投保人员列表
+     */
+    @Transient
+    private List<DaInsure> insuredArray;
+    
+    /**
+     * 保费
+     */
+    @Transient
+    private BigDecimal baofei;
 }

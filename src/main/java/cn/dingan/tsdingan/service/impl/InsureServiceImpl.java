@@ -10,13 +10,14 @@ import javax.xml.namespace.QName;
 
 import org.apache.axis.client.Call;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import cn.dingan.tsdingan.contants.Contants;
-import cn.dingan.tsdingan.dao.DriverSchoolMapper;
 import cn.dingan.tsdingan.dao.SerialnoMapper;
 import cn.dingan.tsdingan.model.AppntDTO;
 import cn.dingan.tsdingan.model.BnfDTO;
@@ -36,15 +37,15 @@ import cn.dingan.tsdingan.response.ResopnseMainContDTO;
 import cn.dingan.tsdingan.service.InsureService;
 import cn.dingan.tsdingan.utils.UserUtil;
 import cn.dingan.tsdingan.utils.XMLUtil;
+import cn.trasen.commons.util.ApplicationUtils;
+import cn.trasen.core.entity.Result;
 import tk.mybatis.mapper.entity.Example;
 
 @Service
 @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class, readOnly = true)
 public class InsureServiceImpl implements InsureService{
     
-    
-    @Autowired
-    private DriverSchoolMapper driverSchoolMapper;
+	private Logger logger = LoggerFactory.getLogger(InsureServiceImpl.class);
     
     /**
      * 流水号
@@ -64,27 +65,97 @@ public class InsureServiceImpl implements InsureService{
     * @author jyq#trasen.cn
     * @date 2019年2月12日 下午5:13:20
      */
-    public String insureTry(List<DaInsure> list) {
+    @Transactional(readOnly=false)
+    public Result insureTry(DaInsure record) {
+    	Result result = new Result();
         try {
-            
             //根据登录人查询机构信息
         	DriverSchool school = UserUtil.getUser();
             
+            if(null!=school) {
+                //调用试算接口
+            	
+            	int nextNo  = getSerialno(school);
+                
+                String transSerialno = "01005"+nextNo+"8";
+            	
+                PolicyRequestDTO dto = setXML(record.getInsuredArray(),school,transSerialno);
+                String xml = XMLUtil.convertToXml(dto,PolicyRequestDTO.class );
+                
+                xml = xml.replace("standalone=\"yes\"", "");
+                //保险公司返回报文
+                String resultXML = callInterface(xml,"underwritingRequest");
+                
+                System.out.println(resultXML);
+                int flag = 0;
+                
+                if(null!=resultXML) {
+                    PolicyResponseDTO resultDto = XMLUtil.getResult(resultXML);
+                    if(null!=resultDto) {
+                        //获取返回接口列表
+                        List<ResopnseMainContDTO> manContList = resultDto.getMainContDTOList();
+                        
+                        if(null!=manContList && manContList.size()>0) {
+                            for(ResopnseMainContDTO vo : manContList) {
+                                if(StringUtils.isNotBlank(vo.getFlag()) && "0".equals(vo.getFlag())) {
+                                    
+                                }else {
+                                    flag ++;  
+                                }
+                            }
+                        }
+                    }else {
+                    	result.setMessage("投保接口出错,请联系管理员!");
+                    	result.setSuccess(false);
+                    }
+                }else {
+                	result.setSuccess(false);
+                    result.setMessage("投保接口出错,请联系管理员!");  
+                }
+                
+                if(flag==0) {
+                    result.setMessage("成功");
+                    result.setObject(transSerialno);
+                    result.setSuccess(true);
+                }else {
+                	result.setSuccess(false);
+                    result.setMessage("投保接口出错,请联系管理员!");  
+                }
+            }
             
             
-//            DriverSchool school = new DriverSchool();
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            logger.error(e.getMessage());
+            result.setSuccess(false);
+            result.setMessage("投保接口出错,请联系管理员!"); 
+            
+        }
+        return result;
+    }
+    
+    
+    public String insureTry() {
+        try {
+            
+            //根据登录人查询机构信息
+//        	DriverSchool school = UserUtil.getUser();
+            
+            
+            
+            DriverSchool school = new DriverSchool();
             school.setEmail("380053453@qq.com");
             school.setPhone("18911267760");
             school.setName("测试驾校");
             
-            if(null==list) {
-                list = new ArrayList<>();
-//                DaInsure vo1 = new DaInsure();
-//                vo1.setSex("0");
-//                vo1.setIdNumber("430421199210208630");
-//                vo1.setName("蒋亚球");
-//                vo1.setBirthDate(new SimpleDateFormat("yyyy-MM-dd").parse("1992-10-20"));
-//                list.add(vo1);
+        	List<DaInsure> list = new ArrayList<>();
+            DaInsure vo1 = new DaInsure();
+            vo1.setSex("0");
+            vo1.setIdcard("430421199210208630");
+            vo1.setName("蒋亚球");
+            vo1.setBirthDate(new SimpleDateFormat("yyyy-MM-dd").parse("1992-10-20"));
+            list.add(vo1);
 //                
 //                DaInsure vo2 = new DaInsure();
 //                vo2.setSex("0");
@@ -92,11 +163,10 @@ public class InsureServiceImpl implements InsureService{
 //                vo2.setName("蒋亚球");
 //                vo2.setBirthDate(new SimpleDateFormat("yyyy-MM-dd").parse("1992-10-20"));
 //                list.add(vo2);
-            }
             
             if(null!=school) {
                 //调用试算接口
-                PolicyRequestDTO dto = setXML(list,school);
+                PolicyRequestDTO dto = setXML(list,school,"");
                 String xml = XMLUtil.convertToXml(dto,PolicyRequestDTO.class );
                 
                 xml = xml.replace("standalone=\"yes\"", "");
@@ -139,6 +209,7 @@ public class InsureServiceImpl implements InsureService{
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+            logger.error(e.getMessage());
             
         }
         
@@ -190,19 +261,31 @@ public class InsureServiceImpl implements InsureService{
     * @author jyq#trasen.cn
     * @date 2019年2月14日 下午5:01:47
      */
-    
-    private int getSerialno() {
+    private int getSerialno(DriverSchool school) {
         Example example = new Example(Serialno.class);
-        example.createCriteria().andEqualTo("isDeleted",cn.trasen.BootComm.Contants.IS_DELETED_FALSE);
+        example.createCriteria().andEqualTo("isDeleted",cn.trasen.BootComm.Contants.IS_DELETED_FALSE)
+        .andEqualTo("driver_school_id",school.getDriverSchoolId());
         List<Serialno> serialnoList = serialnoMapper.selectByExample(example);
         if(null!=serialnoList && serialnoList.size()>0) {
             Serialno record = serialnoList.get(0);
             int no = record.getSerialno();
             //计算流水号
             int nextNo = no+1;
+            record.setSerialno(nextNo);
+            serialnoMapper.updateByPrimaryKey(record);
             return nextNo;
+        }else {
+        	Serialno record = new Serialno();
+        	int no = 10000001;
+        	record.setId(ApplicationUtils.GUID32());
+        	record.setSerialno(10000001);
+        	record.setDriverSchoolId(school.getDriverSchoolId());
+        	record.setIsDeleted("N");
+        	record.setType("1");
+        	serialnoMapper.insert(record);
+        	return no;
         }
-        return 0;
+        
     }
     
     /**
@@ -215,7 +298,7 @@ public class InsureServiceImpl implements InsureService{
     * @author jyq#trasen.cn
     * @date 2019年2月12日 下午5:15:59
      */
-    private PolicyRequestDTO setXML(List<DaInsure> list,DriverSchool school) {
+    private PolicyRequestDTO setXML(List<DaInsure> list,DriverSchool school,String transSerialno) {
         
         
         SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
@@ -235,9 +318,7 @@ public class InsureServiceImpl implements InsureService{
         TranslationDTO.setInterfaceType("00");//00试算  01 承保
         TranslationDTO.setChannel("01005-鼎安经纪保险-06");//渠道 怎么获取
         
-        int nextNo  = getSerialno();
         
-        String transSerialno = "01005"+nextNo+"8";
         
         TranslationDTO.setTransSerialno(transSerialno);//流水号 怎么设置
         
@@ -270,7 +351,7 @@ public class InsureServiceImpl implements InsureService{
             
             //投保人信息
             AppntDTO AppntDTO = new AppntDTO();
-            AppntDTO.setAppntSex(vo.getSex());
+            AppntDTO.setAppntSex("M".equals(vo.getSex())?"0":"1");
             AppntDTO.setAppntIdno(vo.getIdcard());
             AppntDTO.setAppntName(vo.getName());
             AppntDTO.setRelation1("00");
@@ -294,7 +375,7 @@ public class InsureServiceImpl implements InsureService{
             //被投保人信息
             InsuredDTO InsuredDTO = new InsuredDTO();
             InsuredDTO.setMainFlag("1");
-            InsuredDTO.setInsuredSex(vo.getSex());
+            InsuredDTO.setInsuredSex("M".equals(vo.getSex())?"0":"1");
             InsuredDTO.setInsuredIdno(vo.getIdcard());
             InsuredDTO.setInsuredName(vo.getName());
             InsuredDTO.setInsuredBirth(sf.format(vo.getBirthDate()));

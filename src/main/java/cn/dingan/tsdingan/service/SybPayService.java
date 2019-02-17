@@ -1,6 +1,5 @@
 package cn.dingan.tsdingan.service;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Map;
 import java.util.TreeMap;
@@ -9,6 +8,8 @@ import org.springframework.stereotype.Component;
 
 import cn.dingan.tsdingan.contants.Contants;
 import cn.dingan.tsdingan.model.PayInfo;
+import cn.dingan.tsdingan.response.PayResponse;
+import cn.dingan.tsdingan.utils.BeanUtils;
 import cn.dingan.tsdingan.utils.HttpConnectionUtil;
 import cn.dingan.tsdingan.utils.SybUtil;
 
@@ -16,16 +17,16 @@ import cn.dingan.tsdingan.utils.SybUtil;
 public class SybPayService {
     
     
-	public Map<String,String> wxPay(PayInfo payInfo) throws Exception{
+	public PayResponse wxPay(PayInfo payInfo) throws Exception{
 		HttpConnectionUtil http = new HttpConnectionUtil(Contants.SYB_APIURL+"/pay");
 		http.init();
 		TreeMap<String,String> params = new TreeMap<String,String>();
 		params.put("cusid", Contants.SYB_CUSID);
 		params.put("appid", Contants.SYB_APPID);
 		params.put("version", "11");
-		params.put("trxamt", String.valueOf(payInfo.getTrxamt()));
+		params.put("trxamt", String.valueOf(payInfo.getMoney()));
 		params.put("reqsn", payInfo.getReqsn());
-		params.put("paytype", Contants.PAY_TYPE_WX);
+		params.put("paytype", payInfo.getPaytype());
 		params.put("randomstr", String.valueOf(new Date().getTime()));
 		params.put("body", "驾驶员意外伤害险");
 		params.put("remark", "吉祥套餐编码");
@@ -35,7 +36,12 @@ public class SybPayService {
 		byte[] bys = http.postParams(params, true);
 		String result = new String(bys,"UTF-8");
 		Map<String,String> map = handleResult(result);
-		return map;
+    	if(null!=map) {
+    		PayResponse payResponse = (PayResponse) BeanUtils.mapToObject(map, PayResponse.class);
+    		return payResponse;
+    	}
+		
+		return null;
 		
 	}
 	
@@ -118,19 +124,19 @@ public class SybPayService {
 		}
 	}
 	
-	public static void main(String [] args) {
-	    SybPayService service = new SybPayService();
-	    PayInfo payInfo = new PayInfo();
-	    payInfo.setTrxamt(new BigDecimal(1000));
-	    payInfo.setReqsn("123456");
-	    try {
-            Map<String,String> map = service.wxPay(payInfo);
-            print(map);
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-	}
+//	public static void main(String [] args) {
+//	    SybPayService service = new SybPayService();
+//	    PayInfo payInfo = new PayInfo();
+//	    payInfo.setMoney(new BigDecimal(1000));
+//	    payInfo.setReqsn("123456");
+//	    try {
+//            Map<String,String> map = service.wxPay(payInfo);
+//            print(map);
+//        } catch (Exception e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
+//	}
 	
 	public static void print(Map<String, String> map){
         System.out.println("返回数据如下:");

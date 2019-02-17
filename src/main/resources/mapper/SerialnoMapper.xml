@@ -11,5 +11,6 @@
     <result column="is_deleted" jdbcType="CHAR" property="isDeleted" />
     <result column="type" jdbcType="CHAR" property="type" />
     <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column=driver_school_id jdbcType="VARCHAR" property="driverSchoolId" />
   </resultMap>
 </mapper>
