@@ -6,8 +6,9 @@ import java.util.Date;
 import javax.annotation.Resource;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +30,7 @@ import cn.dingan.tsdingan.utils.UserUtil;
 public class IndexController extends BaseController{
 	
 	
-	private final Logger log = Logger.getLogger(this.getClass());
+	private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
 
 	static SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
@@ -108,7 +109,7 @@ public class IndexController extends BaseController{
 				UserUtil.setUser(user);
 				// 更新该用户的最后登录时间和最后登录ip
 				
-				log.info("登录成功！用户：" + record.getAccount() + "，登录时间" + format.format(new Date()) + "，登录ip：");
+				logger.info("登录成功！用户：" + record.getAccount() + "，登录时间" + format.format(new Date()) + "，登录ip：");
 				
 				result.setMessage("登录成功");
 				result.setObject(user);
@@ -132,7 +133,7 @@ public class IndexController extends BaseController{
 		try {
 			super.getSession().setAttribute(UserUtil.LOGIN_USER, user);
 		} catch (Exception e) {
-			log.info("查询用户权限异常:::"+e);
+			logger.error("查询用户权限异常:::"+e);
 			e.printStackTrace();
 		}
 		return null;

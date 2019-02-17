@@ -1,31 +1,50 @@
-package cn.dingan.tsdingan.service;
+package cn.dingan.tsdingan.service.impl;
 
-import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import cn.dingan.tsdingan.contants.Contants;
+import cn.dingan.tsdingan.dao.DaOrderDetailMapper;
+import cn.dingan.tsdingan.dao.DaOrderMapper;
+import cn.dingan.tsdingan.model.DaOrder;
+import cn.dingan.tsdingan.model.DaOrderDetail;
 import cn.dingan.tsdingan.model.PayInfo;
+import cn.dingan.tsdingan.response.PayResponse;
+import cn.dingan.tsdingan.service.InsureService;
+import cn.dingan.tsdingan.utils.BeanUtils;
 import cn.dingan.tsdingan.utils.HttpConnectionUtil;
 import cn.dingan.tsdingan.utils.SybUtil;
+import tk.mybatis.mapper.entity.Example;
 
 @Component
 public class SybPayService {
     
     
-	public Map<String,String> wxPay(PayInfo payInfo) throws Exception{
+    @Autowired
+    private DaOrderMapper daOrderMapper;
+    
+    @Autowired
+    private DaOrderDetailMapper daOrderDetailMapper; 
+    
+    @Autowired
+    private InsureService insureService;
+    
+	public PayResponse wxPay(PayInfo payInfo) throws Exception{
 		HttpConnectionUtil http = new HttpConnectionUtil(Contants.SYB_APIURL+"/pay");
 		http.init();
 		TreeMap<String,String> params = new TreeMap<String,String>();
 		params.put("cusid", Contants.SYB_CUSID);
 		params.put("appid", Contants.SYB_APPID);
 		params.put("version", "11");
-		params.put("trxamt", String.valueOf(payInfo.getTrxamt()));
+		params.put("trxamt", String.valueOf(payInfo.getMoney()));
 		params.put("reqsn", payInfo.getReqsn());
-		params.put("paytype", Contants.PAY_TYPE_WX);
+		params.put("paytype", payInfo.getPaytype());
 		params.put("randomstr", String.valueOf(new Date().getTime()));
 		params.put("body", "驾驶员意外伤害险");
 		params.put("remark", "吉祥套餐编码");
@@ -35,7 +54,12 @@ public class SybPayService {
 		byte[] bys = http.postParams(params, true);
 		String result = new String(bys,"UTF-8");
 		Map<String,String> map = handleResult(result);
-		return map;
+    	if(null!=map) {
+    		PayResponse payResponse = (PayResponse) BeanUtils.mapToObject(map, PayResponse.class);
+    		return payResponse;
+    	}
+		
+		return null;
 		
 	}
 	
@@ -118,19 +142,19 @@ public class SybPayService {
 		}
 	}
 	
-	public static void main(String [] args) {
-	    SybPayService service = new SybPayService();
-	    PayInfo payInfo = new PayInfo();
-	    payInfo.setTrxamt(new BigDecimal(1000));
-	    payInfo.setReqsn("123456");
-	    try {
-            Map<String,String> map = service.wxPay(payInfo);
-            print(map);
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-	}
+//	public static void main(String [] args) {
+//	    SybPayService service = new SybPayService();
+//	    PayInfo payInfo = new PayInfo();
+//	    payInfo.setMoney(new BigDecimal(1000));
+//	    payInfo.setReqsn("123456");
+//	    try {
+//            Map<String,String> map = service.wxPay(payInfo);
+//            print(map);
+//        } catch (Exception e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
+//	}
 	
 	public static void print(Map<String, String> map){
         System.out.println("返回数据如下:");
@@ -140,4 +164,29 @@ public class SybPayService {
             }
         }
     }
+	
+	public void createOderBycallback(Map<String,String> map){
+	    PayResponse payResponse = (PayResponse) BeanUtils.mapToObject(map, PayResponse.class);
+	    //判断是否交易成功
+	    if(null!=payResponse  && StringUtils.isNotBlank(payResponse.getTrxstatus()) && "0000".equals(payResponse.getTrxstatus())) {
+	        String cusorderid = payResponse.getCusorderid();//交易单号
+	        Example example = new Example(DaOrder.class);
+	        example.createCriteria().andEqualTo("cusorderid",cusorderid).andEqualTo("isDeleted",cn.trasen.BootComm.Contants.IS_DELETED_FALSE);
+	        DaOrder order = daOrderMapper.selectOneByExample(example);
+	        
+	        order.setStatus("1");//修改支付状态为已支付
+	        daOrderMapper.updateByPrimaryKeySelective(order);
+	        
+	        if(null!=order && StringUtils.isNotBlank(order.getOrderId())) {
+	            Example example2 = new Example(DaOrderDetail.class);
+	            example2.createCriteria().andEqualTo("orderId",order.getOrderId()).andEqualTo("isDeleted",cn.trasen.BootComm.Contants.IS_DELETED_FALSE);
+	            
+	            List<DaOrderDetail> detailList = daOrderDetailMapper.selectByExample(example2);
+	            if(null!=detailList && detailList.size()>0) {
+	                //调用保险公司接口 下单
+	                insureService.finishOrderByPay(order,detailList);
+	            }
+	        }
+	    }
+	}
 }

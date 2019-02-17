@@ -34,4 +34,8 @@ public class Serialno {
      */
     @ApiModelProperty(value = "省份id")
     private String province;
+    
+    
+    @Column(name = "driver_school_id")
+    private String driverSchoolId;
 }

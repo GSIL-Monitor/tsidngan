@@ -32,5 +32,24 @@ public class BeanUtils {
         }
         return map;
     }
+    
+    /**
+     * map转对象
+     * @param map
+     * @param beanClass
+     * @return
+     */
+    public static Object mapToObject(Map<String, String> map,Class<?> beanClass) {
+    	 if (map == null)  
+             return null;  
+         try {
+        	 Object obj = beanClass.newInstance();  
+			 org.apache.commons.beanutils.BeanUtils.populate(obj, map);
+			 return obj;
+		} catch (Exception e) {
+			
+		}  
+       return null;   
+    }
 
 }

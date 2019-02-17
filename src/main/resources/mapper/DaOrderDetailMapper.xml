@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.dingan.tsdingan.dao.DaOrderDetailMapper">
+  <resultMap id="BaseResultMap" type="cn.dingan.tsdingan.model.DaOrderDetail">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="order_detail_id" jdbcType="VARCHAR" property="orderDetailId" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="driver_school_id" jdbcType="VARCHAR" property="driverSchoolId" />
+    <result column="insure_id" jdbcType="VARCHAR" property="insureId" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="cont_no" jdbcType="VARCHAR" property="contNo" />
+    <result column="apply_date" jdbcType="TIMESTAMP" property="applyDate" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="is_deleted" jdbcType="CHAR" property="isDeleted" />
+    <result column="seq_no" jdbcType="INTEGER" property="seqNo" />
+  </resultMap>
+</mapper>

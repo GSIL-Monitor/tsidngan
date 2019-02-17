@@ -15,7 +15,8 @@
     <result column="type" jdbcType="VARCHAR" property="type" />
     <result column="is_deleted" jdbcType="CHAR" property="isDeleted" />
     <result column="is_insure" jdbcType="CHAR" property="isInsure" />
+    <result column="seq_no" jdbcType="INTEGER" property="seqNo" />
     <result column="insure_date" jdbcType="TIMESTAMP" property="insureDate" />
-    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate"/>
   </resultMap>
 </mapper>

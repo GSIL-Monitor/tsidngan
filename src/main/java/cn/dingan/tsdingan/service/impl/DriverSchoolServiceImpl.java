@@ -66,10 +66,15 @@ public class DriverSchoolServiceImpl implements DriverSchoolService {
 	 * @return
 	 */
 	public DriverSchool checkAccount(DriverSchool record) {
-		Example example = new Example(DriverSchool.class);
-		example.createCriteria().andEqualTo("account",record.getAccount());
 		
-		return driverSchoolMapper.selectOneByExample(example);
+		if(StringUtils.isNotBlank(record.getAccount())) {
+			Example example = new Example(DriverSchool.class);
+			example.createCriteria().andEqualTo("account",record.getAccount());
+			
+			return driverSchoolMapper.selectOneByExample(example);
+		}
+		return null;
+		
 	}
 	
 	 

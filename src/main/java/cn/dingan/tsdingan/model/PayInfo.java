@@ -24,7 +24,7 @@ public class PayInfo {
     
     private String reqsn;//商户交易单号 商户的交易订单号
     
-    private BigDecimal trxamt;//交易金额 单位为分
+    private BigDecimal money;//交易金额 单位为分
     
     private String paytype;//交易方式 A01
     

@@ -12,7 +12,7 @@ public class Contants {
     public static final String PAY_TYPE_WX = "W01";
     
     //回调地址
-    public static final String notify_url = "http://localhost:";
+    public static final String notify_url = "http://trasen.mynatapp.cc/ts-dingan/pay/callback";
     
     //测试环境webservice地址
     public static final String endpoint = "https://tepos.jxlife.com.cn/ter/services/ThdpartyInterface?wsdl";
@@ -20,5 +20,11 @@ public class Contants {
     
     //试算地址
     public static final String TRY = "http://outwardservice.lis.sinosoft.com";
+    
+    //试算
+    public static final String trial = "00";
+    
+    //承保
+    public static final String order = "01";
     
 }
