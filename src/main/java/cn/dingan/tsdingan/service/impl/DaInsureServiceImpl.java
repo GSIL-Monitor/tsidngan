@@ -171,4 +171,47 @@ public class DaInsureServiceImpl implements DaInsureService {
        
        return list;
     }
+    
+    /**
+     * 
+    * @Title: getFinishInsureList
+    * @Description: 已投保查询
+    * @param @param page
+    * @param @param record
+    * @param @return    参数
+    * @return DataSet<DaInsure>    返回类型
+    * @throws
+    * @author jyq#trasen.cn
+    * @date 2019年2月17日 上午10:10:09
+     */
+    public DataSet<DaInsure> getFinishInsureList(Page page, DaInsure record){
+        DriverSchool school = UserUtil.getUser();
+        if(null==school) {
+            return null;
+        }
+        
+        Example example = new Example(DaInsure.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo(Contants.IS_DELETED_FIELD, Contants.IS_DELETED_FALSE);
+        if(StringUtils.isBlank(record.getType())) {
+            record.setType("0");
+        }
+        
+        if(StringUtils.isNotBlank(record.getName())) {
+            example.and().andLike("name", "%"+record.getName()+"%");
+        }
+        
+        if(StringUtils.isNotBlank(record.getIdcard())) {
+            example.and().andLike("idcard", "%"+record.getIdcard()+"%");
+        }
+        
+        example.and().andEqualTo("driverSchoolId",school.getDriverSchoolId());
+        example.and().andEqualTo("type",record.getType());
+        example.and().andEqualTo("isInsure","2");
+        
+        List<DaInsure> records = daInsureMapper.selectByExampleAndRowBounds(example, page);
+         
+        return new DataSet<>(page.getPageNo(), page.getPageSize(), page.getTotalPages(),
+                page.getTotalCount(), records);
+    }
 }

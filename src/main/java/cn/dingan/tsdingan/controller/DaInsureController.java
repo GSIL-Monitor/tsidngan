@@ -103,7 +103,7 @@ public class DaInsureController {
      */
     @ApiOperation(value = "新增投保人信息", notes = "新增投保人信息")
     @PostMapping("/daInsure/save")
-    public Result insertPost(@RequestBody DaInsure record) {
+    public Result insertInsure(@RequestBody DaInsure record) {
         Result result = new Result();
         try {
             int count = daInsureService.insert(record);
@@ -133,7 +133,7 @@ public class DaInsureController {
      */
     @ApiOperation(value = "修改投保人信息", notes = "修改投保人信息")
     @PostMapping("/daInsure/update")
-    public Result updateByPostlId(@RequestBody DaInsure record) {
+    public Result updateById(@RequestBody DaInsure record) {
         Result result = new Result();
         try {
             int i=daInsureService.update(record);
@@ -180,13 +180,30 @@ public class DaInsureController {
      * @param page
      * @param record
      */
-    @ApiOperation(value = "获取投保人列表", notes = "投保人列表")
+    @ApiOperation(value = "获取投保人未投保列表", notes = "获取投保人未投保列表")
     @PostMapping("/daInsure/list")
-    public Result getPostList(Page page, DaInsure record) {
+    public Result getInsureList(Page page, DaInsure record) {
     	 Result result = new Result();
          try {
         	 DataSet<DaInsure> dataset = daInsureService.getDataSetList(page, record);
         	 result.setObject(dataset);
+             result.setSuccess(true);
+         } catch (Exception e) {
+             logger.error(e.getMessage(), e);
+             result.setSuccess(false);
+             result.setMessage("操作失败.");
+         }
+        return result;
+         
+    }
+    
+    @ApiOperation(value = "获取投保人列表", notes = "投保人列表")
+    @PostMapping("/daInsure/finish/list")
+    public Result getFinishInsureList(Page page, DaInsure record) {
+         Result result = new Result();
+         try {
+             DataSet<DaInsure> dataset = daInsureService.getFinishInsureList(page, record);
+             result.setObject(dataset);
              result.setSuccess(true);
          } catch (Exception e) {
              logger.error(e.getMessage(), e);

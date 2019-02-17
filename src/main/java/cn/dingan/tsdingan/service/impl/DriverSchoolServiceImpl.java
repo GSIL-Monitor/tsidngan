@@ -19,6 +19,7 @@ import cn.dingan.tsdingan.service.EmailService;
 import cn.dingan.tsdingan.utils.MD5Util;
 import cn.trasen.BootComm.Contants;
 import cn.trasen.commons.util.ApplicationUtils;
+import cn.trasen.core.feature.orm.mybatis.Page;
 import tk.mybatis.mapper.entity.Example;
 
 @Service
@@ -118,4 +119,44 @@ public class DriverSchoolServiceImpl implements DriverSchoolService {
 			return province+"001";
 		}
 	}
+	
+	/**
+     * 
+    * @Title: getDriverList
+    * @Description: 获取列表
+    * @param @param page
+    * @param @param record
+    * @param @return    参数
+    * @return List<>    返回类型
+    * @throws
+    * @author jyq#trasen.cn
+    * @date 2019年2月17日 上午9:59:38
+     */
+    public List<DriverSchool> getDriverList(Page page,DriverSchool record) {
+        Example example = new Example(DriverSchool.class);
+        example.createCriteria().andEqualTo("isDeleted",Contants.IS_DELETED_FALSE);
+        if(StringUtils.isNotBlank(record.getIsExamine())) {
+            example.and().andEqualTo("isExamine",record.getIsExamine());
+        }
+        
+        return driverSchoolMapper.selectByExample(example);
+    }
+    
+    
+    /**
+     * 
+    * @Title: examine
+    * @Description: 审核驾校信息
+    * @param @param record
+    * @param @return    参数
+    * @return String    返回类型
+    * @throws
+    * @author jyq#trasen.cn
+    * @date 2019年2月17日 上午10:04:23
+     */
+    public String examine(DriverSchool record) {
+        
+        
+        return "";
+    }
 }
