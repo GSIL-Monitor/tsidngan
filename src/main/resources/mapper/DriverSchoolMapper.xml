@@ -18,6 +18,7 @@
     <result column="is_examine" jdbcType="CHAR" property="isExamine" />
     <result column="account" jdbcType="VARCHAR" property="account" />
     <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="account_type" jdbcType="VARCHAR" property="accountType" />
     <result column="is_deleted" jdbcType="VARCHAR" property="isDeleted" />
     <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
     <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />

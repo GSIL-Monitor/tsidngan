@@ -51,6 +51,7 @@ public class DriverSchoolServiceImpl implements DriverSchoolService {
 		record.setAccount(account);
 		String password=MD5Util.md5Password("123456");
 		record.setPassword(password);
+		record.setAccountType("2");
 		driverSchoolMapper.insert(record);
 		/**
 		 * 发送邮件
@@ -159,9 +160,13 @@ public class DriverSchoolServiceImpl implements DriverSchoolService {
     * @author jyq#trasen.cn
     * @date 2019年2月17日 上午10:04:23
      */
+    
+    @Transactional(readOnly=false)
     public String examine(DriverSchool record) {
         
+        record.setUpdateDate(new Date());
         
+        driverSchoolMapper.updateByPrimaryKeySelective(record);
         return "";
     }
 }

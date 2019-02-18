@@ -17,4 +17,25 @@
     <result column="is_deleted" jdbcType="CHAR" property="isDeleted" />
     <result column="seq_no" jdbcType="INTEGER" property="seqNo" />
   </resultMap>
+  
+  <select id="getOrderDetailList" resultType="cn.dingan.tsdingan.model.DaOrderDetail" parameterType="cn.dingan.tsdingan.model.DaOrderDetail">
+	select s.*,da.sex,da.name,da.idcard from da_order_detail s innder join  da_insure da on s.insure_id =da.insure_id
+	where s.`status` = 1 and s.is_deleted='N' and da.is_deleted='N'
+		<if test="idcard !=null and idcard !=''">
+			AND  da.idcard LIKE CONCAT('%',#{idcard},'%')
+		</if>
+		<if test="name !=null and name!=''">
+			 AND  da.name LIKE CONCAT('%',#{name},'%')
+		</if>
+		
+		<if test="contNo !=null and contNo!=''">
+			 AND  s.cont_no LIKE CONCAT('%',#{contNo},'%')
+		</if>
+		
+		<if test="driverSchoolId !=null and driverSchoolId !=''">
+			 AND  s.driver_school_id LIKE CONCAT('%',#{driverSchoolId},'%')
+		</if>
+		 
+	</select>
+  
 </mapper>

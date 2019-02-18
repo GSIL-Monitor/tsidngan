@@ -71,4 +71,13 @@ public class DaOrderDetail {
     
     @Column(name = "cont_no")
     private String contNo;
+    
+    @Transient
+    private String name;
+    
+    @Transient
+    private String sex;
+    
+    @Transient
+    private String idcard;
 }

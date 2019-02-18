@@ -88,6 +88,9 @@ public class DriverSchool {
     
     @Column(name = "is_deleted")
     private String isDeleted;
+    
+    @Column(name = "account_type")
+    private String accountType;
 
     /**
      * 登录密码

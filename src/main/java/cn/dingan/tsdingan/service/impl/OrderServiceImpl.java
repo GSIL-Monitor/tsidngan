@@ -1,6 +1,7 @@
 package cn.dingan.tsdingan.service.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +19,7 @@ import cn.dingan.tsdingan.model.DriverSchool;
 import cn.dingan.tsdingan.service.OrderService;
 import cn.trasen.BootComm.Contants;
 import cn.trasen.commons.util.ApplicationUtils;
+import cn.trasen.core.feature.orm.mybatis.Page;
 
 
 @Service
@@ -79,5 +81,14 @@ public class OrderServiceImpl implements OrderService{
         
         
         return true;
+    }
+    
+    /**
+     * 获取报单列表明细
+     */
+    public List<DaOrderDetail> getOrderDetailList(Page page,DaOrderDetail record) {
+        
+        
+        return daOrderDetailMapper.getOrderDetailList(page,record);
     }
 }
