@@ -1,7 +1,11 @@
 package cn.dingan.tsdingan.controller;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -12,6 +16,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -288,5 +294,45 @@ public class FileController {
             result.setMessage("操作失败.");
         }
         return result;
+    }
+    
+    
+    @RequestMapping("/download/template/insure")
+    public void downloadTemplate (HttpServletRequest request,
+            HttpServletResponse response) throws Exception{
+        BufferedInputStream in = null;
+        BufferedOutputStream out = null;
+        InputStream stream = null;
+        File targetFile = null;
+        try {
+            response.setContentType("text/html;charset=UTF-8");
+            request.setCharacterEncoding("UTF-8");
+            String fileName = "学员投保清单样本.xlsx";
+            stream = getClass().getClassLoader().getResourceAsStream("template/download-template/" + fileName);
+            targetFile = new File(fileName);
+            FileUtils.copyInputStreamToFile(stream, targetFile);
+
+            response.setContentType("application/x-excel");
+            response.setCharacterEncoding("UTF-8");
+            response.setHeader("Content-Disposition", "attachment; filename=" + fileName);
+            response.setHeader("Content-Length", String.valueOf(targetFile.length()));
+            in = new BufferedInputStream(new FileInputStream(targetFile));
+            out = new BufferedOutputStream(response.getOutputStream());
+            byte[] data = new byte[1024];
+            int len = 0;
+            while (-1 != (len = in.read(data, 0, data.length))) {
+                out.write(data, 0, len);
+            }
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        } finally {
+            IOUtils.closeQuietly(in);
+            IOUtils.closeQuietly(out);
+            IOUtils.closeQuietly(stream);
+            if(targetFile != null) {
+                targetFile.delete();
+            }
+            
+        }
     }
 }
