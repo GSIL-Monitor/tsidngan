@@ -21,9 +21,11 @@ public class WebAppConfigurer extends WebMvcConfigurerAdapter {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(sessionInterceptor).addPathPatterns("/**").excludePathPatterns("/index/*")
+        .excludePathPatterns("/pay/callback")
+        .excludePathPatterns("/insure/try/test")
+        .excludePathPatterns("/pay/query/**");
 
-//        registry.addInterceptor(sessionInterceptor).addPathPatterns("/**").excludePathPatterns("/index/*").excludePathPatterns("/pay/callback");
-//
-//        super.addInterceptors(registry);
+        super.addInterceptors(registry);
     }
 }

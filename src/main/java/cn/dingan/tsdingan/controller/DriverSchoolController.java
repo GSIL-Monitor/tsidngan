@@ -38,11 +38,13 @@ public class DriverSchoolController {
      */
     @ApiOperation(value = "获取驾校列表", notes = "获取驾校列表")
     @PostMapping("/driver/list")
-    public Result getDriverList(Page page, DriverSchool record) {
+    public Result getDriverList(@RequestBody DriverSchool record) {
          Result result = new Result();
          try {
+        	 Page page = new Page();
+        	 page.setPageSize(100);
+        	 
              List<DriverSchool> list = driverSchoolService.getDriverList(page, record);
-             
              DataSet<DriverSchool> dataset = new DataSet<>(page.getPageNo(), page.getPageSize(), page.getTotalPages(),
                      page.getTotalCount(), list);
              result.setObject(dataset);
@@ -71,10 +73,9 @@ public class DriverSchoolController {
     public Result examine(@RequestBody DriverSchool record) {
         Result result = new Result();
         try {
-            String message = driverSchoolService.examine(record);
+            driverSchoolService.examine(record);
             result.setSuccess(true);
             result.setMessage("审核成功");
-            result.setMessage(message);
         } catch (Exception e) {
             result.setMessage("添加失败,请联系管理员");
             result.setSuccess(false);

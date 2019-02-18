@@ -105,9 +105,9 @@ public class InsureServiceImpl implements InsureService{
                     return result;
                 }else {
                     //添加试算序号
-                     for(int index = 0;index<insuredArray.size();index++) {
-                         DaInsure daInsure = insuredArray.get(index);
-                         daInsure.setSeqNo(index);
+                     for(int index = 0;index< record.getInsuredArray().size();index++) {
+                         DaInsure daInsure = record.getInsuredArray().get(index);
+                         daInsure.setSeqNo(index+1);
                          insuredArray.add(daInsure);
                      }
                      record.setInsuredArray(insuredArray);
@@ -123,6 +123,8 @@ public class InsureServiceImpl implements InsureService{
                 
                 String resultXML = underwritingRequest(insuredArray, school, transSerialno, Contants.trial);
                 
+                String message = "";
+                
                 if(null!=resultXML) {
                     PolicyResponseDTO resultDto = XMLUtil.getResult(resultXML);
                     if(null!=resultDto) {
@@ -136,8 +138,8 @@ public class InsureServiceImpl implements InsureService{
                                 if(StringUtils.isNotBlank(vo.getFlag()) && "0".equals(vo.getFlag())) {
                                     
                                 }else {
-                                    
-                                    flag ++;  
+                                	flag++;
+                                	message = vo.getDesc();
                                 }
                             }
                         }
@@ -168,7 +170,7 @@ public class InsureServiceImpl implements InsureService{
                     
                 }else {
                 	result.setSuccess(false);
-                    result.setMessage("投保接口出错,请联系管理员!");  
+                    result.setMessage("投保接口出错:"+message);  
                 }
             }else {
                 result.setSuccess(false);
@@ -197,90 +199,88 @@ public class InsureServiceImpl implements InsureService{
     * @author jyq#trasen.cn
     * @date 2019年2月18日 上午11:44:33
      */
-    private String underwritingRequest(List<DaInsure> list,DriverSchool school,String transSerialno ,String interfaceType) {
+    private String underwritingRequest(List<DaInsure> list,DriverSchool school,String transSerialno ,String interfaceType) throws Exception{
         PolicyRequestDTO dto = setXML(list,school,transSerialno,interfaceType);
-        String xml;
-        try {
-            xml = XMLUtil.convertToXml(dto,PolicyRequestDTO.class );
-            xml = xml.replace("standalone=\"yes\"", "");
-            //保险公司返回报文
-            String resultXML = callInterface(xml,"underwritingRequest");
-            
-            System.out.println(resultXML);
-            
-            return resultXML;
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        String xml = XMLUtil.convertToXml(dto,PolicyRequestDTO.class );
+        xml = xml.replace("standalone=\"yes\"", "");
+        System.out.println("请求承保xml=========="+xml);
+        //保险公司返回报文
+        String resultXML = callInterface(xml,"underwritingRequest");
         
-        return null;
+        System.out.println(resultXML);
+        
+        return resultXML;
     }
     
     
     /**
      * 完成支付回调
      */
+    @Transactional(readOnly=false)
     public String finishOrderByPay(DaOrder order,List<DaOrderDetail> detailList) {
         if(StringUtils.isNotBlank(order.getDriverSchoolId())) {
             DriverSchool school =  driverSchoolMapper.selectByPrimaryKey(order.getDriverSchoolId());
             
             //查询投保人员
-            List<String> insureIds = new ArrayList<>();
+            List<DaInsure> insureList = new ArrayList<>();
             for(DaOrderDetail detail : detailList) {
                 if(StringUtils.isNotBlank(detail.getInsureId())) {
-                    insureIds.add(detail.getInsureId());
+                	DaInsure daInsure = daInsureMapper.selectByPrimaryKey(detail.getInsureId());
+                	if(null!=daInsure) {
+                		daInsure.setSeqNo(detail.getSeqNo());
+                		insureList.add(daInsure);
+                	}
                 }
             }
-            if(insureIds.size()>0) {
-                Example example = new Example(DaInsure.class);
-                example.createCriteria().andEqualTo("isDeleted",cn.trasen.BootComm.Contants.IS_DELETED_FALSE).andEqualTo("driverSchoolId",order.getDriverSchoolId());
-                example.and().andIn("insureId", insureIds);
-                List<DaInsure> insureList = daInsureMapper.selectByExample(example);
-                if(null!=insureList && insureList.size()>0) {
-                    String resultXML = underwritingRequest(insureList, school, order.getCusorderid(), Contants.order);
+            if(null!=insureList && insureList.size()>0) {
+                String resultXML = "";
+				try {
+					resultXML = underwritingRequest(insureList, school, order.getCusorderid(), Contants.order);
+					System.out.println(resultXML);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					return "承保失败,请联系管理员";
+				}
+                
+                PolicyResponseDTO resultDto = XMLUtil.getResult(resultXML);
+                if(null!=resultDto) {
+                    //获取返回接口列表
+                    List<ResopnseMainContDTO> manContList = resultDto.getMainContDTOList();
+                    //批次号
+                    String transSerialno = resultDto.getPolicyRequestDTO().getTransSerialno();
                     
-                    PolicyResponseDTO resultDto = XMLUtil.getResult(resultXML);
-                    if(null!=resultDto) {
-                        //获取返回接口列表
-                        List<ResopnseMainContDTO> manContList = resultDto.getMainContDTOList();
-                        //批次号
-                        String transSerialno = resultDto.getPolicyRequestDTO().getTransSerialno();
-                        
-                        if(!transSerialno.equals(order.getCusorderid())) {
-                            
-                            //插入失败数据,手动承保
-                            
-                            return "订单号不一致,承保失败";
-                        }
-                        
-                        if(null!=manContList && manContList.size()>0) {
-                            for(ResopnseMainContDTO dto : manContList) {
-                                if(StringUtils.isNotBlank(dto.getFlag()) && "0".equals(dto.getFlag())) {
-                                    String contNo = dto.getContNo();//保单号
-                                    String seqNo = dto.getMainContDTOSerialno();//投保序号
-                                    
-                                    //修改保单号
-                                    for(DaOrderDetail orderDetail : detailList) {
-                                        if(orderDetail.getSeqNo().equals(Integer.valueOf(seqNo))) {
-                                            orderDetail.setContNo(contNo);
-                                            orderDetail.setStatus("1");
-                                            daOrderDetailMapper.updateByPrimaryKeySelective(orderDetail);
-                                            
-                                            //修改人员信息已投保
-                                            for(DaInsure daInsure : insureList) {
-                                                if(orderDetail.getInsureId().equals(daInsure.getInsureId())) {
-                                                    daInsure.setIsInsure("2");
-                                                    daInsureMapper.updateByPrimaryKeySelective(daInsure);
-                                                }
+                    if(!transSerialno.equals(order.getCusorderid())) {
+                        //插入失败数据,手动承保
+                    	
+                        return "订单号不一致,承保失败";
+                    }
+                    
+                    if(null!=manContList && manContList.size()>0) {
+                        for(ResopnseMainContDTO dto : manContList) {
+                            if(StringUtils.isNotBlank(dto.getFlag()) && "0".equals(dto.getFlag())) {
+                                String contNo = dto.getContNo();//保单号
+                                String seqNo = dto.getMainContDTOSerialno();//投保序号
+                                
+                                //修改保单号
+                                for(DaOrderDetail orderDetail : detailList) {
+                                    if(orderDetail.getSeqNo().equals(Integer.valueOf(seqNo))) {
+                                        orderDetail.setContNo(contNo);
+                                        orderDetail.setStatus("1");
+                                        daOrderDetailMapper.updateByPrimaryKeySelective(orderDetail);
+                                        
+                                        //修改人员信息已投保
+                                        for(DaInsure daInsure : insureList) {
+                                            if(orderDetail.getInsureId().equals(daInsure.getInsureId())) {
+                                                daInsure.setIsInsure("2");
+                                                daInsureMapper.updateByPrimaryKeySelective(daInsure);
                                             }
                                         }
                                     }
-                                    
                                 }
+                                
                             }
-                            return "承保成功";
                         }
+                        return "承保成功";
                     }
                 }
             }
@@ -307,9 +307,9 @@ public class InsureServiceImpl implements InsureService{
         	List<DaInsure> list = new ArrayList<>();
             DaInsure vo1 = new DaInsure();
             vo1.setSex("M");
-            vo1.setIdcard("43032119961127545X");
+            vo1.setIdcard("43032119961128545X");
             vo1.setName("蒋亚球1");
-            vo1.setBirthDate(new SimpleDateFormat("yyyy-MM-dd").parse("1996-11-27"));
+            vo1.setBirthDate(new SimpleDateFormat("yyyy-MM-dd").parse("1996-11-28"));
             list.add(vo1);
             
             DaInsure vo2 = new DaInsure();
@@ -362,8 +362,6 @@ public class InsureServiceImpl implements InsureService{
                                 }
                             }
                         }
-                        
-                        
                         return "成功";
                     }else {
                         return "投保接口出错,请联系管理员!";  

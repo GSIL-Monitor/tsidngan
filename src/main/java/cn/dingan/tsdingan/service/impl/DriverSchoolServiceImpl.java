@@ -141,9 +141,18 @@ public class DriverSchoolServiceImpl implements DriverSchoolService {
     public List<DriverSchool> getDriverList(Page page,DriverSchool record) {
         Example example = new Example(DriverSchool.class);
         example.createCriteria().andEqualTo("isDeleted",Contants.IS_DELETED_FALSE);
+        example.and().andEqualTo("accountType","2");
         if(StringUtils.isNotBlank(record.getIsExamine())) {
             example.and().andEqualTo("isExamine",record.getIsExamine());
+        }else {
+        	example.and().andNotEqualTo("isExamine","2");
         }
+        
+        if(StringUtils.isNotBlank(record.getName())) {
+        	example.and().andLike("name","%"+record.getName()+"%").orLike("unifiedSocialCreditCode", "%"+record.getName()+"%")
+        	.orLike("phone", "%"+record.getName()+"%");
+        }
+        
         
         return driverSchoolMapper.selectByExample(example);
     }

@@ -66,6 +66,7 @@ public class SessionInterceptor extends HandlerInterceptorAdapter {
     	
 //        HttpSession session = request.getSession();
         Map<String, String> map = getHeadersInfo(request);
+        System.out.println(request.getRequestURL());
         String token = map.get("authorization");
 		String account = map.get("account");
 		try {

@@ -6,13 +6,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import cn.dingan.tsdingan.model.DaOrderDetail;
 import cn.dingan.tsdingan.service.OrderService;
 import cn.trasen.core.entity.Result;
 import cn.trasen.core.feature.orm.mybatis.Page;
 import io.swagger.annotations.ApiOperation;
-
+@RestController
 public class OrderController {
     
     

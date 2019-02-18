@@ -102,22 +102,26 @@ public class SybPayService {
 //		return map;
 //	}
 //	
-//	public Map<String,String> query(String reqsn,String trxid) throws Exception{
-//		HttpConnectionUtil http = new HttpConnectionUtil(Contants.SYB_APIURL+"/query");
-//		http.init();
-//		TreeMap<String,String> params = new TreeMap<String,String>();
-//		params.put("cusid", Contants.SYB_CUSID);
-//		params.put("appid", Contants.SYB_APPID);
-//		params.put("version", "11");
-//		params.put("reqsn", reqsn);
-//		params.put("trxid", trxid);
-//		params.put("randomstr", SybUtil.getValidatecode(8));
-//		params.put("sign", SybUtil.sign(params,Contants.SYB_APPKEY));
-//		byte[] bys = http.postParams(params, true);
-//		String result = new String(bys,"UTF-8");
-//		Map<String,String> map = handleResult(result);
-//		return map;
-//	}
+	public PayResponse query(String reqsn) throws Exception{
+		HttpConnectionUtil http = new HttpConnectionUtil(Contants.SYB_APIURL+"/query");
+		http.init();
+		TreeMap<String,String> params = new TreeMap<String,String>();
+		params.put("cusid", Contants.SYB_CUSID);
+		params.put("appid", Contants.SYB_APPID);
+		params.put("version", "11");
+		params.put("reqsn", reqsn);
+		params.put("randomstr", SybUtil.getValidatecode(8));
+		params.put("sign", SybUtil.sign(params,Contants.SYB_APPKEY));
+		byte[] bys = http.postParams(params, true);
+		String result = new String(bys,"UTF-8");
+		Map<String,String> map = handleResult(result);
+		
+		print(map);
+		
+		PayResponse payResponse = (PayResponse) BeanUtils.mapToObject(map, PayResponse.class);
+		 
+		return payResponse;
+	}
 	
 	
 	@SuppressWarnings({"unchecked", "rawtypes"})
@@ -142,19 +146,17 @@ public class SybPayService {
 		}
 	}
 	
-//	public static void main(String [] args) {
-//	    SybPayService service = new SybPayService();
-//	    PayInfo payInfo = new PayInfo();
-//	    payInfo.setMoney(new BigDecimal(1000));
-//	    payInfo.setReqsn("123456");
-//	    try {
-//            Map<String,String> map = service.wxPay(payInfo);
-//            print(map);
-//        } catch (Exception e) {
-//            // TODO Auto-generated catch block
-//            e.printStackTrace();
-//        }
-//	}
+	public static void main(String [] args) {
+	    SybPayService service = new SybPayService();
+	    PayInfo payInfo = new PayInfo();
+	    payInfo.setReqsn("123456");
+	    try {
+            service.query("01005100000918");
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+	}
 	
 	public static void print(Map<String, String> map){
         System.out.println("返回数据如下:");

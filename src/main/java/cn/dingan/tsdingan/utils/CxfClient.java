@@ -28,7 +28,8 @@ import cn.dingan.tsdingan.model.TranslationDTO;
 public class CxfClient {
     
 	
-	final static String xml ="<?xml version='1.0'encoding='GBK'><PolicyRequestDTO><MainContDTOList><MainContDTO><AdditionalAmount>0</AdditionalAmount><AgentCom>10005010101</AgentCom><ApplyDate>2019-02-17</ApplyDate><ApplyTime>20:19:39</ApplyTime><AppntDTO><AppntBirth>1992-10-20</AppntBirth><AppntIdno>430421199210208630</AppntIdno><AppntIdtype>0</AppntIdtype><AppntName>子夜</AppntName><AppntNativePlace>CHN</AppntNativePlace><AppntSex>M</AppntSex><Relation1>00</Relation1><Relation2>00</Relation2></AppntDTO><BnfList><BnfDTO><BnfFlag>1</BnfFlag></BnfDTO></BnfList><ContplanCode>S00031</ContplanCode><CvaliDate>2018-06-06</CvaliDate><CvaliTime>11:15:19</CvaliTime><EndDate>2019-06-06</EndDate><EndTime>11:15:19</EndTime><InsuredList><InsuredDTO><InsuredBirth>1992-10-20</InsuredBirth><InsuredIdno>430421199210208630</InsuredIdno><InsuredIdtype>0</InsuredIdtype><InsuredName>子夜</InsuredName><InsuredNativePlace>CHN</InsuredNativePlace><InsuredSex>M</InsuredSex><MainFlag>1</MainFlag><RelationToAppnt>00</RelationToAppnt></InsuredDTO></InsuredList><MainAmount>550420</MainAmount><MainContDTOSerialno>1</MainContDTOSerialno><MainDevelop>inbankcode,S8600000|inbankaccno,43001780661059666666|inbankaccname,建行长沙韭菜园支行（收）|paymode,L|tempfeeno,1234567899</MainDevelop><ManageCom>86430107</ManageCom><Prem>10</Prem><RemittGrpDTO><EMail>459942733@qq.com</EMail><GrpName>子夜测试</GrpName><Phone>18163669369</Phone></RemittGrpDTO></MainContDTO></MainContDTOList><TranslationDTO><Channel>01005-鼎安经纪保险-06</Channel><InterfaceType>00</InterfaceType><TransTime>2019-02-17</TransTime><TransSerialno>01005100000028</TransSerialno><TransTime>20:19:39</TransTime></TranslationDTO></PolicyRequestDTO>";
+	final static String xml ="<?xml version='1.0' encoding='GBK' ?><PolicyRequestDTO><MainContDTOList><MainContDTO><AdditionalAmount>0</AdditionalAmount><AgentCom>10005010101</AgentCom><ApplyDate>2019-02-18</ApplyDate><ApplyTime>19:31:19</ApplyTime><AppntDTO><AppntBirth>1992-10-20</AppntBirth><AppntIdno>430421199210208630</AppntIdno><AppntIdtype>0</AppntIdtype><AppntName>子夜</AppntName><AppntNativePlace>CHN</AppntNativePlace><AppntSex>0</AppntSex><Relation1>00</Relation1><Relation2>00</Relation2></AppntDTO><BnfList><BnfDTO><BnfFlag>1</BnfFlag></BnfDTO></BnfList><ContplanCode>S00031</ContplanCode><CvaliDate>2019-02-18</CvaliDate><CvaliTime>19:31:19</CvaliTime><EndDate>2019-06-06</EndDate><EndTime>11:15:19</EndTime><InsuredList><InsuredDTO><InsuredBirth>1992-10-20</InsuredBirth><InsuredIdno>430421199210208630</InsuredIdno><InsuredIdtype>0</InsuredIdtype><InsuredName>子夜</InsuredName><InsuredNativePlace>CHN</InsuredNativePlace><InsuredSex>0</InsuredSex><MainFlag>1</MainFlag><RelationToAppnt>00</RelationToAppnt></InsuredDTO></InsuredList><MainAmount>550420</MainAmount><MainContDTOSerialno>null</MainContDTOSerialno><MainDevelop>inbankcode,S8600000|inbankaccno,43001780661059666666|inbankaccname, 建行长沙韭菜园支行（收）|paymode,L|tempfeeno, 1234567899</MainDevelop><ManageCom>86430107</ManageCom><Prem>10</Prem><RemittGrpDTO><EMail>459942733@qq.com</EMail><GrpName>子夜测试</GrpName><Phone>18163669369</Phone></RemittGrpDTO></MainContDTO></MainContDTOList><TranslationDTO><Channel>01005-鼎安经纪保险-06</Channel><InterfaceType>01</InterfaceType><TransTime>2019-02-18</TransTime><TransSerialno>01005100000388</TransSerialno><TransTime>19:31:19</TransTime></TranslationDTO></PolicyRequestDTO>";
+
 
 	
 	final static String fpxml = "<?xml version=\"1.0\" encoding=\"GBK\"?>\r\n" + 
@@ -80,18 +81,19 @@ public class CxfClient {
     public static void main(String[] args) {
         try{
         	
-            String endpoint = "https://tepos.jxlife.com.cn/ter/services/ThdpartyInterface?wsdl";
-            
-            Service service = new Service();
-            Call call = (Call)service.createCall();
-            call.setTargetEndpointAddress(new java.net.URL(endpoint));
-            
-            call.setOperationName(new QName("http://outwardservice.lis.sinosoft.com","addInvoiceInfPush"));
-            
-            
-            String tResult = (String)call.invoke(new Object[] {  fpxml });
-            
-            System.out.println(tResult);
+//            String endpoint = "https://tepos.jxlife.com.cn/ter/services/ThdpartyInterface?wsdl";
+//            
+//            Service service = new Service();
+//            Call call = (Call)service.createCall();
+//            call.setTargetEndpointAddress(new java.net.URL(endpoint));
+//            
+//            call.setOperationName(new QName("http://outwardservice.lis.sinosoft.com","underwritingRequest"));
+//            
+//            
+//            String tResult = (String)call.invoke(new Object[] {  xml });
+//            
+//            System.out.println(tResult);
+        	trytest();
             
         }catch(Exception ex){
             ex.printStackTrace();

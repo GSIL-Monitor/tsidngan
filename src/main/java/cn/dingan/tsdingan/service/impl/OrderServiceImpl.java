@@ -70,6 +70,7 @@ public class OrderServiceImpl implements OrderService{
                 detail.setIsDeleted("N");
                 detail.setInsureId(user.getInsureId());
                 detail.setSeqNo(user.getSeqNo());
+                detail.setCusorderid(transSerialno);
                 daOrderDetailMapper.insert(detail);
             }
         } catch (Exception e) {
@@ -84,10 +85,9 @@ public class OrderServiceImpl implements OrderService{
     }
     
     /**
-     * 获取报单列表明细
+     * 获取保单列表明细
      */
     public List<DaOrderDetail> getOrderDetailList(Page page,DaOrderDetail record) {
-        
         
         return daOrderDetailMapper.getOrderDetailList(page,record);
     }

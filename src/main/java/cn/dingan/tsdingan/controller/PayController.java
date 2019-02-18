@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -54,9 +56,7 @@ public class PayController {
     
     
     @PostMapping("/pay/callback")
-    public Result callback(HttpServletRequest request) {
-        Result result = new Result();
-        
+    public String callback(HttpServletRequest request) {
         
         Map<String, String> formData = new HashMap<>();
         Enumeration<String> enu = request.getParameterNames();
@@ -68,6 +68,31 @@ public class PayController {
         //根据回调的订单号下单保险公司
         sybPayService.createOderBycallback(formData);
       
+        
+        return "success";
+    }
+    
+    /**
+     * 查询交易状态
+     * @param reqsn
+     * @return
+     */
+    @GetMapping("/pay/query/{reqsn}/")
+    public Result query(@PathVariable String reqsn) {
+    	Result result = new Result();
+        try {
+        	PayResponse payResponse = sybPayService.query(reqsn);
+        	if(null!=payResponse &&  "0000".equals(payResponse.getTrxstatus())) {
+        		result.setMessage("交易成功");
+    			result.setSuccess(true);
+        	}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+			result.setMessage("查询失败,请稍后查询");
+			result.setSuccess(false);
+		}
         
         return result;
     }

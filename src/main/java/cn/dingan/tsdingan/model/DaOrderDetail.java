@@ -72,6 +72,11 @@ public class DaOrderDetail {
     @Column(name = "cont_no")
     private String contNo;
     
+    /**
+     * 批次号
+     */
+    private String cusorderid;
+    
     @Transient
     private String name;
     

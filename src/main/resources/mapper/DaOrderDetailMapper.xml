@@ -12,6 +12,7 @@
     <result column="status" jdbcType="CHAR" property="status" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
     <result column="cont_no" jdbcType="VARCHAR" property="contNo" />
+    <result column="cusorderid" jdbcType="VARCHAR" property="cusorderid" />
     <result column="apply_date" jdbcType="TIMESTAMP" property="applyDate" />
     <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
     <result column="is_deleted" jdbcType="CHAR" property="isDeleted" />
@@ -19,7 +20,7 @@
   </resultMap>
   
   <select id="getOrderDetailList" resultType="cn.dingan.tsdingan.model.DaOrderDetail" parameterType="cn.dingan.tsdingan.model.DaOrderDetail">
-	select s.*,da.sex,da.name,da.idcard from da_order_detail s innder join  da_insure da on s.insure_id =da.insure_id
+	select s.*,da.sex,da.name,da.idcard from da_order_detail s inner join  da_insure da on s.insure_id =da.insure_id
 	where s.`status` = 1 and s.is_deleted='N' and da.is_deleted='N'
 		<if test="idcard !=null and idcard !=''">
 			AND  da.idcard LIKE CONCAT('%',#{idcard},'%')
