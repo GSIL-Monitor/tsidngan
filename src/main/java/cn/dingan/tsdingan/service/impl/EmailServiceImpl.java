@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +35,9 @@ public class EmailServiceImpl implements EmailService {
 
 	@Autowired
 	private JavaMailSender mailSender;
+	
+	@Autowired
+	private JavaMailSenderImpl javaMailSenderImpl;
 
 	@Override
 	public void sendEmail(EmailMessageVo messageVo) {
@@ -71,5 +75,29 @@ public class EmailServiceImpl implements EmailService {
 				logger.error(e.getMessage(), e);
 			}
 		}
+	}
+	
+	
+	public void senEmailPort(EmailMessageVo messageVo) {
+	    javaMailSenderImpl.setPort(465);
+	    javaMailSenderImpl.setHost("smtp.exmail.qq.com");
+	    javaMailSenderImpl.setUsername("portal@trasen.cn");
+	    javaMailSenderImpl.setPassword("Hncx6888");
+	    
+	    MimeMessage message =  javaMailSenderImpl.createMimeMessage();
+	    MimeMessageHelper helper;
+	    try {
+            helper = new MimeMessageHelper(message, true);
+            helper.setTo(messageVo.getSendTo().split(";"));
+            if (StringUtils.isNotEmpty(messageVo.getCc())) {
+                helper.setCc(messageVo.getCc().split(";"));
+            }
+            helper.setSubject("测试");
+            helper.setText(messageVo.getContent(), true);
+            javaMailSenderImpl.send(message);
+        } catch (MessagingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 	}
 }

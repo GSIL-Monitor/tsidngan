@@ -54,7 +54,17 @@ public class PayController {
         return result;
     }
     
-    
+    /**
+     * 
+    * @Title: callback
+    * @Description: 通联支付完成后 回调方法
+    * @param @param request
+    * @param @return    参数
+    * @return String    返回类型
+    * @throws
+    * @author jyq#trasen.cn
+    * @date 2019年2月19日 下午2:00:50
+     */
     @PostMapping("/pay/callback")
     public String callback(HttpServletRequest request) {
         
@@ -64,12 +74,16 @@ public class PayController {
             String key = (String) enu.nextElement();
             formData.put(key, request.getParameter(key).toString());
         }
-        
         //根据回调的订单号下单保险公司
-        sybPayService.createOderBycallback(formData);
+        try {
+            sybPayService.createOderBycallback(formData);
+            return "success";
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
       
-        
-        return "success";
+        return "fasle";        
     }
     
     /**

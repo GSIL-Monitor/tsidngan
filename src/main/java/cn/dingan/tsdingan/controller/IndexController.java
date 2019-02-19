@@ -170,7 +170,7 @@ public class IndexController extends BaseController{
 	    EmailMessageVo  messageVo = new EmailMessageVo();
 	    messageVo.setContent("测试------------");
 	    messageVo.setSendTo("380053453@qq.com");
-	    emailService.sendEmail(messageVo);
+	    emailService.senEmailPort(messageVo);
 	    
         return "true";
     }

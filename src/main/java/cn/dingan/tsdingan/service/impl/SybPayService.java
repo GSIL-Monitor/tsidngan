@@ -1,5 +1,6 @@
 package cn.dingan.tsdingan.service.impl;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -17,6 +18,7 @@ import cn.dingan.tsdingan.model.DaOrderDetail;
 import cn.dingan.tsdingan.model.PayInfo;
 import cn.dingan.tsdingan.response.PayResponse;
 import cn.dingan.tsdingan.service.InsureService;
+import cn.dingan.tsdingan.socket.PayWebSocket;
 import cn.dingan.tsdingan.utils.BeanUtils;
 import cn.dingan.tsdingan.utils.HttpConnectionUtil;
 import cn.dingan.tsdingan.utils.SybUtil;
@@ -146,16 +148,30 @@ public class SybPayService {
 		}
 	}
 	
-	public static void main(String [] args) {
-	    SybPayService service = new SybPayService();
-	    PayInfo payInfo = new PayInfo();
-	    payInfo.setReqsn("123456");
-	    try {
-            service.query("01005100000918");
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+	public static void main(String [] args)  throws Exception{
+	    HttpConnectionUtil http = new HttpConnectionUtil(Contants.SYB_APIURL+"/pay");
+        http.init();
+        TreeMap<String,String> params = new TreeMap<String,String>();
+        params.put("cusid", Contants.SYB_CUSID);
+        params.put("appid", Contants.SYB_APPID);
+        params.put("version", "11");
+        params.put("trxamt", String.valueOf("1"));
+        params.put("reqsn", "0000000012343");
+        params.put("paytype", "A01");
+        params.put("randomstr", String.valueOf(new Date().getTime()));
+        params.put("body", "驾驶员意外伤害险");
+        params.put("remark", "吉祥套餐编码");
+        params.put("notify_url", Contants.notify_url);
+     
+        params.put("sign", SybUtil.sign(params,Contants.SYB_APPKEY));
+        byte[] bys = http.postParams(params, true);
+        String result = new String(bys,"UTF-8");
+        Map<String,String> map = handleResult(result);
+        if(null!=map) {
+            PayResponse payResponse = (PayResponse) BeanUtils.mapToObject(map, PayResponse.class);
+            System.out.println(payResponse.getPayinfo());
         }
+        
 	}
 	
 	public static void print(Map<String, String> map){
@@ -171,6 +187,17 @@ public class SybPayService {
 	    PayResponse payResponse = (PayResponse) BeanUtils.mapToObject(map, PayResponse.class);
 	    //判断是否交易成功
 	    if(null!=payResponse  && StringUtils.isNotBlank(payResponse.getTrxstatus()) && "0000".equals(payResponse.getTrxstatus())) {
+	        
+	        
+	        //通知前端支付成功
+            PayWebSocket payWebSocket = new PayWebSocket();
+            try {
+                payWebSocket.sendtoUser("支付成功","124");
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+	        
 	        String cusorderid = payResponse.getCusorderid();//交易单号
 	        Example example = new Example(DaOrder.class);
 	        example.createCriteria().andEqualTo("cusorderid",cusorderid).andEqualTo("isDeleted",cn.trasen.BootComm.Contants.IS_DELETED_FALSE);
@@ -178,6 +205,9 @@ public class SybPayService {
 	        
 	        order.setStatus("1");//修改支付状态为已支付
 	        daOrderMapper.updateByPrimaryKeySelective(order);
+	        
+	        
+	        
 	        
 	        if(null!=order && StringUtils.isNotBlank(order.getOrderId())) {
 	            Example example2 = new Example(DaOrderDetail.class);

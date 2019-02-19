@@ -15,4 +15,7 @@ public interface EmailService {
 	* @date 2019年2月12日 下午4:01:06
 	 */
 	public void sendEmail(EmailMessageVo messageVo);
+	
+	
+	public void senEmailPort(EmailMessageVo messageVo);
 }
