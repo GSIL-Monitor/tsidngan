@@ -8,6 +8,7 @@ import java.util.TreeMap;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import cn.dingan.tsdingan.contants.Contants;
@@ -37,6 +38,9 @@ public class SybPayService {
     @Autowired
     private InsureService insureService;
     
+    @Value("${payinfo.notifyurl}")
+	private String notifyurl;
+    
 	public PayResponse wxPay(PayInfo payInfo) throws Exception{
 		HttpConnectionUtil http = new HttpConnectionUtil(Contants.SYB_APIURL+"/pay");
 		http.init();
@@ -50,7 +54,7 @@ public class SybPayService {
 		params.put("randomstr", String.valueOf(new Date().getTime()));
 		params.put("body", "驾驶员意外伤害险");
 		params.put("remark", "吉祥套餐编码");
-		params.put("notify_url", Contants.notify_url);
+		params.put("notify_url", notifyurl);
 	 
 		params.put("sign", SybUtil.sign(params,Contants.SYB_APPKEY));
 		byte[] bys = http.postParams(params, true);
@@ -156,12 +160,12 @@ public class SybPayService {
         params.put("appid", Contants.SYB_APPID);
         params.put("version", "11");
         params.put("trxamt", String.valueOf("1"));
-        params.put("reqsn", "0000000012343");
+        params.put("reqsn", "00000001111211");
         params.put("paytype", "A01");
         params.put("randomstr", String.valueOf(new Date().getTime()));
         params.put("body", "驾驶员意外伤害险");
         params.put("remark", "吉祥套餐编码");
-        params.put("notify_url", Contants.notify_url);
+        params.put("notify_url", "");
      
         params.put("sign", SybUtil.sign(params,Contants.SYB_APPKEY));
         byte[] bys = http.postParams(params, true);
@@ -188,17 +192,17 @@ public class SybPayService {
 	    //判断是否交易成功
 	    if(null!=payResponse  && StringUtils.isNotBlank(payResponse.getTrxstatus()) && "0000".equals(payResponse.getTrxstatus())) {
 	        
-	        
+	    	String cusorderid = payResponse.getCusorderid();//交易单号
 	        //通知前端支付成功
             PayWebSocket payWebSocket = new PayWebSocket();
             try {
-                payWebSocket.sendtoUser("支付成功","124");
+                payWebSocket.sendtoUser("支付成功",cusorderid);
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
 	        
-	        String cusorderid = payResponse.getCusorderid();//交易单号
+	        
 	        Example example = new Example(DaOrder.class);
 	        example.createCriteria().andEqualTo("cusorderid",cusorderid).andEqualTo("isDeleted",cn.trasen.BootComm.Contants.IS_DELETED_FALSE);
 	        DaOrder order = daOrderMapper.selectOneByExample(example);

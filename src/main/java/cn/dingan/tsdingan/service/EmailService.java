@@ -17,5 +17,5 @@ public interface EmailService {
 	public void sendEmail(EmailMessageVo messageVo);
 	
 	
-	public void senEmailPort(EmailMessageVo messageVo);
+	public void sendEmil465(EmailMessageVo messageVo);
 }

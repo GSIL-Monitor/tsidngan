@@ -25,7 +25,7 @@ public class WebAppConfigurer extends WebMvcConfigurerAdapter {
         registry.addInterceptor(sessionInterceptor).addPathPatterns("/**").excludePathPatterns("/index/*")
         .excludePathPatterns("/pay/callback")
         .excludePathPatterns("/insure/try/test")
-        .excludePathPatterns("/pay/query/**");
+        .excludePathPatterns("/index/upload").excludePathPatterns("/pay/query/**");
 
         super.addInterceptors(registry);
     }

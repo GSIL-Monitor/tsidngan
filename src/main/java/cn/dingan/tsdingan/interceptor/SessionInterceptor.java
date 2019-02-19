@@ -67,6 +67,11 @@ public class SessionInterceptor extends HandlerInterceptorAdapter {
 //        HttpSession session = request.getSession();
         Map<String, String> map = getHeadersInfo(request);
         System.out.println(request.getRequestURL());
+        String url = request.getRequestURL().toString();
+        if(url.contains("index/upload")) {
+        	return true;
+        }
+        
         String token = map.get("authorization");
 		String account = map.get("account");
 		try {

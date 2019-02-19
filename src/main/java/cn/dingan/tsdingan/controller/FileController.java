@@ -114,8 +114,7 @@ public class FileController {
 	 * @param file
 	 * @return
 	 */
-	@ApiOperation(value = "文件上传V2", notes = "文件上传V2")
-	@PostMapping("/file/v2/upload")
+	@PostMapping("/index/upload")
 	public Result upload(HttpServletRequest request, @RequestParam("file") MultipartFile file) {
 		Result result = new Result();
 

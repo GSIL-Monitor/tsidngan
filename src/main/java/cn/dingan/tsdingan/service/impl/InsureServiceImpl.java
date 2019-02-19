@@ -425,7 +425,7 @@ public class InsureServiceImpl implements InsureService{
     * @author jyq#trasen.cn
     * @date 2019年2月14日 下午5:01:47
      */
-    private int getSerialno(DriverSchool school) {
+    private synchronized int getSerialno(DriverSchool school) {
         Example example = new Example(Serialno.class);
         example.createCriteria().andEqualTo("isDeleted",cn.trasen.BootComm.Contants.IS_DELETED_FALSE)
         .andEqualTo("type",1);

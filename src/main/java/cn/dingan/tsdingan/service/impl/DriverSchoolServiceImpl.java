@@ -86,11 +86,16 @@ public class DriverSchoolServiceImpl implements DriverSchoolService {
 	 */
 	private String sendEmail(DriverSchool record) {
 		if(StringUtils.isNotBlank(record.getEmail())) {
-		    EmailMessageVo  messageVo = new EmailMessageVo();
+		    try {
+				EmailMessageVo  messageVo = new EmailMessageVo();
 //	        messageVo.setContent("感谢您注册鼎安保险，您的账号信息为"+user.getAccount()+",您的密码为123456,我们已经发送了一封激活邮件到您的邮箱"+record.getEmail()+"");
-	        messageVo.setContent("感谢您注册，您的账号信息为"+record.getAccount()+",您的密码为123456,我们已经发送了一封激活邮件到您的邮箱"+record.getEmail()+"");
-	        messageVo.setSendTo(record.getEmail());
-	        emailService.sendEmail(messageVo);
+				messageVo.setContent("感谢您注册，您的账号信息为"+record.getAccount()+",您的密码为123456,我们已经发送了一封激活邮件到您的邮箱"+record.getEmail()+"");
+				messageVo.setSendTo(record.getEmail());
+				emailService.sendEmil465(messageVo);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	        return "您的账号信息为"+record.getAccount()+",您的密码为123456,我们已经发送了一封激活邮件到您的邮箱"+record.getEmail()+"";
 		}
 		return null;
